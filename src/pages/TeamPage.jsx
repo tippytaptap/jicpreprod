@@ -1,0 +1,1 @@
+import React from'react';export default function TeamPage(){return <section className="page"><p className="eyebrow">OUR TEAM</p><h1>Meet the people serving JIC.</h1><p>Team profiles can be managed through the site CMS.</p></section>}

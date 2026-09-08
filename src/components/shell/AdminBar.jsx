@@ -1,0 +1,1 @@
+import React from'react';import{Link}from'react-router-dom';import{useAuth}from'@/context/AuthContext';export default function AdminBar(){const{isAdmin,signOut}=useAuth();if(!isAdmin)return null;return <div className="adminBar"><Link to="/admin">Admin dashboard</Link><button onClick={signOut}>Sign out</button></div>}

@@ -1,0 +1,2 @@
+-- Compatibility entry point. The complete production schema is in production_schema.sql.
+-- Run production_schema.sql in the Supabase SQL editor.

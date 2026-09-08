@@ -1,0 +1,1 @@
+import React from'react';export default function PrivacyPage(){return <section className="page"><h1>Privacy</h1><p>Jamatia Islamic Centre respects your privacy. Contact the centre with any data-protection enquiries.</p></section>}

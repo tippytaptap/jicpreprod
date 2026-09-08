@@ -1,0 +1,1 @@
+import React from'react';export default function EditableImage(props){return <img {...props}/>}

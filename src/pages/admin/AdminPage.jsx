@@ -1,0 +1,1 @@
+import React from'react';export default function AdminPage(){return <main className="page"><p className="eyebrow">JIC ADMIN</p><h1>Content dashboard</h1><p>Manage website content, events, pages, projects, classes and media from the configured Supabase CMS.</p></main>}

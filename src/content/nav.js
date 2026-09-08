@@ -1,0 +1,1 @@
+export const nav=[{label:'Home',to:'/'},{label:'About',to:'/about'},{label:'Services',to:'/services'},{label:'Projects',to:'/projects'},{label:'Prayer Times',to:'/prayer-times'},{label:'Madrassah',to:'/madrassah'},{label:'Youth',to:'/youth'}];

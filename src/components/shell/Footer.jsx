@@ -1,0 +1,1 @@
+import React from'react';import{Link}from'react-router-dom';export default function Footer(){return <footer><div className="footerInner"><b>Jamatia Islamic Centre</b><div><Link to="/about">About</Link><Link to="/contact">Contact</Link><Link to="/privacy">Privacy</Link></div><small>© 2026 Jamatia Islamic Centre</small></div></footer>}

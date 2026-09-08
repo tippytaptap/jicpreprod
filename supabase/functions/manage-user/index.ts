@@ -1,0 +1,3 @@
+import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+serve(async(req)=>{const url=Deno.env.get('SUPABASE_URL')!;const service=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;const admin=createClient(url,service);const auth=req.headers.get('Authorization')||'';const jwt=auth.replace('Bearer ','');const{data:{user}}=await admin.auth.getUser(jwt);if(!user)return new Response('Unauthorized',{status:401});const{data:profile}=await admin.from('profiles').select('role').eq('id',user.id).single();if(profile?.role!=='admin')return new Response('Forbidden',{status:403});return Response.json({ok:true});});

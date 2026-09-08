@@ -1,0 +1,1 @@
+import React from 'react';export default function JamatiaLogo(){return <div className="brand"><span className="brandMark">☪</span><span><b>Jamatia</b><small>JAMATIA ISLAMIC CENTRE</small></span></div>}

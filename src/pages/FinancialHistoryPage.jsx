@@ -1,0 +1,1 @@
+import React from'react';export default function FinancialHistoryPage(){return <section className="page"><p className="eyebrow">TRANSPARENCY</p><h1>Financial history.</h1><p>Annual financial information and reports can be published here by authorised administrators.</p></section>}

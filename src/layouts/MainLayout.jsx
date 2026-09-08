@@ -1,0 +1,1 @@
+import React from 'react';import{Outlet}from'react-router-dom';import Navbar from '@/components/shell/Navbar';import Footer from '@/components/shell/Footer';import ScrollToTop from '@/components/shell/ScrollToTop';export default function MainLayout(){return <div className="min-h-screen bg-[#07131b] text-white"><ScrollToTop/><Navbar/><main><Outlet/></main><Footer/></div>}
