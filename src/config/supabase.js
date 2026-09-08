@@ -1,4 +1,20 @@
+/**
+ * ============================================================
+ *  SUPABASE CONFIG  —  src/config/supabase.js
+ * ============================================================
+ *  Credentials come from the .env file — never hardcode them here.
+ *  Copy .env.example → .env and fill in your values.
+ * ============================================================
+ */
 import { createClient } from '@supabase/supabase-js';
-const url = import.meta.env.VITE_SUPABASE_URL;
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
-export const supabase = url && key ? createClient(url, key) : null;
+
+const supabaseUrl     = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error(
+    'Missing Supabase env vars. Copy .env.example → .env and fill in VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.'
+  );
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);

@@ -1,2 +1,3 @@
--- Compatibility entry point. The complete production schema is in production_schema.sql.
--- Run production_schema.sql in the Supabase SQL editor.
+-- DEPRECATED: do not use the old permissive CMS policies.
+-- Use `production_schema.sql`, which implements role-based RLS, audit logging,
+-- events, announcements, prayer-time administration, team profiles and livestream settings.

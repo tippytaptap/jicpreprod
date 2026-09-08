@@ -1,1 +1,29 @@
-import React from'react';export default function MadrassahPage(){return <section className="page"><p className="eyebrow">MADRASSAH</p><h1>Learn. Grow. Belong.</h1><p>Structured Islamic education for children, young people and adults.</p><div className="pageGrid"><article><h2>Qur’an</h2><p>Reading, Tajweed and memorisation.</p></article><article><h2>Islamic Studies</h2><p>Faith, character and practical Islamic knowledge.</p></article><article><h2>Classes</h2><p>Current courses and enrolment information.</p></article></div></section>}
+import React from 'react';
+    import HeroSection from '@/components/sections/madrassah/HeroSection';
+    import AboutSection from '@/components/sections/madrassah/AboutSection';
+    import ProgramsSection from '@/components/sections/madrassah/ProgramsSection';
+    import SpecialCoursesSection from '@/components/sections/madrassah/SpecialCoursesSection';
+    import EnrollmentSection from '@/components/sections/madrassah/EnrollmentSection';
+    import TestimonialsSection from '@/components/sections/madrassah/TestimonialsSection';
+    import CallToActionSection from '@/components/sections/madrassah/CallToActionSection';
+    import EnrollmentForm from '@/components/sections/madrassah/EnrollmentForm';
+
+    const MadrassahPage = () => {
+      return (
+        <div className="page-transition pt-24">
+          <HeroSection />
+          <AboutSection />
+          <ProgramsSection />
+          <SpecialCoursesSection />
+          <section id="enrollment" className="py-16 bg-gray-50 dark:bg-gray-800">
+            <div className="container mx-auto px-4">
+              <EnrollmentForm />
+            </div>
+          </section>
+          <TestimonialsSection />
+          <CallToActionSection />
+        </div>
+      );
+    };
+
+    export default MadrassahPage;

@@ -1,1 +1,20 @@
-import React from'react';export default function ContactPage(){return <section className="page"><p className="eyebrow">CONTACT</p><h1>Visit Jamatia Islamic Centre.</h1><p>Woodlands Road · Birmingham · B11 4ER</p><div className="pageGrid"><article><h2>Visit</h2><p>Find directions and centre information.</p></article><article><h2>Get in touch</h2><p>Contact the JIC team for enquiries.</p></article><article><h2>Donate</h2><p>Support the masjid and its community work.</p></article></div></section>}
+import React from 'react';
+    import ContactHeroSection from '@/components/sections/contact/ContactHeroSection';
+    import ContactInfoSection from '@/components/sections/contact/ContactInfoSection';
+    import ContactFormSection from '@/components/sections/contact/ContactFormSection';
+    import FaqSection from '@/components/sections/contact/FaqSection';
+    import ContactCallToActionSection from '@/components/sections/contact/ContactCallToActionSection';
+
+    const ContactPage = () => {
+      return (
+        <div className="page-transition pt-24">
+          <ContactHeroSection />
+          <ContactInfoSection />
+          <ContactFormSection />
+          <FaqSection />
+          <ContactCallToActionSection />
+        </div>
+      );
+    };
+
+    export default ContactPage;

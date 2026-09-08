@@ -1,1 +1,54 @@
-import React from'react';const p=[['Fajr','5:12'],['Sunrise','6:43'],['Dhuhr','12:52'],['Asr','4:18'],['Maghrib','6:51'],['Isha','8:17']];export default function PrayerTimesPage(){return <section className="page"><p className="eyebrow">PRAYER TIMES</p><h1>Today at JIC.</h1><div className="prayerPage">{p.map(x=><div><span>{x[0]}</span><b>{x[1]}</b></div>)}</div><p>Live timetable data can be loaded from the configured Supabase timetable table.</p></section>}
+import React, { useState } from 'react';
+    import PrayerTimesHeroSection from '@/components/sections/prayer-times/PrayerTimesHeroSection';
+    import TodaysPrayerTimesSection from '@/components/sections/prayer-times/TodaysPrayerTimesSection';
+    import PrayerScheduleTabs from '@/components/sections/prayer-times/PrayerScheduleTabs';
+    import PrayerGuidelinesSection from '@/components/sections/prayer-times/PrayerGuidelinesSection';
+    import { usePrayerTimes } from '@/components/sections/prayer-times/PrayerTimesLogic';
+    import { Skeleton } from "@/components/ui/skeleton";
+
+    const PrayerTimesPage = () => {
+      const [activeTab, setActiveTab] = useState('daily');
+      const {
+        currentDate,
+        formattedDate,
+        formattedTime,
+        currentMonth,
+        monthlyPrayerTimes,
+        todaysTimes,
+        jummahTimes,
+        ramadanTimes,
+        isLoadingPrayerTimes,
+      } = usePrayerTimes();
+
+      if (isLoadingPrayerTimes) {
+        return (
+          <div className="page-transition pt-24 container mx-auto px-4">
+            <Skeleton className="h-48 w-full mb-8" />
+            <Skeleton className="h-64 w-full mb-8" />
+            <div className="flex justify-center mb-8">
+              <Skeleton className="h-10 w-1/3" />
+            </div>
+            <Skeleton className="h-96 w-full" />
+          </div>
+        );
+      }
+
+      return (
+        <div className="page-transition pt-24">
+          <PrayerTimesHeroSection formattedDate={formattedDate} formattedTime={formattedTime} />
+          <TodaysPrayerTimesSection currentDate={currentDate} todaysTimes={todaysTimes} />
+          <PrayerScheduleTabs 
+            monthlyPrayerTimes={monthlyPrayerTimes}
+            currentMonth={currentMonth}
+            currentDate={currentDate}
+            jummahTimes={jummahTimes}
+            ramadanTimes={ramadanTimes}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+          <PrayerGuidelinesSection />
+        </div>
+      );
+    };
+
+    export default PrayerTimesPage;

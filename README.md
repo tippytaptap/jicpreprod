@@ -1,15 +1,28 @@
-# Jamatia Islamic Centre — Pre-production
+# Jamatia Islamic Centre website
 
-Responsive React/Vite website for JIC, prepared for pre-production testing before any production deployment.
+Production-ready React/Vite website for JIC.
 
-## Included
-- Mobile-first dark glass interface with JIC gold branding
-- Mobile header order: location, six prayer times, JIC Radio/live controls, glass toggle, brand/actions
-- Live JIC radio stream fallback: `https://jicmosque.radioca.st/stream`
-- Supabase timetable/CMS/admin foundation preserved
-- Pages for Home, About, Team, Projects, Services, Madrassah, Youth, Prayer Times, Financial History, Contact and Privacy
-- Event/announcement/livestream data hooks
-- Admin authentication and editable content foundation
+## Included in this build
+- Responsive dark/light design with optional glass or solid surfaces
+- Persistent top information bar with address, both Jummah times, and JIC Radio play/pause
+- Official JIC radio stream fallback: `https://jicmosque.radioca.st/stream`
+- Compact logo / donate / menu row
+- Persistent Salah strip with full timetable link
+- Existing Supabase prayer-time, CMS, admin and page foundation preserved
+- Mobile-first navigation with no duplicate Jummah or directions tiles in the header flow
 
-## Deployment
-Set the environment values described in `.env.example`, run `npm install` and `npm run build`, and deploy `dist/` on Hostinger.
+## Local development
+```bash
+npm install
+npm run dev
+```
+
+## Production build
+```bash
+npm run build
+```
+
+Hostinger should deploy the generated `dist/` directory for a static Vite deployment, or use its Git deployment workflow if already configured.
+
+## Environment
+Copy `.env.example` to `.env`. `VITE_RADIO_STREAM_URL` is optional because the official JIC stream is included as a fallback in `src/content/site.js`.

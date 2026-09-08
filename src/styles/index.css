@@ -1,2 +1,198 @@
-@tailwind base;@tailwind components;@tailwind utilities;:root{font-family:Inter,system-ui,sans-serif;color:#f7f4ed;background:#07131b}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 30% 0,#10283a,#061119 55%);color:#fff}a{text-decoration:none;color:inherit}.siteHeader{position:relative;z-index:20;background:rgba(5,17,26,.94);border-bottom:1px solid rgba(255,255,255,.1);backdrop-filter:blur(20px)}.mobileUtility{display:none}.navMain{height:82px;max-width:1240px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:#f3c65f}.brandMark{font-size:32px}.brand b{font:italic 30px Georgia}.brand small{display:block;font-size:8px;letter-spacing:2px}.desktopNav{display:flex;gap:26px}.desktopNav a{color:#dce3e8;font-size:14px}.desktopNav a.active{color:#f4c85f}.navActions{display:flex;gap:12px}.donateCircle,.menuBtn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);background:#0a1721;color:#fff}.donateCircle{background:#f4c85f;color:#08131b}.menuBtn{display:none}.mobileMenu{position:absolute;right:20px;top:76px;width:min(360px,calc(100vw - 40px));padding:20px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:rgba(6,17,26,.97);box-shadow:0 30px 70px #000;backdrop-filter:blur(24px)}.mobileMenu a{display:flex;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(255,255,255,.08)}.mobileMenu a.active{background:rgba(255,255,255,.08);border-radius:12px;color:#f4c85f}.hero{min-height:670px;position:relative;background:linear-gradient(90deg,#061018 0%,transparent 65%),url('https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1800&q=85') center/cover}.heroShade{position:absolute;inset:0;background:linear-gradient(0deg,#061119 0%,transparent 55%)}.heroContent{position:relative;z-index:2;max-width:1240px;margin:auto;padding:155px 34px}.heroContent>p,.eyebrow{color:#f4c85f;letter-spacing:4px;font-size:12px}.hero h1{font:italic clamp(48px,6vw,84px)/.95 Georgia;max-width:780px;margin:18px 0}.hero h1 em{color:#fff}.goldLine{display:block;width:62px;height:4px;background:#f4c85f;margin:25px 0}.hero h3{font-size:20px;margin:0 0 6px}.heroContent>span{color:#c7d0d6}.heroBtns{display:flex;gap:14px;margin-top:28px}.primary,.secondary{display:inline-flex;gap:18px;align-items:center;padding:15px 24px;border-radius:28px}.primary{background:#f4c85f;color:#08131b;font-weight:700}.secondary{border:1px solid rgba(255,255,255,.45)}.homeCards{max-width:1240px;margin:-85px auto 0;position:relative;z-index:3;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 24px}.featureCard{min-height:245px;padding:28px;border-radius:20px;border:1px solid rgba(255,255,255,.2);background:linear-gradient(145deg,rgba(18,41,55,.94),rgba(5,15,23,.94));box-shadow:0 20px 45px rgba(0,0,0,.3)}.featureCard>svg,.featureCard b{color:#f4c85f}.featureCard h2{margin:35px 0 8px}.featureCard p{color:#c7d0d6;min-height:52px}.featureCard b{display:flex;align-items:center;gap:10px}.eventTicker{max-width:1192px;margin:18px auto 70px;border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:15px 22px;display:flex;align-items:center;gap:30px;background:rgba(255,255,255,.05)}.eventTicker span{font-size:12px}.eventTicker b{font-size:13px;flex:1}.page{max-width:1100px;margin:auto;padding:100px 28px;min-height:70vh}.page h1{font:italic 55px Georgia;margin:12px 0 20px}.page>p:not(.eyebrow){color:#c7d0d6;font-size:18px;max-width:720px}.pageGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}.pageGrid article,.pageGrid>a{padding:25px;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(255,255,255,.05)}.prayerPage{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:35px 0}.prayerPage div{padding:20px;text-align:center;border-radius:16px;background:rgba(255,255,255,.07)}.prayerPage b{display:block;color:#f4c85f;font-size:24px}footer{border-top:1px solid rgba(255,255,255,.1);background:#040c12}.footerInner{max-width:1200px;margin:auto;padding:35px 24px;display:flex;justify-content:space-between;gap:20px;color:#aebac2}.footerInner div{display:flex;gap:18px}.adminBar{display:flex;justify-content:center;gap:20px;background:#f4c85f;color:#08131b;padding:8px}.modal{position:fixed;inset:0;background:#000b;z-index:50;display:grid;place-items:center}.modal form{width:360px;padding:30px;background:#0b1b26;border-radius:20px}.modal input,.modal button{display:block;width:100%;padding:12px;margin-top:12px}
-@media(max-width:700px){.siteHeader{padding:8px 12px 0}.mobileUtility{display:block}.location,.prayerStrip,.utilityRow{border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(65,92,112,.42),rgba(21,42,56,.36));backdrop-filter:blur(20px)}.location{height:38px;border-radius:15px 15px 8px 8px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px}.prayerStrip{display:grid;grid-template-columns:repeat(6,1fr);margin-top:5px;border-radius:8px;padding:8px 2px}.prayerStrip div{text-align:center;border-right:1px solid rgba(255,255,255,.1)}.prayerStrip div:last-child{border:0}.prayerStrip small{display:block;font-size:9px;color:#d6dde1}.prayerStrip b{display:block;color:#f4c85f;font-size:11px}.utilityRow{height:46px;margin-top:5px;border-radius:9px;display:flex;align-items:center;justify-content:space-between;padding:0 12px}.utilityRow a,.utilityRow button{display:flex;align-items:center;gap:7px;background:none;border:0;color:#fff;font-size:12px}.utilityRow i{width:7px;height:7px;border-radius:50%;background:#f22;box-shadow:0 0 8px #f22}.navMain{height:94px;padding:0 10px}.brand b{font-size:31px}.brand small{font-size:7px}.brandMark{display:none}.desktopNav{display:none}.menuBtn{display:grid}.mobileMenu{top:230px;right:12px}.hero{min-height:570px;margin:0 -0px;background-position:center}.heroContent{padding:165px 24px 35px}.heroContent>p{font-size:10px;letter-spacing:2.4px}.hero h1{font-size:49px;line-height:.98;margin:14px 0}.hero h3{font-size:17px}.heroContent>span{font-size:13px}.heroBtns{gap:10px}.primary,.secondary{padding:13px 17px;font-size:13px}.homeCards{margin:-8px auto 0;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px}.featureCard{min-height:190px;padding:18px;border-radius:14px}.featureCard h2{font-size:20px;margin:18px 0 5px}.featureCard p{font-size:12px;min-height:50px}.featureCard b{font-size:12px}.eventTicker{margin:12px 12px 30px;padding:12px 14px;gap:10px}.eventTicker b{font-size:11px}.page{padding:60px 20px}.page h1{font-size:43px}.pageGrid{grid-template-columns:1fr}.prayerPage{grid-template-columns:repeat(2,1fr)}.footerInner{flex-direction:column}.footerInner div{flex-wrap:wrap}}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /*
+   * ── LIGHT MODE ─────────────────────────────────────────────
+   * Clean off-white base; teal/green primary suits the Islamic
+   * aesthetic and reads well on both light and dark surfaces.
+   */
+  :root {
+    --background:   210 20% 98%;    /* warm white */
+    --foreground:   220 25% 10%;    /* near-black with slight warmth */
+
+    --card:         0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover:      0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary:      162 65% 35%;    /* rich teal-green */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary:    210 20% 93%;
+    --secondary-foreground: 220 25% 20%;
+
+    --muted:        210 15% 92%;
+    --muted-foreground: 215 15% 46%;
+
+    --accent:       162 30% 92%;
+    --accent-foreground: 162 65% 25%;
+
+    --destructive:  0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:       210 20% 88%;
+    --input:        210 20% 88%;
+    --ring:         162 65% 35%;
+
+    --radius: 0.5rem;
+
+    /* Chart colours */
+    --chart-1: 162 65% 35%;   /* teal   */
+    --chart-2: 210 70% 50%;   /* blue   */
+    --chart-3: 38  90% 50%;   /* amber  */
+    --chart-4: 280 55% 55%;   /* purple */
+    --chart-5: 0   65% 55%;   /* red    */
+  }
+
+  /*
+   * ── DARK MODE ──────────────────────────────────────────────
+   * Deep navy-black base (inspired by GitHub dark), not flat gray.
+   * Keeps the teal primary vivid — it pops beautifully on dark.
+   * Surfaces have subtle warmth to avoid clinical coldness.
+   */
+  .dark {
+    --background:   222 47% 7%;     /* deep navy-black  #0d1117 */
+    --foreground:   215 28% 88%;    /* warm near-white  #dce3ef */
+
+    --card:         222 35% 11%;    /* slightly lighter navy #161b27 */
+    --card-foreground: 215 28% 88%;
+
+    --popover:      222 35% 10%;
+    --popover-foreground: 215 28% 88%;
+
+    --primary:      162 60% 48%;    /* brighter teal in dark mode */
+    --primary-foreground: 222 47% 7%;
+
+    --secondary:    222 25% 16%;    /* subtle raised surface */
+    --secondary-foreground: 215 25% 78%;
+
+    --muted:        222 22% 14%;
+    --muted-foreground: 215 16% 55%;
+
+    --accent:       162 30% 18%;    /* tinted teal accent bg */
+    --accent-foreground: 162 60% 68%;
+
+    --destructive:  0 60% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:       222 20% 20%;    /* visible but subtle border */
+    --input:        222 20% 17%;
+    --ring:         162 60% 48%;
+
+    /* Chart colours — slightly lighter for dark mode readability */
+    --chart-1: 162 60% 52%;
+    --chart-2: 210 70% 60%;
+    --chart-3: 38  85% 60%;
+    --chart-4: 280 55% 65%;
+    --chart-5: 0   60% 60%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Navbar padding so content isn't under the fixed header */
+  main { padding-top: 12.5rem; }
+  @media (min-width: 768px) { main { padding-top: 13.5rem; } }
+
+  /* Selection colour */
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+}
+
+/* ── Page transition ─────────────────────────────────────────── */
+.page-transition { @apply min-h-screen; }
+
+/* ── Islamic geometric background pattern ────────────────────── */
+.islamic-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2320b27f' fill-opacity='0.07'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm-20-10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0-20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zM10 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zM30 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zM50 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+.dark .islamic-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2320b27f' fill-opacity='0.12'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm-20-10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0-20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zM10 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zM30 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zm0 20c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10zM50 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c-5.523 0-10-4.477-10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Gradient accent for prayer times etc. ───────────────────── */
+.prayer-time-gradient {
+  background: linear-gradient(135deg, hsl(162 65% 35% / 0.85) 0%, hsl(162 65% 25% / 0.6) 100%);
+}
+.dark .prayer-time-gradient {
+  background: linear-gradient(135deg, hsl(162 60% 48% / 0.25) 0%, hsl(162 60% 35% / 0.15) 100%);
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: hsl(var(--muted) / 0.4); border-radius: 10px; }
+::-webkit-scrollbar-thumb  { background: hsl(var(--primary) / 0.5); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.8); }
+
+/* ── Recharts dark mode text fix ─────────────────────────────── */
+.recharts-text, .recharts-legend-item-text {
+  fill: hsl(var(--foreground)) !important;
+}
+.recharts-tooltip-label { color: hsl(var(--foreground)) !important; }
+
+/* ── Edit mode global indicator ──────────────────────────────── */
+body.edit-mode-active {
+  outline: 2px solid hsl(162 60% 48% / 0.3);
+  outline-offset: -2px;
+}
+
+/* ── Dark mode card/surface upgrades ─────────────────────────── */
+.dark .bg-gray-50  { background-color: hsl(222 35% 11%) !important; }
+.dark .bg-gray-100 { background-color: hsl(222 30% 13%) !important; }
+.dark .bg-gray-800 { background-color: hsl(222 30% 14%) !important; }
+.dark .bg-gray-900 { background-color: hsl(222 47%  8%) !important; }
+.dark .bg-white    { background-color: hsl(222 35% 11%) !important; }
+
+/* ── Dark mode border upgrades ───────────────────────────────── */
+.dark .border-gray-200 { border-color: hsl(222 20% 20%) !important; }
+.dark .border-gray-700 { border-color: hsl(222 20% 22%) !important; }
+.dark .border-gray-800 { border-color: hsl(222 20% 17%) !important; }
+
+/* ── Dark mode text upgrades ─────────────────────────────────── */
+.dark .text-gray-400 { color: hsl(215 16% 56%) !important; }
+.dark .text-gray-500 { color: hsl(215 14% 50%) !important; }
+.dark .text-gray-600 { color: hsl(215 18% 62%) !important; }
+.dark .text-gray-700 { color: hsl(215 20% 72%) !important; }
+.dark .text-gray-900 { color: hsl(215 28% 88%) !important; }
+
+/* ── JIC premium persistent header ─────────────────────────── */
+:root { --jic-gold:#d9aa43; --jic-ink:#07111b; }
+.jic-header { color:white; pointer-events:none; }
+.jic-header > div, .jic-header a, .jic-header button { pointer-events:auto; }
+.jic-glass { background:rgba(7,17,27,.72); border:1px solid rgba(255,255,255,.20); box-shadow:0 12px 35px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.10); backdrop-filter:blur(22px) saturate(145%); -webkit-backdrop-filter:blur(22px) saturate(145%); }
+html[data-surface="solid"] .jic-glass { background:#0a1621; backdrop-filter:none; -webkit-backdrop-filter:none; }
+html:not(.dark) .jic-glass { color:#101820; background:rgba(250,248,243,.88); border-color:rgba(20,20,20,.12); }
+html:not(.dark)[data-surface="solid"] .jic-glass { background:#faf8f3; }
+.utility-bar { min-height:46px; }
+.utility-item { min-height:46px; padding:0 18px; display:flex; align-items:center; gap:9px; font-size:13px; border-right:1px solid rgba(255,255,255,.10); }
+.brand-lockup { height:64px; overflow:hidden; display:flex; align-items:center; }
+.brand-lockup img { width:100%; height:auto; display:block; filter:brightness(0) invert(1) sepia(.7) saturate(2.2) hue-rotate(350deg) brightness(1.12); }
+html:not(.dark) .brand-lockup img { filter:none; }
+.nav-pill { padding:9px 11px; border-radius:10px; font-size:13px; opacity:.86; transition:.2s; white-space:nowrap; }
+.nav-pill:hover,.nav-pill.active { color:#f0cf78; background:rgba(255,255,255,.06); opacity:1; }
+.donate-button { height:44px; padding:0 18px; border-radius:999px; display:flex; align-items:center; gap:8px; color:#17120a!important; font-weight:700; background:linear-gradient(135deg,#f4d992,#c99736); box-shadow:0 8px 22px rgba(217,170,67,.25); }
+.header-icon { width:42px; height:42px; place-items:center; border-radius:50%; border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.06); }
+.drawer-link,.setting-chip { border-radius:10px; padding:10px 12px; font-size:13px; background:rgba(255,255,255,.05); }
+.setting-chip { display:flex; align-items:center; gap:7px; }
+.prayer-bar { overflow:hidden; }
+.prayer-scroll { min-height:72px; display:flex; align-items:stretch; overflow-x:auto; scrollbar-width:none; }
+.prayer-scroll::-webkit-scrollbar{display:none}.prayer-cell{min-width:112px; flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; border-right:1px solid rgba(255,255,255,.12); padding:8px 12px}.prayer-cell span{font-size:11px;opacity:.72}.prayer-cell strong{font-size:17px;font-weight:500;margin-top:2px}.prayer-cell:first-child strong{color:#f0cf78}.full-timetable{min-width:210px;display:flex;align-items:center;justify-content:center;gap:18px;padding:0 20px;font-size:13px}.full-timetable span{font-size:22px}
+@media(max-width:767px){.utility-item{padding:0 10px;font-size:11px}.main-bar{margin-top:6px!important}.brand-lockup{height:54px}.prayer-bar{margin-top:6px!important}.prayer-scroll{min-height:62px}.prayer-cell{min-width:74px;padding:6px}.prayer-cell span{font-size:9px}.prayer-cell strong{font-size:14px}.full-timetable{min-width:150px;font-size:11px}.jic-header .max-w-\[1500px\]{padding-left:6px;padding-right:6px}}
+.jic-home-hero{background:#07111b}.jic-hero-shade{background:linear-gradient(90deg,rgba(3,9,15,.88) 0%,rgba(3,9,15,.62) 42%,rgba(3,9,15,.16) 72%,rgba(3,9,15,.34) 100%)}.jic-display{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:400;letter-spacing:-.035em}@media(max-width:767px){.jic-home-hero .container{min-height:570px;align-items:flex-end;padding-bottom:56px}.jic-hero-shade{background:linear-gradient(180deg,rgba(3,9,15,.22),rgba(3,9,15,.52) 45%,rgba(3,9,15,.94) 100%)}}
+
+/* ── JIC final responsive header refinements ─────────────────── */
+.utility-scroll{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:stretch;min-width:0}.utility-item{white-space:nowrap}.utility-jummah{justify-content:center}.utility-radio{justify-content:flex-end;border-right:0}.radio-playing{color:#f0cf78}.live-dot{width:7px;height:7px;border-radius:999px;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.55)}.radio-playing .live-dot{animation:jic-live-pulse 1.8s infinite}.radio-status{text-transform:uppercase;letter-spacing:.12em;font-size:9px;opacity:.62}@keyframes jic-live-pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.48)}70%{box-shadow:0 0 0 7px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+@media(max-width:767px){main{padding-top:12rem}.utility-bar{min-height:40px}.utility-scroll{display:flex;overflow-x:auto;scrollbar-width:none}.utility-scroll::-webkit-scrollbar{display:none}.utility-item{min-height:40px;padding:0 10px;font-size:10px;flex:0 0 auto}.utility-address{max-width:128px}.utility-jummah{font-size:10px}.utility-jummah b{font-size:10px}.utility-label{display:none}.utility-radio{margin-left:auto}.radio-status{display:none}.main-bar{margin-top:6px!important}.brand-lockup{height:48px}.donate-button{width:42px;height:42px;padding:0;justify-content:center}.prayer-bar{margin-top:6px!important}.prayer-scroll{min-height:58px}.prayer-cell{min-width:70px;padding:5px}.prayer-cell span{font-size:9px}.prayer-cell strong{font-size:14px}.full-timetable{min-width:132px;font-size:10px;padding:0 12px}}

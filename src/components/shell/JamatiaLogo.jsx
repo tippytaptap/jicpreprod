@@ -1,1 +1,5 @@
-import React from 'react';export default function JamatiaLogo(){return <div className="brand"><span className="brandMark">☪</span><span><b>Jamatia</b><small>JAMATIA ISLAMIC CENTRE</small></span></div>}
+import React from 'react';
+import { cn } from '@/lib/utils';
+export default function JamatiaLogo({ className }) {
+  return <div className={cn('brand-lockup', className)}><img src="/brand-logo.svg" alt="Jamatia Islamic Centre" decoding="async" fetchPriority="high" /></div>;
+}

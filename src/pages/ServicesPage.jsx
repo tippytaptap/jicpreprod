@@ -1,1 +1,17 @@
-import React from'react';export default function ServicesPage(){return <section className="page"><p className="eyebrow">SERVICES</p><h1>Supporting our community.</h1><div className="pageGrid"><article><h2>Religious Services</h2><p>Prayer, Nikah, funeral support and pastoral guidance.</p></article><article><h2>Education</h2><p>Madrassah, Qur’an learning and adult classes.</p></article><article><h2>Community</h2><p>Community hall, counselling and local support.</p></article></div></section>}
+import React from 'react';
+    import { motion } from 'framer-motion';
+    import HeroSection from '@/components/sections/services/HeroSection';
+    import ServiceCategoriesTabs from '@/components/sections/services/ServiceCategoriesTabs';
+    import SpecialServicesSection from '@/components/sections/services/SpecialServicesSection';
+
+    const ServicesPage = () => {
+      return (
+        <div className="page-transition pt-24">
+          <HeroSection />
+          <ServiceCategoriesTabs />
+          <SpecialServicesSection />
+        </div>
+      );
+    };
+
+    export default ServicesPage;
