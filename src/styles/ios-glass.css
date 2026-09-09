@@ -2,170 +2,62 @@
 
 html,body{min-height:100%;}
 body{position:relative;isolation:isolate;}
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 12% 8%,rgba(215,168,63,.13),transparent 34%),
-    radial-gradient(circle at 88% 30%,rgba(105,132,162,.12),transparent 36%),
-    linear-gradient(180deg,#07111b 0%,#0a1723 58%,#07111b 100%);
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 15% 5%,rgba(111,142,176,.14),transparent 36%),radial-gradient(circle at 82% 24%,rgba(215,168,63,.10),transparent 34%),linear-gradient(180deg,#07090c 0%,#11151a 55%,#080a0d 100%);}
+html:not(.dark) body::before{background:radial-gradient(circle at 15% 5%,rgba(145,166,189,.12),transparent 34%),radial-gradient(circle at 86% 25%,rgba(215,168,63,.08),transparent 34%),linear-gradient(180deg,#fff 0%,#f7f8fa 58%,#fff 100%);}
+
+/* Shared adaptive glass. Enough translucency to reveal context, but never sacrifice legibility. */
+.jic-glass,.jic-mainnav,.jic-subnav,.jic-mobile-menu,.jic-mega-menu,.jic-event-strip,.jic-home-footer-strip,.jic-site-footer,
+[role="dialog"],[aria-modal="true"],.modal,.popup,.popover,.dropdown-menu,
+main .bg-card,main .shadow-sm,main .shadow-md,main .shadow-lg,main .shadow-xl{
+  backdrop-filter:blur(30px) saturate(175%) contrast(1.04);-webkit-backdrop-filter:blur(30px) saturate(175%) contrast(1.04);
+  transition:background-color .28s ease,border-color .28s ease,color .28s ease,box-shadow .28s ease,backdrop-filter .28s ease;
 }
-html:not(.dark) body::before{
-  background:
-    radial-gradient(circle at 10% 8%,rgba(215,168,63,.20),transparent 31%),
-    radial-gradient(circle at 90% 26%,rgba(145,166,189,.18),transparent 35%),
-    linear-gradient(180deg,#fbf8f1 0%,#f2eadc 62%,#f7f1e5 100%);
+.dark [role="dialog"],.dark [aria-modal="true"],.dark .modal,.dark .popup,.dark .popover,.dark .dropdown-menu,
+.dark main .bg-card,.dark main .shadow-sm,.dark main .shadow-md,.dark main .shadow-lg,.dark main .shadow-xl{
+  background:linear-gradient(145deg,rgba(17,24,33,.74),rgba(7,12,18,.62))!important;border-color:rgba(255,255,255,.15)!important;color:#f7f9fc!important;
+  box-shadow:0 22px 58px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(255,255,255,.035)!important;
+}
+html:not(.dark) [role="dialog"],html:not(.dark) [aria-modal="true"],html:not(.dark) .modal,html:not(.dark) .popup,html:not(.dark) .popover,html:not(.dark) .dropdown-menu,
+html:not(.dark) main .bg-card,html:not(.dark) main .shadow-sm,html:not(.dark) main .shadow-md,html:not(.dark) main .shadow-lg,html:not(.dark) main .shadow-xl{
+  background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(246,249,252,.66))!important;border-color:rgba(255,255,255,.72)!important;color:#101820!important;
+  box-shadow:0 22px 54px rgba(20,31,45,.13),inset 0 1px 0 rgba(255,255,255,.90),inset 0 -1px 0 rgba(90,110,130,.08)!important;
 }
 
-/* Shared glass surfaces. */
-.jic-glass,
-.jic-mainnav,
-.jic-subnav,
-.jic-mobile-menu,
-.jic-event-strip,
-.jic-home-footer-strip,
-.jic-site-footer,
-main .bg-card,
-main .shadow-sm,
-main .shadow-md,
-main .shadow-lg,
-main .shadow-xl{
-  backdrop-filter:blur(30px) saturate(165%);
-  -webkit-backdrop-filter:blur(30px) saturate(165%);
-}
+/* Legacy section surfaces remain translucent and neutral. */
+.dark main .bg-gray-50,.dark main .bg-gray-100,.dark main .bg-gray-800,.dark main .bg-gray-900,.dark main .bg-white{background-color:rgba(12,16,21,.62)!important;}
+html:not(.dark) main .bg-gray-50,html:not(.dark) main .bg-gray-100,html:not(.dark) main .bg-gray-800,html:not(.dark) main .bg-gray-900,html:not(.dark) main .bg-white{background-color:rgba(255,255,255,.68)!important;}
 
-.dark main .bg-card,
-.dark main .shadow-sm,
-.dark main .shadow-md,
-.dark main .shadow-lg,
-.dark main .shadow-xl{
-  background-color:rgba(13,27,40,.62)!important;
-  border-color:rgba(255,255,255,.11)!important;
-  box-shadow:0 18px 48px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.055)!important;
-}
-html:not(.dark) main .bg-card,
-html:not(.dark) main .shadow-sm,
-html:not(.dark) main .shadow-md,
-html:not(.dark) main .shadow-lg,
-html:not(.dark) main .shadow-xl{
-  background-color:rgba(255,253,248,.66)!important;
-  border-color:rgba(18,38,58,.11)!important;
-  box-shadow:0 18px 46px rgba(72,55,21,.08),inset 0 1px 0 rgba(255,255,255,.70)!important;
-}
+/* Adaptive contrast protection. */
+html:not(.dark) main .text-white,html:not(.dark) main .dark\:text-white,html:not(.dark) main .text-gray-100,html:not(.dark) main .text-gray-200{color:#101820!important;}
+html:not(.dark) main .text-gray-300{color:#344250!important;} html:not(.dark) main .text-gray-400{color:#66717d!important;}
+.dark main .text-gray-700,.dark main .text-gray-800,.dark main .text-gray-900{color:#e3e9ef!important;}
 
-/* Turn legacy opaque section surfaces into theme-aware translucent surfaces. */
-.dark main .bg-gray-50,.dark main .bg-gray-100,.dark main .bg-gray-800,.dark main .bg-gray-900,.dark main .bg-white{
-  background-color:rgba(10,23,35,.58)!important;
-}
-html:not(.dark) main .bg-gray-50,
-html:not(.dark) main .bg-gray-100,
-html:not(.dark) main .bg-gray-800,
-html:not(.dark) main .bg-gray-900,
-html:not(.dark) main .bg-white{
-  background-color:rgba(255,252,246,.62)!important;
-}
+.text-primary{color:#b6780d!important}.dark .text-primary{color:#f1c85f!important}.bg-primary{background-color:#d7a83f!important}.hover\:bg-primary\/90:hover{background-color:#c9962d!important}.border-primary{border-color:#d7a83f!important}.focus\:ring-primary:focus{--tw-ring-color:#d7a83f!important}
 
-/* Contrast protection: never leave white copy on a pale surface in light mode. */
-html:not(.dark) main .text-white,
-html:not(.dark) main .dark\:text-white,
-html:not(.dark) main .text-gray-100,
-html:not(.dark) main .text-gray-200{
-  color:#10243a!important;
-}
-html:not(.dark) main .text-gray-300{color:#34485d!important;}
-html:not(.dark) main .text-gray-400{color:#657486!important;}
-.dark main .text-gray-700,.dark main .text-gray-800,.dark main .text-gray-900{color:#d8e2ec!important;}
+input,textarea,select{backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);transition:background-color .25s ease,color .25s ease,border-color .25s ease;}
+.dark input,.dark textarea,.dark select{background:rgba(10,15,21,.66)!important;color:#f3f6f9!important;border-color:rgba(255,255,255,.15)!important;}
+html:not(.dark) input,html:not(.dark) textarea,html:not(.dark) select{background:rgba(255,255,255,.76)!important;color:#101820!important;border-color:rgba(18,38,58,.14)!important;}
 
-/* Primary is gold everywhere — no green/teal accent survives. */
-.text-primary{color:#b6780d!important;}
-.dark .text-primary{color:#f1c85f!important;}
-.bg-primary{background-color:#d7a83f!important;}
-.hover\:bg-primary\/90:hover{background-color:#c9962d!important;}
-.border-primary{border-color:#d7a83f!important;}
-.focus\:ring-primary:focus{--tw-ring-color:#d7a83f!important;}
+/* Header/nav glass sits over photography without colour clashes. */
+.jic-info-shell,.jic-mainnav,.jic-subnav{box-shadow:0 16px 42px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.13)!important;transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;}
+.dark .jic-info-shell,.dark .jic-mainnav,.dark .jic-subnav{background:linear-gradient(120deg,rgba(5,11,18,.69),rgba(18,25,34,.55))!important;border-color:rgba(255,255,255,.14)!important;color:#fff!important;}
+html:not(.dark) .jic-info-shell,html:not(.dark) .jic-mainnav,html:not(.dark) .jic-subnav{background:linear-gradient(120deg,rgba(255,255,255,.78),rgba(245,248,251,.64))!important;border-color:rgba(255,255,255,.70)!important;box-shadow:0 16px 42px rgba(20,31,45,.12),inset 0 1px 0 rgba(255,255,255,.9)!important;color:#111820!important;}
 
-/* Inputs/forms get the same frosted treatment. */
-input,textarea,select{
-  backdrop-filter:blur(20px) saturate(145%);
-  -webkit-backdrop-filter:blur(20px) saturate(145%);
-}
-.dark input,.dark textarea,.dark select{
-  background:rgba(10,23,35,.58)!important;
-  color:#eef3f8!important;
-  border-color:rgba(255,255,255,.13)!important;
-}
-html:not(.dark) input,html:not(.dark) textarea,html:not(.dark) select{
-  background:rgba(255,253,248,.70)!important;
-  color:#10243a!important;
-  border-color:rgba(18,38,58,.14)!important;
-}
+.header-icon,.donate-button,.jic-primary-cta,.jic-secondary-cta,.jic-display-controls>button,.jic-radio,.jic-subnav-link,.jic-menu-link,.jic-menu-children a{backdrop-filter:blur(20px) saturate(165%);-webkit-backdrop-filter:blur(20px) saturate(165%);transition:background .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease,transform .2s ease;}
 
-/* Stronger glass header like modern iOS navigation chrome. */
-.jic-info-shell,.jic-mainnav,.jic-subnav{
-  box-shadow:0 16px 42px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.11)!important;
-}
-.dark .jic-info-shell,.dark .jic-mainnav,.dark .jic-subnav{
-  background:rgba(7,18,29,.57)!important;
-  border-color:rgba(255,255,255,.12)!important;
-}
-html:not(.dark) .jic-info-shell,
-html:not(.dark) .jic-mainnav,
-html:not(.dark) .jic-subnav{
-  background:rgba(255,252,246,.64)!important;
-  border-color:rgba(18,38,58,.12)!important;
-  box-shadow:0 16px 42px rgba(72,55,21,.10),inset 0 1px 0 rgba(255,255,255,.78)!important;
-}
+/* Popover/menu items get their own readable micro-glass layer. */
+.dark .jic-mobile-menu a,.dark .jic-mega-menu a,.dark [role="dialog"] button,.dark [aria-modal="true"] button{color:#f5f7fa;}
+html:not(.dark) .jic-mobile-menu a,html:not(.dark) .jic-mega-menu a,html:not(.dark) [role="dialog"] button,html:not(.dark) [aria-modal="true"] button{color:#17212b;}
 
-.header-icon,
-.donate-button,
-.jic-primary-cta,
-.jic-secondary-cta,
-.jic-display-controls>button,
-.jic-radio,
-.jic-subnav-link,
-.jic-menu-link,
-.jic-menu-children a{
-  backdrop-filter:blur(18px) saturate(155%);
-  -webkit-backdrop-filter:blur(18px) saturate(155%);
-}
+.jic-feature-card{border:1px solid rgba(255,255,255,.16)!important;box-shadow:0 20px 50px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.09)!important;overflow:hidden;}
+.jic-feature-card::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.11),transparent 34%,rgba(255,255,255,.035));}
+html:not(.dark) .jic-feature-card{border-color:rgba(255,255,255,.62)!important;box-shadow:0 20px 48px rgba(20,31,45,.12),inset 0 1px 0 rgba(255,255,255,.82)!important;}
 
-/* Feature cards retain photography but gain a translucent pane feel. */
-.jic-feature-card{
-  border:1px solid rgba(255,255,255,.14)!important;
-  box-shadow:0 20px 50px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.07)!important;
-  overflow:hidden;
-}
-.jic-feature-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  border-radius:inherit;
-  background:linear-gradient(135deg,rgba(255,255,255,.10),transparent 34%,rgba(255,255,255,.035));
-}
-html:not(.dark) .jic-feature-card{
-  border-color:rgba(18,38,58,.12)!important;
-  box-shadow:0 20px 48px rgba(72,55,21,.10),inset 0 1px 0 rgba(255,255,255,.72)!important;
-}
+.jic-site-footer{background:rgba(7,10,14,.72)!important;border-top:1px solid rgba(255,255,255,.11)!important;}
+html:not(.dark) .jic-site-footer{background:rgba(255,255,255,.74)!important;color:#13202d!important;border-top-color:rgba(18,38,58,.10)!important;}
 
-/* Footer is glass too, and never green. */
-.jic-site-footer{
-  background:rgba(5,15,25,.68)!important;
-  border-top:1px solid rgba(255,255,255,.10)!important;
-}
-html:not(.dark) .jic-site-footer{
-  background:rgba(239,230,214,.72)!important;
-  color:#13263a!important;
-  border-top-color:rgba(18,38,58,.10)!important;
-}
+.jic-brand{transition:opacity .24s ease,transform .24s ease,width .28s ease,flex-basis .28s ease!important}.jic-brand.is-hidden-on-scroll{opacity:0!important;transform:translateY(-8px) scale(.94)!important;width:0!important;flex-basis:0!important;pointer-events:none!important}
+.jic-anchor-target{scroll-margin-top:330px}@media(min-width:768px){.jic-anchor-target{scroll-margin-top:220px}}
 
-/* Smooth logo collapse after the user starts scrolling. */
-.jic-brand{transition:opacity .24s ease,transform .24s ease,width .28s ease,flex-basis .28s ease!important;}
-.jic-brand.is-hidden-on-scroll{opacity:0!important;transform:translateY(-8px) scale(.94)!important;width:0!important;flex-basis:0!important;pointer-events:none!important;}
-
-/* Hash-linked sub sections should not hide behind the fixed navigation. */
-.jic-anchor-target{scroll-margin-top:330px;}
-@media(min-width:768px){.jic-anchor-target{scroll-margin-top:220px;}}
+/* Respect accessibility while retaining the visual hierarchy. */
+@media (prefers-reduced-transparency:reduce){.jic-glass,.jic-mainnav,.jic-subnav,.jic-mobile-menu,.jic-mega-menu,[role="dialog"],[aria-modal="true"],.modal,.popup,.popover,.dropdown-menu{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.dark [role="dialog"],.dark [aria-modal="true"],.dark .jic-mobile-menu,.dark .jic-mega-menu{background:#111820!important}html:not(.dark) [role="dialog"],html:not(.dark) [aria-modal="true"],html:not(.dark) .jic-mobile-menu,html:not(.dark) .jic-mega-menu{background:#fff!important}}
