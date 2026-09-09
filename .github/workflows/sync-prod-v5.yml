@@ -1,0 +1,26 @@
+name: Sync production v5
+on:
+  push:
+    paths:
+      - '.github/workflows/sync-prod-v5.yml'
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Copy latest production source
+        run: |
+          git clone --depth 1 https://github.com/jicuser/website.git /tmp/jic-source
+          rsync -a --delete --exclude='.git' --exclude='.github/workflows/sync-prod-v5.yml' /tmp/jic-source/ ./
+          rm -f .github/workflows/sync-prod-v5.yml
+      - name: Commit synced site
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet || git commit -m 'Sync latest JIC production UX fixes'
+          git push
