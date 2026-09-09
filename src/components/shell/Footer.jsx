@@ -1,10 +1,7 @@
-/**
- * Footer — reads all text/links from src/content/site.js
- * To change address, phone, or socials: edit that file, not this one.
- */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Clock, Facebook, Instagram, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
+import JamatiaLogo from '@/components/shell/JamatiaLogo';
 import { SITE } from '@/content/site';
 
 const TikTokIcon = (props) => (
@@ -14,78 +11,59 @@ const TikTokIcon = (props) => (
 );
 
 const QUICK_LINKS = [
-  { label: 'Home',            to: '/' },
-  { label: 'About Us',        to: '/about' },
-  { label: 'Services',        to: '/services' },
-  { label: 'Prayer Times',    to: '/prayer-times' },
-  { label: 'Madrassah',       to: '/madrassah' },
-  { label: 'Meet the Team',   to: '/team' },
-  { label: 'Contact Us',      to: '/contact' },
-  { label: 'Privacy Policy',  to: '/privacy' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Prayer Times', to: '/prayer-times' },
+  { label: 'Madrassah', to: '/madrassah' },
+  { label: 'Youth', to: '/youth' },
+  { label: 'Contact Us', to: '/contact' },
 ];
 
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-gray-900 text-white pt-12 pb-6">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-          {/* Brand */}
+    <footer className="jic-site-footer">
+      <div className="container mx-auto px-4 py-10 md:py-12">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="text-xl font-bold mb-4">{SITE.name}</h3>
-            <p className="text-gray-300 mb-4">{SITE.tagline}</p>
-            <div className="flex space-x-4">
-              <a href={SITE.socials.facebook}  target="_blank" rel="noopener noreferrer" aria-label="Facebook"  className="text-gray-300 hover:text-primary transition-colors"><Facebook  size={20} /></a>
-              <a href={SITE.socials.twitter}   target="_blank" rel="noopener noreferrer" aria-label="Twitter"   className="text-gray-300 hover:text-primary transition-colors"><Twitter   size={20} /></a>
-              <a href={SITE.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-300 hover:text-primary transition-colors"><Instagram size={20} /></a>
-              <a href={SITE.socials.youtube}   target="_blank" rel="noopener noreferrer" aria-label="YouTube"   className="text-gray-300 hover:text-primary transition-colors"><Youtube   size={20} /></a>
-              <a href={SITE.socials.tiktok}    target="_blank" rel="noopener noreferrer" aria-label="TikTok"    className="text-gray-300 hover:text-primary transition-colors"><TikTokIcon className="h-5 w-5" /></a>
+            <Link to="/" className="jic-footer-logo" aria-label="Jamatia Islamic Centre home">
+              <JamatiaLogo />
+            </Link>
+            <p className="jic-footer-muted mt-4 max-w-sm">{SITE.tagline}</p>
+            <div className="jic-footer-socials mt-5 flex gap-3">
+              <a href={SITE.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={19} /></a>
+              <a href={SITE.socials.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><Twitter size={19} /></a>
+              <a href={SITE.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={19} /></a>
+              <a href={SITE.socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube size={19} /></a>
+              <a href={SITE.socials.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><TikTokIcon className="h-5 w-5" /></a>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {QUICK_LINKS.map(({ label, to }) => (
-                <li key={to}>
-                  <Link to={to} className="text-gray-300 hover:text-primary transition-colors">{label}</Link>
-                </li>
-              ))}
+            <h3 className="jic-footer-heading">Explore</h3>
+            <ul className="mt-4 space-y-2">
+              {QUICK_LINKS.map(({ label, to }) => <li key={to}><Link className="jic-footer-link" to={to}>{label}</Link></li>)}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-gray-300">{SITE.address.full}</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-primary shrink-0" />
-                <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} className="text-gray-300 hover:text-primary transition-colors">
-                  {SITE.phone}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Hours */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Opening Hours</h3>
-            <div className="flex items-start space-x-3">
-              <Clock className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-              <p className="text-gray-300">{SITE.hours}</p>
+            <h3 className="jic-footer-heading">Contact</h3>
+            <div className="mt-4 space-y-4">
+              <div className="jic-footer-contact"><MapPin size={18}/><span>{SITE.address.full}</span></div>
+              <div className="jic-footer-contact"><Phone size={18}/><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></div>
             </div>
           </div>
 
+          <div>
+            <h3 className="jic-footer-heading">Opening Hours</h3>
+            <div className="jic-footer-contact mt-4"><Clock size={18}/><span>{SITE.hours}</span></div>
+            <Link to="/projects" className="jic-footer-donate mt-6 inline-flex">Donate to JIC</Link>
+          </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-10 pt-6 text-center">
-          <p className="text-gray-400">&copy; {year} {SITE.name}. All rights reserved.</p>
+        <div className="jic-footer-bottom mt-9 flex flex-col gap-3 pt-5 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} {SITE.name}. All rights reserved.</p>
+          <div className="flex gap-4"><Link to="/privacy">Privacy</Link><Link to="/admin">Admin</Link></div>
         </div>
       </div>
     </footer>
