@@ -38,6 +38,7 @@ showStatus('Loading website…');
       import('@/styles/mobile-home-refine.css'),
       import('@/styles/scroll-reminder.css'),
       import('@/styles/header-uniform.css'),
+      import('@/styles/mobile-full-menu.css'),
     ]);
 
     const React = ReactModule.default;
