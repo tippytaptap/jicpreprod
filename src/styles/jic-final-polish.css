@@ -15,7 +15,6 @@ html,body,.jic-premium-home,.jic-glass,.jic-mainnav,.jic-info-shell,.jic-subnav,
   transition:background-color .35s var(--jic-ease),background .35s var(--jic-ease),color .35s var(--jic-ease),border-color .35s var(--jic-ease),box-shadow .35s var(--jic-ease),backdrop-filter .35s var(--jic-ease),transform .24s var(--jic-ease),opacity .25s ease;
 }
 
-/* Light mode is true white, never cream. */
 html:not(.dark){--background:0 0% 100%;--card:0 0% 100%;--popover:0 0% 100%;--secondary:210 16% 96%;--muted:210 16% 96%;}
 html:not(.dark) body{background:#fff!important;color:#101820;}
 html:not(.dark) .jic-premium-home{background:#fff!important;}
@@ -26,7 +25,6 @@ html:not(.dark)[data-surface="solid"] .jic-subnav,
 html:not(.dark)[data-surface="solid"] .jic-mobile-menu,
 html:not(.dark)[data-surface="solid"] .jic-mega-menu{background:#fff!important;border-color:rgba(16,32,51,.12)!important;box-shadow:0 14px 42px rgba(15,32,51,.10)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 
-/* Apple-style liquid controls: floating functional layer, restrained colour, depth from highlight/edge rather than opacity alone. */
 [data-surface="glass"] .jic-info-shell,
 [data-surface="glass"] .jic-mainnav,
 [data-surface="glass"] .jic-subnav,
@@ -54,13 +52,11 @@ html:not(.dark)[data-surface="solid"] .jic-mega-menu{background:#fff!important;b
 .nav-pill:hover,.header-icon:hover,.jic-radio:hover,.donate-button:hover,.jic-primary-cta:hover,.jic-secondary-cta:hover,.jic-display-controls>button:hover,.jic-subnav-link:hover,.jic-menu-expand:hover{transform:translateY(-1px) scale(1.015);}
 .nav-pill:active,.header-icon:active,.jic-radio:active,.donate-button:active,.jic-primary-cta:active,.jic-secondary-cta:active,.jic-display-controls>button:active,.jic-subnav-link:active,.jic-menu-expand:active{transform:scale(.975);}
 
-/* Morphing behaviour: header compacts on scroll while preserving easy access. */
 .jic-header.is-scrolled .jic-info-shell{transform:translateY(-2px) scale(.992);box-shadow:0 14px 38px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.12)!important;}
 .jic-header.is-scrolled .jic-mainnav{transform:translateY(-1px) scale(.996);}
 .jic-header.is-scrolled .nav-pill{padding-top:7px!important;padding-bottom:7px!important;}
 .jic-header.is-scrolled .donate-button,.jic-header.is-scrolled .header-icon{transform:scale(.96);}
 
-/* Glass switch has a visible, functional off/on state. */
 .glass-switch{width:34px;height:20px;border-radius:999px;padding:2px;display:inline-flex;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);transition:.25s var(--jic-ease);}
 .glass-switch i{width:14px;height:14px;border-radius:50%;background:currentColor;opacity:.72;transform:translateX(0);transition:transform .25s var(--jic-ease),opacity .25s ease;}
 .glass-switch.on{background:rgba(229,185,85,.25);border-color:rgba(229,185,85,.52);}
@@ -68,7 +64,6 @@ html:not(.dark)[data-surface="solid"] .jic-mega-menu{background:#fff!important;b
 html:not(.dark) .glass-switch{background:rgba(16,32,51,.09);border-color:rgba(16,32,51,.13);}
 html:not(.dark) .glass-switch.on{background:rgba(201,154,55,.18);border-color:rgba(141,98,21,.30);}
 
-/* Generic translucent popup language. Enough transparency to feel glass, never illegible. */
 .jic-popup-surface,
 [role="dialog"]{
   background:var(--jic-dark-popup)!important;
@@ -91,14 +86,12 @@ html:not(.dark) [role="dialog"] [class*="text-white/"]{color:rgba(16,32,51,.68)!
 html:not(.dark) [role="dialog"] [class*="border-white/"]{border-color:rgba(16,32,51,.12)!important;}
 html:not(.dark) [role="dialog"] [class*="bg-white/"]{background:rgba(255,255,255,.52)!important;}
 
-/* Background-aware header readability. */
 .jic-header{--header-fg:#fff;}
 .jic-header .jic-info-shell,.jic-header .jic-mainnav,.jic-header .jic-subnav{color:var(--header-fg);}
 html:not(.dark) .jic-header{--header-fg:#102033;}
 html:not(.dark) .nav-pill{color:#26384d;}
 html:not(.dark) .nav-pill:hover,html:not(.dark) .nav-pill.active{color:#8d6215;background:rgba(16,32,51,.05);}
 
-/* Homepage: tiles default to blurred glass instead of stock imagery. */
 .jic-feature-card.is-glass-only{
   background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025))!important;
   border-color:rgba(255,255,255,.17)!important;
@@ -110,6 +103,21 @@ html:not(.dark) .jic-feature-card.is-glass-only{background:linear-gradient(145de
 html:not(.dark) .jic-feature-card.is-glass-only::before{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(232,238,244,.22))!important;}
 html:not(.dark) .jic-feature-card.is-glass-only .jic-card-copy p,
 html:not(.dark) .jic-feature-card.is-glass-only .jic-card-copy span{color:#536274!important;}
+
+/* Footer: remove redundant contact block and tighten mobile hierarchy. */
+.jic-site-footer{border-top:1px solid rgba(255,255,255,.08);}
+.jic-footer-compact-grid{display:grid;gap:18px;}
+.jic-footer-links-inline{display:flex;flex-wrap:wrap;gap:12px 22px;}
+.jic-footer-links-inline a{font-size:14px;color:rgba(226,232,240,.78);}
+.jic-footer-links-inline a:hover{color:#f0c85e;}
+.jic-footer-actions-compact{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.jic-footer-socials a{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.14);background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));color:rgba(235,240,247,.88);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);}
+.jic-footer-donate{min-height:46px;padding:0 20px;border-radius:16px;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0cc74,#d7a83f);color:#10151d;font-weight:800;box-shadow:0 12px 28px rgba(208,161,57,.18);}
+.jic-footer-bottom{border-top:1px solid rgba(255,255,255,.10);color:rgba(190,201,216,.70);}
+html:not(.dark) .jic-site-footer{border-top-color:rgba(16,32,51,.08);}
+html:not(.dark) .jic-footer-links-inline a{color:#536274;}
+html:not(.dark) .jic-footer-socials a{border-color:rgba(16,32,51,.10);background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(241,245,249,.75));color:#25384d;}
+html:not(.dark) .jic-footer-bottom{border-top-color:rgba(16,32,51,.10);color:#6c7a8a;}
 
 /* Admin login */
 .admin-login-page{min-height:100dvh;padding:20px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 20% 5%,#173052 0,transparent 34%),radial-gradient(circle at 90% 85%,#3b2a11 0,transparent 28%),#07111f;color:#fff;}
@@ -146,7 +154,6 @@ html:not(.dark) .jic-feature-card.is-glass-only .jic-card-copy span{color:#53627
   .admin-login-topline{margin-bottom:18px;}
 }
 
-/* Mobile clarity and touch targets. */
 @media(max-width:640px){
   .jic-mobile-menu{max-height:calc(100dvh - 178px)!important;overflow:auto!important;}
   .jic-menu-link,.jic-menu-children a,.jic-menu-admin,.jic-menu-donate{min-height:44px;}
@@ -155,6 +162,15 @@ html:not(.dark) .jic-feature-card.is-glass-only .jic-card-copy span{color:#53627
   .jic-mainnav{border-radius:24px!important;}
   .jic-info-shell{border-radius:24px!important;}
   .jic-subnav{border-radius:18px!important;}
+  .jic-site-footer .container{padding-top:18px!important;padding-bottom:22px!important;}
+  .jic-footer-compact-grid{gap:16px;}
+  .jic-footer-links-inline{gap:10px 18px;}
+  .jic-footer-links-inline a{font-size:13px;}
+  .jic-footer-actions-compact{align-items:center;}
+  .jic-footer-socials{gap:8px!important;}
+  .jic-footer-socials a{width:40px;height:40px;border-radius:14px;}
+  .jic-footer-donate{min-height:44px;padding:0 18px;border-radius:15px;font-size:15px;}
+  .jic-footer-bottom{margin-top:16px!important;padding-top:14px!important;gap:8px!important;}
 }
 
 @media(prefers-reduced-motion:reduce){
