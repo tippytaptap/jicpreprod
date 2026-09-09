@@ -64,19 +64,26 @@ html:not(.dark) .text-gray-500{color:#697586!important;}
 html:not(.dark) .text-gray-400{color:#7b8794!important;}
 html:not(.dark) .border-gray-200{border-color:#ddd3c4!important;}
 html:not(.dark) .border-gray-300{border-color:#d2c6b4!important;}
-html:not(.dark) input,html:not(.dark) textarea,html:not(.dark) select{background:#fffdf8!important;color:#102033!important;border-color:#d8cdbd!important;}
+html:not(.dark) input,html:not(.dark) textarea,html:not(.dark) select{background:rgba(255,253,248,.72)!important;color:#102033!important;border-color:#d8cdbd!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
 html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#7d8793!important;}
 
 /* Header + glass. */
 html:not(.dark) .jic-info-shell,
 html:not(.dark) .jic-mainnav,
 html:not(.dark) .jic-subnav{
-  background:rgba(248,244,235,.76)!important;
+  background:rgba(248,244,235,.58)!important;
   color:#102033!important;
-  border-color:rgba(20,32,46,.13)!important;
-  backdrop-filter:blur(26px) saturate(150%)!important;
-  -webkit-backdrop-filter:blur(26px) saturate(150%)!important;
-  box-shadow:0 14px 36px rgba(55,43,18,.10)!important;
+  border-color:rgba(255,255,255,.54)!important;
+  backdrop-filter:blur(30px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(165%)!important;
+  box-shadow:0 18px 50px rgba(55,43,18,.10),inset 0 1px 0 rgba(255,255,255,.68)!important;
+}
+.dark .jic-info-shell,.dark .jic-mainnav,.dark .jic-subnav{
+  background:rgba(6,17,28,.52)!important;
+  border-color:rgba(255,255,255,.15)!important;
+  backdrop-filter:blur(30px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(165%)!important;
+  box-shadow:0 18px 52px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.10)!important;
 }
 html:not(.dark) .jic-address,
 html:not(.dark) .jic-radio,
@@ -89,17 +96,62 @@ html:not(.dark) .jic-radio,
 html:not(.dark) .jic-address,
 html:not(.dark) .jic-prayer{border-color:rgba(20,32,46,.10)!important;}
 
+/* Apply glass to most cards, panels and strips for an iOS-like layered surface. */
+.jic-feature-card,
+.jic-event-strip,
+.jic-home-footer-strip,
+.jic-live-section,
+.card,
+[class*="rounded-lg"][class*="border"],
+[class*="rounded-xl"][class*="border"],
+[class*="rounded-2xl"][class*="border"]{
+  backdrop-filter:blur(24px) saturate(155%);
+  -webkit-backdrop-filter:blur(24px) saturate(155%);
+}
+.dark .jic-event-strip,
+.dark .jic-home-footer-strip,
+.dark .jic-live-section,
+.dark .card{
+  background:rgba(9,21,34,.56)!important;
+  border-color:rgba(255,255,255,.12)!important;
+  box-shadow:0 16px 42px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+html:not(.dark) .jic-event-strip,
+html:not(.dark) .jic-home-footer-strip,
+html:not(.dark) .jic-live-section,
+html:not(.dark) .card{
+  background:rgba(255,253,248,.58)!important;
+  border-color:rgba(255,255,255,.70)!important;
+  box-shadow:0 16px 44px rgba(67,52,20,.09),inset 0 1px 0 rgba(255,255,255,.88)!important;
+}
+
+/* Buttons/icons also float like iOS glass controls. */
+.header-icon,.jic-display-controls>button,.jic-radio,.jic-secondary-cta,.jic-subnav-link,.jic-menu-children a,.jic-footer-socials a{
+  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+}
+.dark .header-icon,.dark .jic-secondary-cta,.dark .jic-display-controls>button{
+  background:rgba(255,255,255,.055)!important;
+  border-color:rgba(255,255,255,.13)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+html:not(.dark) .header-icon,html:not(.dark) .jic-secondary-cta,html:not(.dark) .jic-display-controls>button{
+  background:rgba(255,255,255,.52)!important;
+  border-color:rgba(255,255,255,.72)!important;
+  box-shadow:0 8px 24px rgba(61,47,18,.07),inset 0 1px 0 rgba(255,255,255,.92)!important;
+}
+
 /* Mobile menu readable in both themes. */
-.jic-mobile-menu{background:rgba(6,17,28,.96)!important;color:#f7f8fa!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 26px 70px rgba(0,0,0,.52)!important;backdrop-filter:blur(26px) saturate(145%)!important;-webkit-backdrop-filter:blur(26px) saturate(145%)!important;}
+.jic-mobile-menu{background:rgba(6,17,28,.76)!important;color:#f7f8fa!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 26px 70px rgba(0,0,0,.52)!important;backdrop-filter:blur(34px) saturate(165%)!important;-webkit-backdrop-filter:blur(34px) saturate(165%)!important;}
 .jic-mobile-menu .jic-menu-link{color:#f7f8fa!important;}
 .jic-mobile-menu .jic-menu-children a{color:#b9c4cf!important;background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.07)!important;}
 .jic-mobile-menu .jic-menu-admin{color:#d7dee7!important;}
 .jic-mobile-menu .jic-menu-head>button{color:#fff!important;}
 .jic-menu-title{font-weight:750;letter-spacing:.02em;}
-html:not(.dark) .jic-mobile-menu{background:rgba(247,242,232,.97)!important;color:#102033!important;border-color:rgba(20,32,46,.14)!important;box-shadow:0 28px 70px rgba(55,43,18,.20)!important;}
+html:not(.dark) .jic-mobile-menu{background:rgba(247,242,232,.78)!important;color:#102033!important;border-color:rgba(255,255,255,.72)!important;box-shadow:0 28px 70px rgba(55,43,18,.18)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-link{color:#15263a!important;border-color:rgba(20,32,46,.08)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-link.active{color:#94630d!important;background:rgba(215,168,63,.15)!important;}
-html:not(.dark) .jic-mobile-menu .jic-menu-children a{color:#526071!important;background:rgba(21,38,58,.055)!important;border-color:rgba(21,38,58,.07)!important;}
+html:not(.dark) .jic-mobile-menu .jic-menu-children a{color:#526071!important;background:rgba(255,255,255,.42)!important;border-color:rgba(255,255,255,.58)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-admin{color:#24364b!important;border-color:rgba(20,32,46,.12)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-head>button{color:#15263a!important;border-color:rgba(20,32,46,.12)!important;}
 
@@ -127,7 +179,7 @@ html:not(.dark) .jic-mobile-menu .jic-menu-head>button{color:#15263a!important;b
 @media(max-width:640px){html:has(.jic-subnav) main{padding-top:318px!important;}}
 
 /* Footer and controls: gold/navy only. */
-html:not(.dark) footer,html:not(.dark) .jic-site-footer{background:#eee5d5!important;color:#15263a!important;}
+html:not(.dark) footer,html:not(.dark) .jic-site-footer{background:rgba(238,229,213,.76)!important;color:#15263a!important;backdrop-filter:blur(24px) saturate(150%)!important;-webkit-backdrop-filter:blur(24px) saturate(150%)!important;}
 html:not(.dark) footer svg{color:#a97212;}
-.jic-scroll-top{background:linear-gradient(135deg,#f4d47c,#d5a43c)!important;color:#17120a!important;border:1px solid rgba(255,255,255,.22);}
+.jic-scroll-top{background:linear-gradient(135deg,rgba(244,212,124,.92),rgba(213,164,60,.88))!important;color:#17120a!important;border:1px solid rgba(255,255,255,.42);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);}
 .dark .jic-scroll-top{box-shadow:0 10px 26px rgba(215,168,63,.22)!important;}
