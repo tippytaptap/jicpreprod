@@ -1,0 +1,171 @@
+/* JIC iOS-style glass layer — intentionally loaded last. */
+
+html,body{min-height:100%;}
+body{position:relative;isolation:isolate;}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(215,168,63,.13),transparent 34%),
+    radial-gradient(circle at 88% 30%,rgba(105,132,162,.12),transparent 36%),
+    linear-gradient(180deg,#07111b 0%,#0a1723 58%,#07111b 100%);
+}
+html:not(.dark) body::before{
+  background:
+    radial-gradient(circle at 10% 8%,rgba(215,168,63,.20),transparent 31%),
+    radial-gradient(circle at 90% 26%,rgba(145,166,189,.18),transparent 35%),
+    linear-gradient(180deg,#fbf8f1 0%,#f2eadc 62%,#f7f1e5 100%);
+}
+
+/* Shared glass surfaces. */
+.jic-glass,
+.jic-mainnav,
+.jic-subnav,
+.jic-mobile-menu,
+.jic-event-strip,
+.jic-home-footer-strip,
+.jic-site-footer,
+main .bg-card,
+main .shadow-sm,
+main .shadow-md,
+main .shadow-lg,
+main .shadow-xl{
+  backdrop-filter:blur(30px) saturate(165%);
+  -webkit-backdrop-filter:blur(30px) saturate(165%);
+}
+
+.dark main .bg-card,
+.dark main .shadow-sm,
+.dark main .shadow-md,
+.dark main .shadow-lg,
+.dark main .shadow-xl{
+  background-color:rgba(13,27,40,.62)!important;
+  border-color:rgba(255,255,255,.11)!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.055)!important;
+}
+html:not(.dark) main .bg-card,
+html:not(.dark) main .shadow-sm,
+html:not(.dark) main .shadow-md,
+html:not(.dark) main .shadow-lg,
+html:not(.dark) main .shadow-xl{
+  background-color:rgba(255,253,248,.66)!important;
+  border-color:rgba(18,38,58,.11)!important;
+  box-shadow:0 18px 46px rgba(72,55,21,.08),inset 0 1px 0 rgba(255,255,255,.70)!important;
+}
+
+/* Turn legacy opaque section surfaces into theme-aware translucent surfaces. */
+.dark main .bg-gray-50,.dark main .bg-gray-100,.dark main .bg-gray-800,.dark main .bg-gray-900,.dark main .bg-white{
+  background-color:rgba(10,23,35,.58)!important;
+}
+html:not(.dark) main .bg-gray-50,
+html:not(.dark) main .bg-gray-100,
+html:not(.dark) main .bg-gray-800,
+html:not(.dark) main .bg-gray-900,
+html:not(.dark) main .bg-white{
+  background-color:rgba(255,252,246,.62)!important;
+}
+
+/* Contrast protection: never leave white copy on a pale surface in light mode. */
+html:not(.dark) main .text-white,
+html:not(.dark) main .dark\:text-white,
+html:not(.dark) main .text-gray-100,
+html:not(.dark) main .text-gray-200{
+  color:#10243a!important;
+}
+html:not(.dark) main .text-gray-300{color:#34485d!important;}
+html:not(.dark) main .text-gray-400{color:#657486!important;}
+.dark main .text-gray-700,.dark main .text-gray-800,.dark main .text-gray-900{color:#d8e2ec!important;}
+
+/* Primary is gold everywhere — no green/teal accent survives. */
+.text-primary{color:#b6780d!important;}
+.dark .text-primary{color:#f1c85f!important;}
+.bg-primary{background-color:#d7a83f!important;}
+.hover\:bg-primary\/90:hover{background-color:#c9962d!important;}
+.border-primary{border-color:#d7a83f!important;}
+.focus\:ring-primary:focus{--tw-ring-color:#d7a83f!important;}
+
+/* Inputs/forms get the same frosted treatment. */
+input,textarea,select{
+  backdrop-filter:blur(20px) saturate(145%);
+  -webkit-backdrop-filter:blur(20px) saturate(145%);
+}
+.dark input,.dark textarea,.dark select{
+  background:rgba(10,23,35,.58)!important;
+  color:#eef3f8!important;
+  border-color:rgba(255,255,255,.13)!important;
+}
+html:not(.dark) input,html:not(.dark) textarea,html:not(.dark) select{
+  background:rgba(255,253,248,.70)!important;
+  color:#10243a!important;
+  border-color:rgba(18,38,58,.14)!important;
+}
+
+/* Stronger glass header like modern iOS navigation chrome. */
+.jic-info-shell,.jic-mainnav,.jic-subnav{
+  box-shadow:0 16px 42px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.11)!important;
+}
+.dark .jic-info-shell,.dark .jic-mainnav,.dark .jic-subnav{
+  background:rgba(7,18,29,.57)!important;
+  border-color:rgba(255,255,255,.12)!important;
+}
+html:not(.dark) .jic-info-shell,
+html:not(.dark) .jic-mainnav,
+html:not(.dark) .jic-subnav{
+  background:rgba(255,252,246,.64)!important;
+  border-color:rgba(18,38,58,.12)!important;
+  box-shadow:0 16px 42px rgba(72,55,21,.10),inset 0 1px 0 rgba(255,255,255,.78)!important;
+}
+
+.header-icon,
+.donate-button,
+.jic-primary-cta,
+.jic-secondary-cta,
+.jic-display-controls>button,
+.jic-radio,
+.jic-subnav-link,
+.jic-menu-link,
+.jic-menu-children a{
+  backdrop-filter:blur(18px) saturate(155%);
+  -webkit-backdrop-filter:blur(18px) saturate(155%);
+}
+
+/* Feature cards retain photography but gain a translucent pane feel. */
+.jic-feature-card{
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:0 20px 50px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.07)!important;
+  overflow:hidden;
+}
+.jic-feature-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,.10),transparent 34%,rgba(255,255,255,.035));
+}
+html:not(.dark) .jic-feature-card{
+  border-color:rgba(18,38,58,.12)!important;
+  box-shadow:0 20px 48px rgba(72,55,21,.10),inset 0 1px 0 rgba(255,255,255,.72)!important;
+}
+
+/* Footer is glass too, and never green. */
+.jic-site-footer{
+  background:rgba(5,15,25,.68)!important;
+  border-top:1px solid rgba(255,255,255,.10)!important;
+}
+html:not(.dark) .jic-site-footer{
+  background:rgba(239,230,214,.72)!important;
+  color:#13263a!important;
+  border-top-color:rgba(18,38,58,.10)!important;
+}
+
+/* Smooth logo collapse after the user starts scrolling. */
+.jic-brand{transition:opacity .24s ease,transform .24s ease,width .28s ease,flex-basis .28s ease!important;}
+.jic-brand.is-hidden-on-scroll{opacity:0!important;transform:translateY(-8px) scale(.94)!important;width:0!important;flex-basis:0!important;pointer-events:none!important;}
+
+/* Hash-linked sub sections should not hide behind the fixed navigation. */
+.jic-anchor-target{scroll-margin-top:330px;}
+@media(min-width:768px){.jic-anchor-target{scroll-margin-top:220px;}}
