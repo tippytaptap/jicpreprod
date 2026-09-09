@@ -15,8 +15,8 @@ const QUICK_LINKS = [
   { label: 'Projects', to: '/projects' },
   { label: 'Madrassah', to: '/madrassah' },
   { label: 'Youth', to: '/youth' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'Contact Us', to: '/contact' },
+  { label: 'Gallery', to: '/projects/gallery' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 export default function Footer() {
@@ -25,11 +25,6 @@ export default function Footer() {
     <footer className="jic-site-footer jic-site-footer-compact">
       <div className="container mx-auto px-4 py-6 md:py-7">
         <div className="jic-footer-compact-grid">
-          <div className="jic-footer-contact-block">
-            <Link to="/contact" className="jic-footer-heading jic-footer-contact-title">Contact Us</Link>
-            <p className="mt-2 text-sm opacity-70">Address, phone, email, directions and enquiries.</p>
-          </div>
-
           <nav className="jic-footer-links-inline" aria-label="Footer links">
             {QUICK_LINKS.map(({ label, to }) => <Link key={to} to={to}>{label}</Link>)}
           </nav>
