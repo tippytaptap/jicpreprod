@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { BookOpen, HandHeart, Trophy } from 'lucide-react';
+import { BookOpen, Heart, Trophy } from 'lucide-react';
 import ItikaafRegistrationForm from '@/components/sections/youth/ItikaafRegistrationForm';
 
 const PAGE_TITLE = 'Youth Programs | Jamatia Islamic Centre';
@@ -9,7 +9,7 @@ const META_DESCRIPTION = 'Join our youth programs and activities at Jamatia Isla
 
 const activities = [
   { title: 'Faith & Learning', text: 'Youth circles, reminders and practical Islamic learning.', icon: BookOpen },
-  { title: 'Community Service', text: 'Volunteer projects that build responsibility and connection.', icon: HandHeart },
+  { title: 'Community Service', text: 'Volunteer projects that build responsibility and connection.', icon: Heart },
   { title: 'Social & Sports', text: 'Positive activities that help young people build friendships and confidence.', icon: Trophy },
 ];
 
