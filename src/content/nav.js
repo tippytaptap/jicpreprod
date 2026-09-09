@@ -28,8 +28,9 @@ export const NAV_GROUPS = [
     name: 'Projects', path: '/projects', children: [
       { name: 'Overview', path: '/projects' },
       { name: 'Masjid Extension', path: '/projects#masjid-extension' },
-      { name: 'Funeral Service', path: '/projects#funeral' },
-      { name: 'Madrassah', path: '/projects#madrassah' },
+      { name: 'Update Gallery', path: '/projects#update-gallery' },
+      { name: 'Funeral Service', path: '/projects#funeral-service' },
+      { name: 'Madrassah Project', path: '/projects#madrassah-project' },
       { name: 'Community Hall', path: '/projects#community-hall' },
       { name: 'Main Prayer Hall', path: '/projects#main-prayer-hall' },
     ],
@@ -44,15 +45,17 @@ export const NAV_GROUPS = [
   {
     name: 'Madrassah', path: '/madrassah', children: [
       { name: 'Overview', path: '/madrassah' },
-      { name: 'Classes & Courses', path: '/madrassah#courses' },
-      { name: 'Resources', path: '/madrassah#resources' },
+      { name: 'Classes & Courses', path: '/madrassah#classes' },
+      { name: 'Special Courses', path: '/madrassah#special-courses' },
+      { name: 'Enrollment', path: '/madrassah#enrollment' },
     ],
   },
   {
     name: 'Youth', path: '/youth', children: [
-      { name: 'Youth', path: '/youth' },
+      { name: 'Youth Overview', path: '/youth' },
       { name: "I'tikaf", path: '/youth#itikaf' },
       { name: 'Activities', path: '/youth#activities' },
+      { name: 'Youth Courses', path: '/madrassah#special-courses' },
     ],
   },
 ];
