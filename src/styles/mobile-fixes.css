@@ -1,10 +1,82 @@
 /* Final mobile/layout overrides — keep this last in main.jsx. */
 
-/* Light mode should be warm glass, never washed-out white-on-white. */
-html:not(.dark) .jic-info-shell{
-  background:rgba(248,244,235,.94)!important;
+/* Warm glass light mode. */
+html:not(.dark){
+  --background:42 36% 96%;
+  --foreground:215 48% 16%;
+  --card:42 38% 98%;
+  --card-foreground:215 48% 16%;
+  --popover:42 38% 98%;
+  --popover-foreground:215 48% 16%;
+  --primary:41 66% 47%;
+  --primary-foreground:215 52% 12%;
+  --secondary:39 26% 91%;
+  --secondary-foreground:215 38% 22%;
+  --muted:39 24% 92%;
+  --muted-foreground:215 16% 42%;
+  --accent:42 45% 90%;
+  --accent-foreground:38 63% 29%;
+  --border:35 20% 82%;
+  --input:35 20% 82%;
+  --ring:41 66% 47%;
+}
+.dark{
+  --background:215 54% 7%;
+  --foreground:210 28% 92%;
+  --card:215 42% 11%;
+  --card-foreground:210 28% 92%;
+  --popover:215 42% 10%;
+  --popover-foreground:210 28% 92%;
+  --primary:42 78% 64%;
+  --primary-foreground:215 54% 7%;
+  --secondary:215 28% 16%;
+  --secondary-foreground:210 22% 82%;
+  --muted:215 24% 14%;
+  --muted-foreground:210 15% 60%;
+  --accent:42 24% 17%;
+  --accent-foreground:42 78% 72%;
+  --border:215 22% 21%;
+  --input:215 22% 18%;
+  --ring:42 78% 64%;
+}
+
+/* Remove old teal/green visual language globally. */
+.islamic-pattern{background-image:none!important;}
+.prayer-time-gradient{background:linear-gradient(135deg,rgba(215,168,63,.18),rgba(215,168,63,.06))!important;}
+.dark .prayer-time-gradient{background:linear-gradient(135deg,rgba(244,212,124,.16),rgba(244,212,124,.05))!important;}
+.text-green-400,.text-green-500,.text-green-600,.text-emerald-400,.text-emerald-500,.text-emerald-600,.text-teal-400,.text-teal-500,.text-teal-600{color:#b7790d!important;}
+.bg-green-50,.bg-green-100,.bg-green-500,.bg-green-600,.bg-emerald-50,.bg-emerald-100,.bg-emerald-500,.bg-emerald-600,.bg-teal-50,.bg-teal-100,.bg-teal-500,.bg-teal-600{background-color:rgba(215,168,63,.12)!important;}
+.border-green-200,.border-green-500,.border-emerald-200,.border-emerald-500,.border-teal-200,.border-teal-500{border-color:rgba(215,168,63,.34)!important;}
+
+/* Whole site readable in light mode. */
+html:not(.dark) body,
+html:not(.dark) main,
+html:not(.dark) .page-transition{background:#f7f1e5;color:#102033;}
+html:not(.dark) .bg-white{background:#fffdf8!important;}
+html:not(.dark) .bg-gray-50{background:#f8f3e9!important;}
+html:not(.dark) .bg-gray-100{background:#f1e9dc!important;}
+html:not(.dark) .text-white{color:#102033!important;}
+html:not(.dark) .text-gray-900{color:#102033!important;}
+html:not(.dark) .text-gray-800{color:#1a2b3f!important;}
+html:not(.dark) .text-gray-700{color:#37475a!important;}
+html:not(.dark) .text-gray-600{color:#556273!important;}
+html:not(.dark) .text-gray-500{color:#697586!important;}
+html:not(.dark) .text-gray-400{color:#7b8794!important;}
+html:not(.dark) .border-gray-200{border-color:#ddd3c4!important;}
+html:not(.dark) .border-gray-300{border-color:#d2c6b4!important;}
+html:not(.dark) input,html:not(.dark) textarea,html:not(.dark) select{background:#fffdf8!important;color:#102033!important;border-color:#d8cdbd!important;}
+html:not(.dark) input::placeholder,html:not(.dark) textarea::placeholder{color:#7d8793!important;}
+
+/* Header + glass. */
+html:not(.dark) .jic-info-shell,
+html:not(.dark) .jic-mainnav,
+html:not(.dark) .jic-subnav{
+  background:rgba(248,244,235,.76)!important;
   color:#102033!important;
-  border-color:rgba(20,32,46,.14)!important;
+  border-color:rgba(20,32,46,.13)!important;
+  backdrop-filter:blur(26px) saturate(150%)!important;
+  -webkit-backdrop-filter:blur(26px) saturate(150%)!important;
+  box-shadow:0 14px 36px rgba(55,43,18,.10)!important;
 }
 html:not(.dark) .jic-address,
 html:not(.dark) .jic-radio,
@@ -17,69 +89,45 @@ html:not(.dark) .jic-radio,
 html:not(.dark) .jic-address,
 html:not(.dark) .jic-prayer{border-color:rgba(20,32,46,.10)!important;}
 
-/* Mobile menu: solid readable panel in both themes. */
-.jic-mobile-menu{
-  background:rgba(6,17,28,.985)!important;
-  color:#f7f8fa!important;
-  border:1px solid rgba(255,255,255,.14)!important;
-  box-shadow:0 26px 70px rgba(0,0,0,.52)!important;
-}
+/* Mobile menu readable in both themes. */
+.jic-mobile-menu{background:rgba(6,17,28,.96)!important;color:#f7f8fa!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 26px 70px rgba(0,0,0,.52)!important;backdrop-filter:blur(26px) saturate(145%)!important;-webkit-backdrop-filter:blur(26px) saturate(145%)!important;}
 .jic-mobile-menu .jic-menu-link{color:#f7f8fa!important;}
 .jic-mobile-menu .jic-menu-children a{color:#b9c4cf!important;background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.07)!important;}
 .jic-mobile-menu .jic-menu-admin{color:#d7dee7!important;}
 .jic-mobile-menu .jic-menu-head>button{color:#fff!important;}
-
-html:not(.dark) .jic-mobile-menu{
-  background:#f7f2e8!important;
-  color:#102033!important;
-  border-color:rgba(20,32,46,.14)!important;
-  box-shadow:0 28px 70px rgba(55,43,18,.20)!important;
-}
+.jic-menu-title{font-weight:750;letter-spacing:.02em;}
+html:not(.dark) .jic-mobile-menu{background:rgba(247,242,232,.97)!important;color:#102033!important;border-color:rgba(20,32,46,.14)!important;box-shadow:0 28px 70px rgba(55,43,18,.20)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-link{color:#15263a!important;border-color:rgba(20,32,46,.08)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-link.active{color:#94630d!important;background:rgba(215,168,63,.15)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-children a{color:#526071!important;background:rgba(21,38,58,.055)!important;border-color:rgba(21,38,58,.07)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-admin{color:#24364b!important;border-color:rgba(20,32,46,.12)!important;}
 html:not(.dark) .jic-mobile-menu .jic-menu-head>button{color:#15263a!important;border-color:rgba(20,32,46,.12)!important;}
 
-/* Logo must always remain fully visible. */
-.jic-brand,.jic-menu-logo,.jic-footer-logo,.brand-lockup{overflow:visible!important;}
+/* Logo never crops, but fades away after scrolling. */
+.jic-brand,.jic-footer-logo,.brand-lockup{overflow:visible!important;}
 .brand-lockup img{object-fit:contain!important;object-position:left center!important;height:auto!important;max-width:100%!important;}
+.jic-brand{transition:opacity .22s ease,transform .22s ease,width .22s ease,flex-basis .22s ease!important;}
+.jic-brand.is-hidden-on-scroll{opacity:0!important;transform:translateY(-7px) scale(.96)!important;pointer-events:none!important;width:0!important;flex-basis:0!important;margin:0!important;}
+.jic-header.is-scrolled .jic-mainnav{justify-content:flex-end;}
 
-/* Remove the apparent empty band before the aerial hero on phones. */
+/* Hero/mobile spacing. */
 @media(max-width:640px){
   main{padding-top:274px!important;}
   .jic-hero{min-height:590px!important;background:#07111b;}
-  .jic-hero-image{
-    object-position:center 68%!important;
-    transform:scale(1.12);
-    transform-origin:center center;
-  }
-  .jic-hero-inner{
-    min-height:590px!important;
-    padding-top:24px!important;
-    padding-bottom:30px!important;
-    justify-content:flex-end!important;
-  }
+  html:not(.dark) .jic-hero{background:#f7f1e5;}
+  .jic-hero-image{object-position:center 68%!important;transform:scale(1.12);transform-origin:center center;}
+  .jic-hero-inner{min-height:590px!important;padding-top:24px!important;padding-bottom:30px!important;justify-content:flex-end!important;}
   .jic-mainnav{margin-top:6px!important;}
   .jic-brand{width:136px!important;flex-basis:136px!important;}
+  .jic-brand.is-hidden-on-scroll{width:0!important;flex-basis:0!important;}
   .jic-brand .brand-lockup img{max-height:52px!important;}
-  .jic-mobile-menu{
-    top:196px!important;
-    max-height:calc(100vh - 212px)!important;
-  }
-  .jic-menu-scroll{max-height:calc(100vh - 310px)!important;}
+  .jic-mobile-menu{top:196px!important;max-height:calc(100vh - 212px)!important;}
+  .jic-menu-scroll{max-height:calc(100vh - 290px)!important;}
 }
+@media(max-width:640px){html:has(.jic-subnav) main{padding-top:318px!important;}}
 
-/* On contextual pages, reserve only the actual extra subnav height. */
-@media(max-width:640px){
-  html:has(.jic-subnav) main{padding-top:318px!important;}
-}
-
-/* Entire site/footer follow light mode; kill legacy green accent surfaces. */
-html:not(.dark) footer,
-html:not(.dark) .jic-site-footer{background:#eee5d5!important;color:#15263a!important;}
+/* Footer and controls: gold/navy only. */
+html:not(.dark) footer,html:not(.dark) .jic-site-footer{background:#eee5d5!important;color:#15263a!important;}
 html:not(.dark) footer svg{color:#a97212;}
-html:not(.dark) .bg-green-500,
-html:not(.dark) .bg-emerald-500,
-html:not(.dark) .text-green-500,
-html:not(.dark) .text-emerald-500{background-color:transparent!important;color:#a97212!important;}
+.jic-scroll-top{background:linear-gradient(135deg,#f4d47c,#d5a43c)!important;color:#17120a!important;border:1px solid rgba(255,255,255,.22);}
+.dark .jic-scroll-top{box-shadow:0 10px 26px rgba(215,168,63,.22)!important;}
