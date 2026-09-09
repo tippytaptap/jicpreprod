@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Facebook, Instagram, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
-import JamatiaLogo from '@/components/shell/JamatiaLogo';
+import { Facebook, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
 import { SITE } from '@/content/site';
 
 const TikTokIcon = (props) => (
@@ -11,9 +10,9 @@ const TikTokIcon = (props) => (
 );
 
 const QUICK_LINKS = [
-  { label: 'About Us', to: '/about' },
-  { label: 'Projects', to: '/projects' },
+  { label: 'About', to: '/about' },
   { label: 'Prayer Times', to: '/prayer-times' },
+  { label: 'Projects', to: '/projects' },
   { label: 'Madrassah', to: '/madrassah' },
   { label: 'Youth', to: '/youth' },
   { label: 'Contact Us', to: '/contact' },
@@ -22,47 +21,34 @@ const QUICK_LINKS = [
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="jic-site-footer">
-      <div className="container mx-auto px-4 py-10 md:py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Link to="/" className="jic-footer-logo" aria-label="Jamatia Islamic Centre home">
-              <JamatiaLogo />
-            </Link>
-            <p className="jic-footer-muted mt-4 max-w-sm">{SITE.tagline}</p>
-            <div className="jic-footer-socials mt-5 flex gap-3">
-              <a href={SITE.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={19} /></a>
-              <a href={SITE.socials.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><Twitter size={19} /></a>
-              <a href={SITE.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={19} /></a>
-              <a href={SITE.socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube size={19} /></a>
-              <a href={SITE.socials.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><TikTokIcon className="h-5 w-5" /></a>
+    <footer className="jic-site-footer jic-site-footer-compact">
+      <div className="container mx-auto px-4 py-6 md:py-7">
+        <div className="jic-footer-compact-grid">
+          <div className="jic-footer-contact-block">
+            <Link to="/contact" className="jic-footer-heading jic-footer-contact-title">Contact Us</Link>
+            <div className="jic-footer-contact-line"><MapPin size={16}/><span>{SITE.address.full}</span></div>
+            <div className="jic-footer-contact-line"><Phone size={16}/><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></div>
+            <div className="jic-footer-contact-line"><Mail size={16}/><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div>
+          </div>
+
+          <nav className="jic-footer-links-inline" aria-label="Footer links">
+            {QUICK_LINKS.map(({ label, to }) => <Link key={to} to={to}>{label}</Link>)}
+          </nav>
+
+          <div className="jic-footer-actions-compact">
+            <div className="jic-footer-socials flex gap-2">
+              <a href={SITE.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook size={18}/></a>
+              <a href={SITE.socials.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><Twitter size={18}/></a>
+              <a href={SITE.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram size={18}/></a>
+              <a href={SITE.socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube size={18}/></a>
+              <a href={SITE.socials.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><TikTokIcon className="h-5 w-5"/></a>
             </div>
-          </div>
-
-          <div>
-            <h3 className="jic-footer-heading">Explore</h3>
-            <ul className="mt-4 space-y-2">
-              {QUICK_LINKS.map(({ label, to }) => <li key={to}><Link className="jic-footer-link" to={to}>{label}</Link></li>)}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="jic-footer-heading">Contact</h3>
-            <div className="mt-4 space-y-4">
-              <div className="jic-footer-contact"><MapPin size={18}/><span>{SITE.address.full}</span></div>
-              <div className="jic-footer-contact"><Phone size={18}/><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></div>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="jic-footer-heading">Opening Hours</h3>
-            <div className="jic-footer-contact mt-4"><Clock size={18}/><span>{SITE.hours}</span></div>
-            <Link to="/projects" className="jic-footer-donate mt-6 inline-flex">Donate to JIC</Link>
+            <Link to="/projects#donate" className="jic-footer-donate inline-flex">Donate</Link>
           </div>
         </div>
 
-        <div className="jic-footer-bottom mt-9 flex flex-col gap-3 pt-5 text-sm sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {SITE.name}. All rights reserved.</p>
+        <div className="jic-footer-bottom mt-5 flex flex-col gap-2 pt-4 text-xs sm:flex-row sm:items-center sm:justify-between">
+          <p>© {year} {SITE.name}</p>
           <div className="flex gap-4"><Link to="/privacy">Privacy</Link><Link to="/admin">Admin</Link></div>
         </div>
       </div>
