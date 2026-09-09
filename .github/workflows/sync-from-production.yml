@@ -34,3 +34,5 @@ jobs:
           fi
           git commit -m 'Sync latest JIC production website'
           git push origin main
+
+# Trigger refreshed after admin/prayer/contact fixes.
