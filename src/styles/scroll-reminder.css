@@ -1,0 +1,70 @@
+/* Rotating Islamic reminder shown in the space vacated by the logo after scroll. */
+.jic-scroll-reminder{
+  min-width:0;
+  max-width:min(520px,42vw);
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+  backdrop-filter:blur(24px) saturate(175%);
+  -webkit-backdrop-filter:blur(24px) saturate(175%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 22px rgba(0,0,0,.10);
+  overflow:hidden;
+}
+.jic-hijri-date{
+  color:#e5b955;
+  font-size:10px;
+  font-weight:750;
+  letter-spacing:.06em;
+  white-space:nowrap;
+}
+.jic-scroll-reminder strong{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:620;
+  line-height:1.2;
+}
+.jic-scroll-reminder small{
+  opacity:.58;
+  font-size:9.5px;
+  white-space:nowrap;
+}
+html:not(.dark) .jic-scroll-reminder{
+  background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(236,240,244,.42));
+  border-color:rgba(20,34,48,.12);
+  color:#101820;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.88),0 8px 22px rgba(20,32,46,.07);
+}
+html:not(.dark) .jic-hijri-date{color:#9a6b16;}
+
+@media(max-width:900px){
+  .jic-scroll-reminder{
+    max-width:none;
+    flex:1;
+    grid-template-columns:auto minmax(0,1fr);
+    gap:8px;
+    padding:7px 10px;
+    margin-right:8px;
+  }
+  .jic-scroll-reminder small{display:none;}
+}
+@media(max-width:640px){
+  .jic-scroll-reminder{
+    grid-template-columns:1fr;
+    gap:1px;
+    border-radius:18px;
+    padding:6px 9px;
+  }
+  .jic-hijri-date{font-size:9px;line-height:1.1;}
+  .jic-scroll-reminder strong{font-size:10.5px;line-height:1.15;}
+}
+@media(max-width:390px){
+  .jic-scroll-reminder strong{max-width:170px;}
+}
