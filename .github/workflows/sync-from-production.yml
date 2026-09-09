@@ -1,0 +1,36 @@
+name: Sync latest JIC production source
+
+on:
+  push:
+    paths:
+      - '.github/workflows/sync-from-production.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Vercel repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download production source
+        run: |
+          git clone --depth 1 https://github.com/jicuser/website.git /tmp/jic-production
+          rsync -a --delete --exclude='.git' --exclude='.github/workflows/sync-from-production.yml' /tmp/jic-production/ ./
+
+      - name: Keep sync workflow and commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Already in sync.'
+            exit 0
+          fi
+          git commit -m 'Sync latest JIC production website'
+          git push origin main
