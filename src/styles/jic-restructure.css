@@ -1,0 +1,109 @@
+/* JIC restructure layer — loaded last. Based on the supplied homepage reference. */
+:root{
+  --jic-midnight:#07111f;
+  --jic-surface:#0d1a2b;
+  --jic-surface-muted:#142338;
+  --jic-ivory:#f7f2e8;
+  --jic-muted:#b9c1cb;
+  --jic-gold:#e5b955;
+  --jic-gold-deep:#c99a37;
+  --jic-border:#34445a;
+}
+
+/* Header + logo behaviour */
+.dark .jic-brand img{filter:brightness(0) invert(1)!important;opacity:.96;}
+html:not(.dark) .jic-brand img{filter:brightness(0) saturate(100%)!important;opacity:.92;}
+.jic-mainnav{position:relative;}
+.jic-nav-cluster{position:relative;flex:1;min-width:0;}
+.jic-desktop-nav{justify-content:center;}
+
+/* Desktop mega navigation inspired by the supplied reference. */
+.jic-mega-menu{
+  position:absolute;
+  z-index:70;
+  top:calc(100% + 10px);
+  left:50%;
+  width:min(900px,calc(100vw - 280px));
+  transform:translateX(-50%);
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:22px;
+  background:rgba(7,17,31,.76)!important;
+  box-shadow:0 28px 80px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(34px) saturate(165%);
+  -webkit-backdrop-filter:blur(34px) saturate(165%);
+}
+.jic-mega-column{padding:18px 16px;display:flex;flex-direction:column;gap:7px;border-right:1px solid rgba(255,255,255,.08);min-width:0;}
+.jic-mega-column:last-child{border-right:0;}
+.jic-mega-heading{display:block;color:var(--jic-gold)!important;font-weight:750;font-size:14px;margin-bottom:4px;}
+.jic-mega-column>a:not(.jic-mega-heading){display:block;color:#c6ced8!important;font-size:12.5px;line-height:1.35;padding:4px 0;transition:color .18s ease,transform .18s ease;}
+.jic-mega-column>a:not(.jic-mega-heading):hover{color:#fff!important;transform:translateX(2px);}
+html:not(.dark) .jic-mega-menu{background:rgba(247,242,232,.86)!important;border-color:rgba(255,255,255,.78);box-shadow:0 28px 70px rgba(66,51,22,.17),inset 0 1px 0 rgba(255,255,255,.86);}
+html:not(.dark) .jic-mega-column{border-right-color:rgba(16,32,51,.09);}
+html:not(.dark) .jic-mega-heading{color:#8d6215!important;}
+html:not(.dark) .jic-mega-column>a:not(.jic-mega-heading){color:#425165!important;}
+html:not(.dark) .jic-mega-column>a:not(.jic-mega-heading):hover{color:#0f2033!important;}
+
+/* Home page hierarchy */
+.jic-premium-home{background:var(--jic-midnight);}
+.jic-hero{border-radius:0 0 28px 28px;overflow:hidden;isolation:isolate;}
+.jic-hero-overlay{background:linear-gradient(90deg,rgba(3,10,18,.84) 0%,rgba(3,10,18,.57) 38%,rgba(3,10,18,.18) 70%,rgba(3,10,18,.28) 100%)!important;}
+.jic-hero-inner{max-width:1500px;margin:0 auto;}
+.jic-kicker{letter-spacing:.24em!important;color:var(--jic-gold)!important;font-size:12px!important;}
+.jic-hero h1{font-family:Georgia,'Times New Roman',serif!important;font-weight:500!important;letter-spacing:-.035em!important;line-height:.96!important;max-width:760px;}
+.jic-gold-rule{background:var(--jic-gold)!important;}
+.jic-primary-cta,.donate-button{background:linear-gradient(135deg,#f0c868,#dcae43)!important;color:#07111f!important;border:1px solid rgba(255,255,255,.28)!important;box-shadow:0 10px 30px rgba(208,159,51,.22),inset 0 1px 0 rgba(255,255,255,.48)!important;}
+.jic-secondary-cta{border-color:rgba(255,255,255,.26)!important;background:rgba(6,17,29,.38)!important;color:#fff!important;}
+
+.jic-feature-grid{max-width:1500px;margin-inline:auto;gap:12px!important;padding-inline:18px!important;}
+.jic-feature-card{min-height:220px!important;border-radius:18px!important;overflow:hidden!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 16px 36px rgba(0,0,0,.18)!important;}
+.jic-feature-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,31,.08),rgba(7,17,31,.82));pointer-events:none;}
+.jic-feature-card>*{position:relative;z-index:1;}
+.jic-card-icon{color:var(--jic-gold)!important;}
+.jic-event-strip,.jic-home-footer-strip{max-width:1464px;margin-inline:auto;}
+
+/* Mobile menu accordion */
+.jic-menu-row{display:grid;grid-template-columns:1fr auto;align-items:stretch;gap:6px;}
+.jic-menu-row .jic-menu-link{display:flex!important;align-items:center;min-width:0;}
+.jic-menu-expand{display:grid;place-items:center;width:42px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.035);color:inherit;}
+.jic-menu-expand svg{transition:transform .2s ease;}
+.jic-menu-expand svg.is-open{transform:rotate(180deg);}
+.jic-menu-children{overflow:hidden;margin:6px 0 8px;padding-left:10px;display:grid;gap:5px;}
+html:not(.dark) .jic-menu-expand{border-color:rgba(16,32,51,.10);background:rgba(255,255,255,.36);}
+
+/* Context tabs feel like iOS segmented glass rather than a plain bar. */
+.jic-subnav{gap:6px!important;padding:7px!important;border-radius:16px!important;overflow-x:auto;scrollbar-width:none;}
+.jic-subnav::-webkit-scrollbar{display:none;}
+.jic-subnav-link{white-space:nowrap;border:1px solid rgba(255,255,255,.08)!important;background:rgba(255,255,255,.035)!important;border-radius:999px!important;padding:7px 11px!important;}
+html:not(.dark) .jic-subnav-link{border-color:rgba(16,32,51,.08)!important;background:rgba(255,255,255,.42)!important;}
+
+@media(max-width:1120px){
+  .jic-mega-menu{width:min(820px,calc(100vw - 80px));grid-template-columns:repeat(3,minmax(0,1fr));}
+  .jic-mega-column:nth-child(3){border-right:0;}
+}
+
+@media(max-width:900px){
+  .jic-nav-cluster{display:none;}
+  .jic-mainnav{justify-content:space-between!important;}
+  .jic-brand{margin-right:auto;}
+}
+
+@media(max-width:640px){
+  .jic-hero{border-radius:0 0 22px 22px;}
+  .jic-hero-overlay{background:linear-gradient(180deg,rgba(3,10,18,.18) 10%,rgba(3,10,18,.48) 48%,rgba(3,10,18,.93) 100%)!important;}
+  .jic-hero h1{font-size:clamp(2.7rem,12vw,4.25rem)!important;max-width:11ch;}
+  .jic-hero-sub{font-size:15px!important;}
+  .jic-feature-grid{grid-template-columns:1fr 1fr!important;padding-inline:10px!important;gap:9px!important;}
+  .jic-feature-card{min-height:200px!important;}
+  .jic-feature-card h2{font-size:19px!important;}
+  .jic-feature-card p{font-size:12px!important;line-height:1.35!important;}
+  .jic-card-copy span{font-size:12px!important;}
+}
+
+@media(max-width:430px){
+  .jic-feature-grid{grid-template-columns:1fr!important;}
+  .jic-feature-card{min-height:185px!important;}
+}
