@@ -26,6 +26,7 @@ showStatus('Loading website…');
       import('@/context/ContentContext'),
       import('@/styles/index.css'),
       import('@/styles/reference-match.css'),
+      import('@/styles/navigation-refine.css'),
     ]);
 
     const React = ReactModule.default;
