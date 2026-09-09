@@ -1,14 +1,9 @@
-/**
- * Route table (react-router). Every path here renders inside `layouts/MainLayout.jsx`
- * (navbar + footer + scroll-to-top). Think of this as the URL → page component map.
- */
-
+/** URL → page component map. */
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import MainLayout from '@/layouts/MainLayout';
-
 import AboutPage from '@/pages/AboutPage';
 import ContactPage from '@/pages/ContactPage';
 import FinancialHistoryPage from '@/pages/FinancialHistoryPage';
@@ -21,31 +16,70 @@ import ProjectsPage from '@/pages/ProjectsPage';
 import ServicesPage from '@/pages/ServicesPage';
 import TeamPage from '@/pages/TeamPage';
 import YouthPage from '@/pages/YouthPage';
+import SectionPage from '@/pages/SectionPage';
 import AdminPage from '@/pages/admin/AdminPage';
+import AdminLoginPage from '@/pages/admin/AdminLoginPage';
 import ProtectedAdminRoute from '@/components/admin/ProtectedAdminRoute';
 
+const standaloneSections = [
+  ['about/history','About','Our History','/about'],
+  ['services/daily-prayers','Services','Daily Prayers','/services'],
+  ['services/jummah','Services','Jummah','/services'],
+  ['services/quran-classes','Services','Quran Classes','/services'],
+  ['services/community-services','Services','Community Services','/services'],
+  ['services/funeral-services','Services','Funeral Services','/services'],
+  ['services/nikah','Services','Nikah','/services'],
+  ['services/hall-booking','Services','Hall Booking','/services'],
+  ['projects/masjid-extension','Projects','Masjid Extension','/projects'],
+  ['projects/main-prayer-hall','Projects','Main Prayer Hall','/projects'],
+  ['projects/wudu-area','Projects','Wudu Area','/projects'],
+  ['projects/community-hall','Projects','Community Hall','/projects'],
+  ['projects/madrassah-building','Projects','Madrassah Building','/projects'],
+  ['projects/current-appeals','Projects','Current Appeals','/projects'],
+  ['projects/gallery','Projects','Gallery','/projects'],
+  ['projects/how-to-support','Projects','How to Support','/projects'],
+  ['prayer-times/monthly','Prayer Times','Monthly Timetable','/prayer-times'],
+  ['prayer-times/jummah','Prayer Times','Jummah','/prayer-times'],
+  ['madrassah/programs','Madrassah','Our Programs','/madrassah'],
+  ['madrassah/classes-courses','Madrassah','Classes & Courses','/madrassah'],
+  ['madrassah/special-courses','Madrassah','Special Courses','/madrassah'],
+  ['madrassah/enrolment','Madrassah','Enrolment','/madrassah'],
+  ['madrassah/policies','Madrassah','Policies','/madrassah'],
+  ['madrassah/student-portal','Madrassah','Student Portal','/madrassah'],
+  ['youth/projects','Youth','Youth Projects','/youth'],
+  ['youth/activities','Youth','Activities','/youth'],
+  ['youth/itikaf','Youth',"I'tikaf Program",'/youth'],
+  ['youth/trips-events','Youth','Trips & Events','/youth'],
+  ['youth/volunteering','Youth','Volunteering','/youth'],
+  ['youth/classes-skills','Youth','Classes & Skills','/youth'],
+];
+
 function App() {
-	return (
-		<AnimatePresence mode="wait">
-			<Routes>
-                <Route path="/admin" element={<ProtectedAdminRoute><AdminPage /></ProtectedAdminRoute>} />
-				<Route path="/" element={<MainLayout />}>
-					<Route index element={<HomePage />} />
-					<Route path="about" element={<AboutPage />} />
-					<Route path="contact" element={<ContactPage />} />
-					<Route path="financial-history" element={<FinancialHistoryPage />} />
-					<Route path="madrassah" element={<MadrassahPage />} />
-					<Route path="prayer-times" element={<PrayerTimesPage />} />
-					<Route path="privacy" element={<PrivacyPage />} />
-					<Route path="projects" element={<ProjectsPage />} />
-					<Route path="services" element={<ServicesPage />} />
-					<Route path="team" element={<TeamPage />} />
-					<Route path="youth" element={<YouthPage />} />
-					<Route path="*" element={<NotFoundPage />} />
-				</Route>
-			</Routes>
-		</AnimatePresence>
-	);
+  return (
+    <AnimatePresence mode="wait">
+      <Routes>
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route path="/admin" element={<ProtectedAdminRoute><AdminPage /></ProtectedAdminRoute>} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="financial-history" element={<FinancialHistoryPage />} />
+          <Route path="madrassah" element={<MadrassahPage />} />
+          <Route path="prayer-times" element={<PrayerTimesPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="services" element={<ServicesPage />} />
+          <Route path="team" element={<TeamPage />} />
+          <Route path="youth" element={<YouthPage />} />
+          {standaloneSections.map(([path,eyebrow,title,backTo]) => (
+            <Route key={path} path={path} element={<SectionPage eyebrow={eyebrow} title={title} backTo={backTo} backLabel={`Back to ${eyebrow}`} />} />
+          ))}
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </AnimatePresence>
+  );
 }
 
 export default App;
