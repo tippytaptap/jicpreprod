@@ -18,8 +18,9 @@ export const SITE = {
 
   socials: {
     facebook: 'https://facebook.com/JICMasjid',
-    twitter: 'https://twitter.com/jicmasjid',
+    x: 'https://x.com/jicmosque',
     instagram: 'https://instagram.com/jicmasjid',
     youtube: 'https://youtube.com/@JICMASJID',
+    tiktok: 'https://www.tiktok.com/@jicmasjid',
   },
 };
