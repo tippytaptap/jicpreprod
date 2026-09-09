@@ -1,0 +1,67 @@
+/* Final JIC visual touches — keep last. */
+
+/* Use the same crisp source logo without cropping, recoloured to the JIC gold system. */
+.brand-lockup img{
+  filter:brightness(0) saturate(100%) invert(77%) sepia(51%) saturate(845%) hue-rotate(356deg) brightness(92%) contrast(88%)!important;
+}
+html:not(.dark) .brand-lockup img{
+  filter:brightness(0) saturate(100%) invert(54%) sepia(72%) saturate(728%) hue-rotate(358deg) brightness(88%) contrast(92%)!important;
+}
+
+.jic-jummah-mini{
+  flex:0 0 auto;
+  min-width:92px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:0 10px;
+  border-right:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(18px) saturate(155%);
+  -webkit-backdrop-filter:blur(18px) saturate(155%);
+}
+.jic-jummah-mini span{font-size:9px;letter-spacing:.16em;color:#f1c85f;font-weight:800;}
+.jic-jummah-mini strong{font-size:12px;font-weight:700;white-space:nowrap;}
+html:not(.dark) .jic-jummah-mini{
+  color:#1d3046;
+  background:rgba(255,255,255,.36);
+  border-right-color:rgba(18,38,58,.10);
+}
+html:not(.dark) .jic-jummah-mini span{color:#9e6910;}
+
+/* More translucent iOS-like controls. */
+.jic-display-controls>button,.header-icon,.jic-radio,.jic-jummah-mini{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.075);
+}
+html:not(.dark) .jic-display-controls>button,
+html:not(.dark) .header-icon,
+html:not(.dark) .jic-radio,
+html:not(.dark) .jic-jummah-mini{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.68);
+}
+
+/* Gold system replaces any remaining explicit green/teal utility colours. */
+[class*="text-green-"],[class*="text-emerald-"],[class*="text-teal-"]{color:#b7790d!important;}
+.dark [class*="text-green-"],.dark [class*="text-emerald-"],.dark [class*="text-teal-"]{color:#efc45a!important;}
+[class*="border-green-"],[class*="border-emerald-"],[class*="border-teal-"]{border-color:rgba(215,168,63,.34)!important;}
+[class*="bg-green-"],[class*="bg-emerald-"],[class*="bg-teal-"]{background-color:rgba(215,168,63,.12)!important;}
+
+/* Glass remains useful but the user can still turn blur off with the existing Glass toggle. */
+html[data-surface="solid"] .jic-info-shell,
+html[data-surface="solid"] .jic-mainnav,
+html[data-surface="solid"] .jic-subnav,
+html[data-surface="solid"] .jic-mobile-menu{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+@media(max-width:640px){
+  .jic-jummah-mini{min-width:78px;padding:0 7px;gap:5px;}
+  .jic-jummah-mini span{font-size:8px;}
+  .jic-jummah-mini strong{font-size:10.5px;}
+  .jic-radio{padding-left:8px!important;padding-right:8px!important;}
+  .jic-radio span{font-size:10px;}
+  .jic-display-controls{padding-left:6px!important;padding-right:6px!important;}
+}
