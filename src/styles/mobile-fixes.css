@@ -1,0 +1,85 @@
+/* Final mobile/layout overrides — keep this last in main.jsx. */
+
+/* Light mode should be warm glass, never washed-out white-on-white. */
+html:not(.dark) .jic-info-shell{
+  background:rgba(248,244,235,.94)!important;
+  color:#102033!important;
+  border-color:rgba(20,32,46,.14)!important;
+}
+html:not(.dark) .jic-address,
+html:not(.dark) .jic-radio,
+html:not(.dark) .jic-display-controls>button{color:#102033!important;}
+html:not(.dark) .jic-prayer span,
+html:not(.dark) .jic-radio small{color:#697383!important;}
+html:not(.dark) .jic-prayer strong{color:#b7790d!important;}
+html:not(.dark) .jic-utility-row,
+html:not(.dark) .jic-radio,
+html:not(.dark) .jic-address,
+html:not(.dark) .jic-prayer{border-color:rgba(20,32,46,.10)!important;}
+
+/* Mobile menu: solid readable panel in both themes. */
+.jic-mobile-menu{
+  background:rgba(6,17,28,.985)!important;
+  color:#f7f8fa!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  box-shadow:0 26px 70px rgba(0,0,0,.52)!important;
+}
+.jic-mobile-menu .jic-menu-link{color:#f7f8fa!important;}
+.jic-mobile-menu .jic-menu-children a{color:#b9c4cf!important;background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.07)!important;}
+.jic-mobile-menu .jic-menu-admin{color:#d7dee7!important;}
+.jic-mobile-menu .jic-menu-head>button{color:#fff!important;}
+
+html:not(.dark) .jic-mobile-menu{
+  background:#f7f2e8!important;
+  color:#102033!important;
+  border-color:rgba(20,32,46,.14)!important;
+  box-shadow:0 28px 70px rgba(55,43,18,.20)!important;
+}
+html:not(.dark) .jic-mobile-menu .jic-menu-link{color:#15263a!important;border-color:rgba(20,32,46,.08)!important;}
+html:not(.dark) .jic-mobile-menu .jic-menu-link.active{color:#94630d!important;background:rgba(215,168,63,.15)!important;}
+html:not(.dark) .jic-mobile-menu .jic-menu-children a{color:#526071!important;background:rgba(21,38,58,.055)!important;border-color:rgba(21,38,58,.07)!important;}
+html:not(.dark) .jic-mobile-menu .jic-menu-admin{color:#24364b!important;border-color:rgba(20,32,46,.12)!important;}
+html:not(.dark) .jic-mobile-menu .jic-menu-head>button{color:#15263a!important;border-color:rgba(20,32,46,.12)!important;}
+
+/* Logo must always remain fully visible. */
+.jic-brand,.jic-menu-logo,.jic-footer-logo,.brand-lockup{overflow:visible!important;}
+.brand-lockup img{object-fit:contain!important;object-position:left center!important;height:auto!important;max-width:100%!important;}
+
+/* Remove the apparent empty band before the aerial hero on phones. */
+@media(max-width:640px){
+  main{padding-top:274px!important;}
+  .jic-hero{min-height:590px!important;background:#07111b;}
+  .jic-hero-image{
+    object-position:center 68%!important;
+    transform:scale(1.12);
+    transform-origin:center center;
+  }
+  .jic-hero-inner{
+    min-height:590px!important;
+    padding-top:24px!important;
+    padding-bottom:30px!important;
+    justify-content:flex-end!important;
+  }
+  .jic-mainnav{margin-top:6px!important;}
+  .jic-brand{width:136px!important;flex-basis:136px!important;}
+  .jic-brand .brand-lockup img{max-height:52px!important;}
+  .jic-mobile-menu{
+    top:196px!important;
+    max-height:calc(100vh - 212px)!important;
+  }
+  .jic-menu-scroll{max-height:calc(100vh - 310px)!important;}
+}
+
+/* On contextual pages, reserve only the actual extra subnav height. */
+@media(max-width:640px){
+  html:has(.jic-subnav) main{padding-top:318px!important;}
+}
+
+/* Entire site/footer follow light mode; kill legacy green accent surfaces. */
+html:not(.dark) footer,
+html:not(.dark) .jic-site-footer{background:#eee5d5!important;color:#15263a!important;}
+html:not(.dark) footer svg{color:#a97212;}
+html:not(.dark) .bg-green-500,
+html:not(.dark) .bg-emerald-500,
+html:not(.dark) .text-green-500,
+html:not(.dark) .text-emerald-500{background-color:transparent!important;color:#a97212!important;}
