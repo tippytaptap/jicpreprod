@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Heart, MapPin, Menu, Moon, Pause, Play, Settings2, Sun, X, ChevronDown } from 'lucide-react';
+import { Heart, MapPin, Menu, Moon, Pause, Play, Sun, X, ChevronDown } from 'lucide-react';
 import JamatiaLogo from '@/components/shell/JamatiaLogo';
 import { NAV_ITEMS } from '@/content/nav';
 import { SITE } from '@/content/site';
@@ -11,11 +11,19 @@ import { cn } from '@/lib/utils';
 const PRAYERS = [['Fajr','fajr'],['Sunrise','sunrise'],['Dhuhr','dhuhr'],['Asr','asr'],['Maghrib','maghrib'],['Isha','isha']];
 const shortTime = v => v && v !== 'N/A' ? String(v).replace(/^0/,'').replace(/\s?[AP]M$/i,'') : '—';
 
+const safeGet = (key, fallback) => {
+  try { return window.localStorage.getItem(key) ?? fallback; }
+  catch { return fallback; }
+};
+const safeSet = (key, value) => {
+  try { window.localStorage.setItem(key, value); } catch {}
+};
+
 export default function Navbar() {
   const { todaysTimes } = usePrayerTimes();
   const [menuOpen,setMenuOpen] = useState(false);
-  const [theme,setTheme] = useState(() => localStorage.getItem('jic-theme') || 'dark');
-  const [glass,setGlass] = useState(() => localStorage.getItem('jic-glass') !== 'off');
+  const [theme,setTheme] = useState(() => safeGet('jic-theme', 'dark'));
+  const [glass,setGlass] = useState(() => safeGet('jic-glass', 'on') !== 'off');
   const [playing,setPlaying] = useState(false);
   const [radioError,setRadioError] = useState(false);
   const audioRef = useRef(null);
@@ -24,8 +32,8 @@ export default function Navbar() {
   useEffect(()=>{
     document.documentElement.classList.toggle('dark', theme==='dark');
     document.documentElement.dataset.surface = glass ? 'glass':'solid';
-    localStorage.setItem('jic-theme',theme);
-    localStorage.setItem('jic-glass',glass?'on':'off');
+    safeSet('jic-theme',theme);
+    safeSet('jic-glass',glass?'on':'off');
   },[theme,glass]);
 
   useEffect(()=>()=>{ if(audioRef.current){audioRef.current.pause(); audioRef.current.src='';}},[]);
