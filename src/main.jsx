@@ -29,6 +29,7 @@ showStatus('Loading website…');
       import('@/styles/navigation-refine.css'),
       import('@/styles/jic-polish.css'),
       import('@/styles/mobile-fixes.css'),
+      import('@/styles/ios-glass.css'),
     ]);
 
     const React = ReactModule.default;
