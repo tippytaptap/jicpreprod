@@ -57,9 +57,9 @@ html:not(.dark) .jic-scroll-reminder{border-color:rgba(20,35,50,.10);background:
   .jic-display-controls>button:first-child{width:44px!important;min-width:44px!important;padding:0!important;display:grid!important;place-items:center!important;}
   .jic-display-controls>button:last-child{min-width:118px!important;justify-content:center!important;}
 
-  /* Reduce the empty gap between fixed header and hero copy. */
-  .jic-hero-no-image{min-height:76svh!important;}
-  .jic-hero-no-image .jic-hero-inner{min-height:76svh!important;padding-top:210px!important;}
+  /* Start hero copy beneath the fixed header instead of anchoring it at the bottom. */
+  .jic-hero-no-image{min-height:0!important;height:auto!important;}
+  .jic-hero-no-image .jic-hero-inner{min-height:0!important;justify-content:flex-start!important;padding-top:248px!important;padding-bottom:28px!important;}
 }
 
 @media(max-width:430px){
@@ -67,5 +67,5 @@ html:not(.dark) .jic-scroll-reminder{border-color:rgba(20,35,50,.10);background:
   .jic-reminder-line strong{font-size:12px!important;}
   .jic-reminder-meta{font-size:9px!important;}
   .jic-utility-row{grid-template-columns:96px minmax(132px,1fr) auto!important;}
-  .jic-hero-no-image .jic-hero-inner{padding-top:195px!important;}
+  .jic-hero-no-image .jic-hero-inner{padding-top:238px!important;}
 }
