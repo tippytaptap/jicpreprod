@@ -1,0 +1,118 @@
+/* Final JIC polish layer — intentionally loaded last. */
+:root{
+  --jic-light-bg:#ffffff;
+  --jic-light-surface:rgba(255,255,255,.72);
+  --jic-light-surface-strong:rgba(255,255,255,.86);
+  --jic-dark-popup:rgba(6,14,24,.72);
+  --jic-light-popup:rgba(255,255,255,.78);
+  --jic-ease:cubic-bezier(.2,.8,.2,1);
+}
+
+html,body,.jic-premium-home,.jic-glass,.jic-mainnav,.jic-info-shell,.jic-subnav,.jic-mobile-menu,.jic-mega-menu,.jic-feature-card,.jic-event-strip,.jic-home-footer-strip,.jic-popup-surface{
+  transition:background-color .35s var(--jic-ease),background .35s var(--jic-ease),color .35s var(--jic-ease),border-color .35s var(--jic-ease),box-shadow .35s var(--jic-ease),backdrop-filter .35s var(--jic-ease),opacity .25s ease;
+}
+
+/* Light mode is true white, never cream. */
+html:not(.dark){--background:0 0% 100%;--card:0 0% 100%;--popover:0 0% 100%;--secondary:210 16% 96%;--muted:210 16% 96%;}
+html:not(.dark) body{background:#fff!important;color:#101820;}
+html:not(.dark) .jic-premium-home{background:#fff!important;}
+html:not(.dark)[data-surface="solid"] .jic-glass,
+html:not(.dark)[data-surface="solid"] .jic-mainnav,
+html:not(.dark)[data-surface="solid"] .jic-info-shell,
+html:not(.dark)[data-surface="solid"] .jic-subnav,
+html:not(.dark)[data-surface="solid"] .jic-mobile-menu,
+html:not(.dark)[data-surface="solid"] .jic-mega-menu{background:#fff!important;border-color:rgba(16,32,51,.12)!important;box-shadow:0 14px 42px rgba(15,32,51,.10)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+
+/* Glass switch has a visible, functional off/on state. */
+.glass-switch{width:34px;height:20px;border-radius:999px;padding:2px;display:inline-flex;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);transition:.25s var(--jic-ease);}
+.glass-switch i{width:14px;height:14px;border-radius:50%;background:currentColor;opacity:.72;transform:translateX(0);transition:transform .25s var(--jic-ease),opacity .25s ease;}
+.glass-switch.on{background:rgba(229,185,85,.25);border-color:rgba(229,185,85,.52);}
+.glass-switch.on i{transform:translateX(14px);opacity:1;}
+html:not(.dark) .glass-switch{background:rgba(16,32,51,.09);border-color:rgba(16,32,51,.13);}
+html:not(.dark) .glass-switch.on{background:rgba(201,154,55,.18);border-color:rgba(141,98,21,.30);}
+
+/* Generic translucent popup language. Enough transparency to feel glass, never illegible. */
+.jic-popup-surface,
+[role="dialog"]{
+  background:var(--jic-dark-popup)!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  backdrop-filter:blur(34px) saturate(165%) brightness(.96)!important;
+  -webkit-backdrop-filter:blur(34px) saturate(165%) brightness(.96)!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+html:not(.dark) .jic-popup-surface,
+html:not(.dark) [role="dialog"]{
+  background:var(--jic-light-popup)!important;
+  color:#102033!important;
+  border-color:rgba(255,255,255,.76)!important;
+  backdrop-filter:blur(34px) saturate(150%) brightness(1.04)!important;
+  -webkit-backdrop-filter:blur(34px) saturate(150%) brightness(1.04)!important;
+  box-shadow:0 28px 80px rgba(15,32,51,.16),inset 0 1px 0 rgba(255,255,255,.88)!important;
+}
+html:not(.dark) [role="dialog"] .text-white{color:#102033!important;}
+html:not(.dark) [role="dialog"] [class*="text-white/"]{color:rgba(16,32,51,.68)!important;}
+html:not(.dark) [role="dialog"] [class*="border-white/"]{border-color:rgba(16,32,51,.12)!important;}
+html:not(.dark) [role="dialog"] [class*="bg-white/"]{background:rgba(255,255,255,.52)!important;}
+
+/* Background-aware header readability. */
+.jic-header{--header-fg:#fff;}
+.jic-header .jic-info-shell,.jic-header .jic-mainnav,.jic-header .jic-subnav{color:var(--header-fg);}
+html:not(.dark) .jic-header{--header-fg:#102033;}
+html:not(.dark) .nav-pill{color:#26384d;}
+html:not(.dark) .nav-pill:hover,html:not(.dark) .nav-pill.active{color:#8d6215;background:rgba(16,32,51,.05);}
+
+/* Homepage: tiles default to blurred glass instead of stock imagery. */
+.jic-feature-card.is-glass-only{
+  background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025))!important;
+  border-color:rgba(255,255,255,.17)!important;
+  backdrop-filter:blur(30px) saturate(165%)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(165%)!important;
+}
+.jic-feature-card.is-glass-only::before{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(2,8,15,.18))!important;}
+html:not(.dark) .jic-feature-card.is-glass-only{background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(245,248,251,.62))!important;border-color:rgba(16,32,51,.10)!important;color:#102033!important;box-shadow:0 18px 44px rgba(15,32,51,.09),inset 0 1px 0 rgba(255,255,255,.95)!important;}
+html:not(.dark) .jic-feature-card.is-glass-only::before{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(232,238,244,.22))!important;}
+html:not(.dark) .jic-feature-card.is-glass-only .jic-card-copy p,
+html:not(.dark) .jic-feature-card.is-glass-only .jic-card-copy span{color:#536274!important;}
+
+/* Admin login */
+.admin-login-page{min-height:100dvh;padding:20px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 20% 5%,#173052 0,transparent 34%),radial-gradient(circle at 90% 85%,#3b2a11 0,transparent 28%),#07111f;color:#fff;}
+.admin-login-orb{position:absolute;border-radius:999px;filter:blur(18px);opacity:.28;pointer-events:none;}
+.admin-login-orb-one{width:260px;height:260px;left:-80px;top:-70px;background:#3a6ea7;}
+.admin-login-orb-two{width:220px;height:220px;right:-70px;bottom:-50px;background:#d4a23f;}
+.admin-login-card{position:relative;z-index:1;width:min(100%,470px);border-radius:30px;padding:22px;}
+.admin-login-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;font-size:12px;}
+.admin-login-back,.admin-login-secure{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.72);}
+.admin-login-secure{padding:7px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.045);}
+.admin-login-brand{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.admin-login-logo{width:64px;max-height:58px;overflow:hidden;display:flex;align-items:center;}
+.admin-login-logo img{width:100%;height:auto;filter:brightness(0) invert(1);}
+.admin-login-brand p{font-size:10px;letter-spacing:.22em;color:#e5b955;font-weight:750;}
+.admin-login-brand h1{font-size:28px;line-height:1.05;font-weight:750;letter-spacing:-.025em;}
+.admin-login-intro{font-size:14px;line-height:1.6;color:rgba(255,255,255,.62);margin-bottom:20px;}
+.admin-login-error{margin-bottom:16px;border:1px solid rgba(248,113,113,.22);background:rgba(127,29,29,.20);color:#fee2e2;border-radius:14px;padding:11px 13px;font-size:13px;}
+.admin-login-form{display:grid;gap:15px;}
+.admin-login-form label>span{display:block;margin-bottom:6px;font-size:12px;font-weight:650;color:rgba(255,255,255,.70);}
+.admin-login-form input{width:100%;height:48px;border-radius:14px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.055);padding:0 14px;color:#fff;outline:none;transition:.2s ease;}
+.admin-login-form input:focus{border-color:rgba(229,185,85,.65);background:rgba(255,255,255,.085);box-shadow:0 0 0 3px rgba(229,185,85,.10);}
+.admin-login-password{position:relative;}
+.admin-login-password>svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.42);}
+.admin-login-password input{padding-left:42px;}
+.admin-login-form>button{height:50px;border-radius:15px;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,#f0cc74,#d6a640);color:#07111f;font-weight:800;box-shadow:0 14px 32px rgba(207,161,57,.20);}
+.admin-login-form>button:disabled{opacity:.55;}
+.admin-login-footnote{margin-top:15px;text-align:center;font-size:11px;color:rgba(255,255,255,.42);}
+
+@media(max-width:560px){
+  .admin-login-page{padding:12px;align-items:end;}
+  .admin-login-card{border-radius:28px;padding:18px;margin-bottom:8px;}
+  .admin-login-brand h1{font-size:25px;}
+  .admin-login-logo{width:54px;}
+  .admin-login-topline{margin-bottom:18px;}
+}
+
+/* Mobile clarity and touch targets. */
+@media(max-width:640px){
+  .jic-mobile-menu{max-height:calc(100dvh - 178px)!important;overflow:auto!important;}
+  .jic-menu-link,.jic-menu-children a,.jic-menu-admin,.jic-menu-donate{min-height:44px;}
+  .jic-feature-card{touch-action:manipulation;}
+  [role="dialog"]{max-height:92dvh;overflow:auto;}
+}
