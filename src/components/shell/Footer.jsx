@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import { SITE } from '@/content/site';
 
 const TikTokIcon = (props) => (
@@ -15,6 +15,7 @@ const QUICK_LINKS = [
   { label: 'Projects', to: '/projects' },
   { label: 'Madrassah', to: '/madrassah' },
   { label: 'Youth', to: '/youth' },
+  { label: 'Gallery', to: '/gallery' },
   { label: 'Contact Us', to: '/contact' },
 ];
 
@@ -26,9 +27,7 @@ export default function Footer() {
         <div className="jic-footer-compact-grid">
           <div className="jic-footer-contact-block">
             <Link to="/contact" className="jic-footer-heading jic-footer-contact-title">Contact Us</Link>
-            <div className="jic-footer-contact-line"><MapPin size={16}/><span>{SITE.address.full}</span></div>
-            <div className="jic-footer-contact-line"><Phone size={16}/><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></div>
-            <div className="jic-footer-contact-line"><Mail size={16}/><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div>
+            <p className="mt-2 text-sm opacity-70">Address, phone, email, directions and enquiries.</p>
           </div>
 
           <nav className="jic-footer-links-inline" aria-label="Footer links">
@@ -49,7 +48,7 @@ export default function Footer() {
 
         <div className="jic-footer-bottom mt-5 flex flex-col gap-2 pt-4 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {SITE.name}</p>
-          <div className="flex gap-4"><Link to="/privacy">Privacy</Link><Link to="/admin">Admin</Link></div>
+          <div className="flex gap-4"><Link to="/privacy">Privacy</Link></div>
         </div>
       </div>
     </footer>
