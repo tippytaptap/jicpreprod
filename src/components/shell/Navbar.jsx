@@ -87,7 +87,7 @@ export default function Navbar() {
           {NAV_GROUPS.map(({name,path,children})=><NavLink key={path} to={path} end={path === '/'} className={({isActive})=>cn('nav-pill',isActive&&'active')}>{name}{children.length>0&&<ChevronDown size={13}/>}</NavLink>)}
         </nav>
         <div className="jic-nav-actions">
-          <Link to="/projects" className="donate-button"><Heart size={18}/><span>Donate</span></Link>
+          <Link to="/projects#donate" className="donate-button" aria-label="Donate to Jamatia Islamic Centre"><Heart size={18}/><span>Donate</span></Link>
           <button className="header-icon" onClick={()=>setMenuOpen(v=>!v)} aria-label="Menu">{menuOpen?<X size={23}/>:<Menu size={23}/>}</button>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function Navbar() {
       </nav>}
 
       <AnimatePresence>{menuOpen&&<motion.div initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} className="jic-mobile-menu jic-glass">
-        <div className="jic-menu-head"><div className="jic-menu-logo"><JamatiaLogo/></div><button onClick={()=>setMenuOpen(false)} aria-label="Close menu"><X size={22}/></button></div>
+        <div className="jic-menu-head"><span className="jic-menu-title">Menu</span><button onClick={()=>setMenuOpen(false)} aria-label="Close menu"><X size={22}/></button></div>
         <div className="jic-menu-scroll">
           {NAV_GROUPS.map(({name,path,children})=><div className="jic-menu-group" key={path}>
             <NavLink to={path} end={path==='/' } onClick={()=>setMenuOpen(false)} className={({isActive})=>cn('jic-menu-link',isActive&&'active')}>{name}<span>›</span></NavLink>
@@ -106,7 +106,7 @@ export default function Navbar() {
             </div>}
           </div>)}
           <Link to="/admin" onClick={()=>setMenuOpen(false)} className="jic-menu-admin"><LogIn size={17}/> Admin login</Link>
-          <Link to="/projects" onClick={()=>setMenuOpen(false)} className="jic-menu-donate"><Heart size={18}/> Donate</Link>
+          <Link to="/projects#donate" onClick={()=>setMenuOpen(false)} className="jic-menu-donate"><Heart size={18}/> Donate</Link>
         </div>
       </motion.div>}</AnimatePresence>
     </div>
