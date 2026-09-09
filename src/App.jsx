@@ -19,6 +19,7 @@ import YouthPage from '@/pages/YouthPage';
 import SectionPage from '@/pages/SectionPage';
 import AdminPage from '@/pages/admin/AdminPage';
 import AdminLoginPage from '@/pages/admin/AdminLoginPage';
+import TileContentAdminPage from '@/pages/admin/TileContentAdminPage';
 import ProtectedAdminRoute from '@/components/admin/ProtectedAdminRoute';
 
 const standaloneSections = [
@@ -60,6 +61,7 @@ function App() {
       <Routes>
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/admin" element={<ProtectedAdminRoute><AdminPage /></ProtectedAdminRoute>} />
+        <Route path="/admin/home-tiles" element={<ProtectedAdminRoute><TileContentAdminPage /></ProtectedAdminRoute>} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
