@@ -2,21 +2,21 @@
 :root{--jic-ui-font:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
 html,body,button,input,textarea,select,a,p,span,strong,small,h1,h2,h3,h4,h5,h6{font-family:var(--jic-ui-font)!important;}
 
-/* Homepage no longer depends on a background photograph. */
-.jic-hero-no-image{
+/* One continuous homepage surface with a restrained charcoal / gold / blue gradient. */
+.jic-premium-home,.jic-hero-no-image{
   background:
-    radial-gradient(circle at 72% 20%,rgba(215,168,63,.16),transparent 28%),
-    radial-gradient(circle at 20% 16%,rgba(82,112,143,.18),transparent 34%),
-    linear-gradient(155deg,#10151b 0%,#090c10 52%,#15191e 100%)!important;
+    radial-gradient(circle at 78% 18%,rgba(215,168,63,.10),transparent 30%),
+    radial-gradient(circle at 16% 24%,rgba(73,104,137,.12),transparent 34%),
+    linear-gradient(180deg,#0a0d11 0%,#0b0f14 46%,#080b0f 100%)!important;
 }
-html:not(.dark) .jic-hero-no-image{
+html:not(.dark) .jic-premium-home,html:not(.dark) .jic-hero-no-image{
   background:
-    radial-gradient(circle at 72% 20%,rgba(215,168,63,.12),transparent 28%),
-    radial-gradient(circle at 18% 18%,rgba(150,170,192,.18),transparent 32%),
-    linear-gradient(155deg,#ffffff 0%,#f3f5f7 54%,#ffffff 100%)!important;
+    radial-gradient(circle at 78% 18%,rgba(215,168,63,.08),transparent 30%),
+    radial-gradient(circle at 16% 22%,rgba(142,163,184,.10),transparent 34%),
+    linear-gradient(180deg,#fff 0%,#f8f9fb 48%,#fff 100%)!important;
 }
-.jic-hero-no-image .jic-hero-overlay{background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.16))!important;}
-html:not(.dark) .jic-hero-no-image .jic-hero-overlay{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(20,28,38,.04))!important;}
+.jic-hero-no-image .jic-hero-overlay{background:linear-gradient(180deg,rgba(0,0,0,.01),rgba(0,0,0,.10))!important;}
+html:not(.dark) .jic-hero-no-image .jic-hero-overlay{background:linear-gradient(180deg,rgba(255,255,255,.01),rgba(20,28,38,.025))!important;}
 .jic-hero h1{font-family:var(--jic-ui-font)!important;font-style:normal!important;font-weight:650!important;letter-spacing:-.045em!important;}
 
 /* One geometry language for the entire top stack. */
@@ -40,7 +40,6 @@ html:not(.dark) .jic-scroll-reminder{border-color:rgba(20,35,50,.10);background:
 .jic-reminder-line strong{font-size:13px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .jic-reminder-line small{font-size:10px;opacity:.62;white-space:nowrap;flex:0 0 auto;}
 
-/* Keep desktop nav from fighting the reminder for space. */
 .jic-header.is-scrolled .jic-nav-cluster{flex:1;min-width:0;}
 
 @media(max-width:640px){
@@ -58,9 +57,9 @@ html:not(.dark) .jic-scroll-reminder{border-color:rgba(20,35,50,.10);background:
   .jic-display-controls>button:first-child{width:44px!important;min-width:44px!important;padding:0!important;display:grid!important;place-items:center!important;}
   .jic-display-controls>button:last-child{min-width:118px!important;justify-content:center!important;}
 
-  /* With no photo, hero can be shorter and cleaner. */
-  .jic-hero-no-image{min-height:70svh!important;}
-  .jic-hero-no-image .jic-hero-inner{min-height:70svh!important;padding-top:260px!important;}
+  /* Reduce the empty gap between fixed header and hero copy. */
+  .jic-hero-no-image{min-height:76svh!important;}
+  .jic-hero-no-image .jic-hero-inner{min-height:76svh!important;padding-top:210px!important;}
 }
 
 @media(max-width:430px){
@@ -68,4 +67,5 @@ html:not(.dark) .jic-scroll-reminder{border-color:rgba(20,35,50,.10);background:
   .jic-reminder-line strong{font-size:12px!important;}
   .jic-reminder-meta{font-size:9px!important;}
   .jic-utility-row{grid-template-columns:96px minmax(132px,1fr) auto!important;}
+  .jic-hero-no-image .jic-hero-inner{padding-top:195px!important;}
 }
