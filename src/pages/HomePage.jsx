@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, CalendarDays, Heart, Play, Radio, Users, Building2, ArrowRight, Megaphone } from 'lucide-react';
+import { BookOpen, CalendarDays, Play, Radio, Users, Building2, ArrowRight, Megaphone } from 'lucide-react';
 import MosqueIcon from '@/components/icons/MosqueIcon';
 import JamatiaLogo from '@/components/shell/JamatiaLogo';
 import { IMAGES } from '@/content/images';
@@ -69,7 +69,7 @@ export default function HomePage(){
     {announcement&&<section className="jic-announcement"><Megaphone size={18}/><strong>{announcement.title}</strong><span>{announcement.body}</span></section>}
 
     <section className="jic-feature-grid">
-      {cards.map(({title,text,to,cta,icon:Icon,img})=><Link to={to} className="jic-feature-card" key={title} style={{backgroundImage:`linear-gradient(180deg,rgba(5,12,20,.2),rgba(5,12,20,.92)),url(${img})`}}>
+      {cards.map(({title,text,to,cta,icon:Icon,img})=><Link to={to} className="jic-feature-card" key={title} style={{'--card-image':`url("${img}")`}}>
         <Icon className="jic-card-icon"/>
         <div className="jic-card-copy"><h2>{title}</h2><p>{text}</p><span>{cta} <ArrowRight size={17}/></span></div>
       </Link>)}
@@ -78,7 +78,7 @@ export default function HomePage(){
     <section className="jic-event-strip">
       <div className="jic-event-label"><CalendarDays size={17}/><span>Upcoming Event</span></div>
       <div className="jic-event-main"><strong>{nextEvent.title}</strong><span>{nextEvent.displayDate || (nextEvent.event_date ? new Date(`${nextEvent.event_date}T00:00:00`).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}) : '')}</span></div>
-      <Link to="/events" className="jic-event-arrow">›</Link>
+      <Link to="/projects" className="jic-event-arrow">›</Link>
     </section>
 
     {livestream?.enabled&&livestream.stream_url&&<section id="live" className="jic-live-section">
