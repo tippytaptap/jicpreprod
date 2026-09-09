@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Heart, MapPin, Menu, Moon, Pause, Play, Sun, X, ChevronDown } from 'lucide-react';
+import { Heart, MapPin, Menu, Moon, Pause, Play, Sun, X, ChevronDown, LogIn } from 'lucide-react';
 import JamatiaLogo from '@/components/shell/JamatiaLogo';
-import { NAV_ITEMS } from '@/content/nav';
+import { NAV_GROUPS } from '@/content/nav';
 import { SITE } from '@/content/site';
 import { usePrayerTimes } from '@/components/sections/prayer-times/PrayerTimesLogic';
 import { cn } from '@/lib/utils';
@@ -19,7 +19,17 @@ const safeSet = (key, value) => {
   try { window.localStorage.setItem(key, value); } catch {}
 };
 
+const getActiveGroup = (pathname) => {
+  if (pathname === '/team' || pathname === '/contact' || pathname === '/financial-history') {
+    return NAV_GROUPS.find(x => x.name === 'About');
+  }
+  return NAV_GROUPS.find(group => group.path === '/'
+    ? pathname === '/'
+    : pathname === group.path || pathname.startsWith(`${group.path}/`));
+};
+
 export default function Navbar() {
+  const { pathname } = useLocation();
   const { todaysTimes } = usePrayerTimes();
   const [menuOpen,setMenuOpen] = useState(false);
   const [theme,setTheme] = useState(() => safeGet('jic-theme', 'dark'));
@@ -28,6 +38,7 @@ export default function Navbar() {
   const [radioError,setRadioError] = useState(false);
   const audioRef = useRef(null);
   const streamUrl = import.meta.env.VITE_RADIO_STREAM_URL || SITE.radio?.streamUrl || '';
+  const activeGroup = useMemo(() => getActiveGroup(pathname), [pathname]);
 
   useEffect(()=>{
     document.documentElement.classList.toggle('dark', theme==='dark');
@@ -37,6 +48,7 @@ export default function Navbar() {
   },[theme,glass]);
 
   useEffect(()=>()=>{ if(audioRef.current){audioRef.current.pause(); audioRef.current.src='';}},[]);
+  useEffect(()=>setMenuOpen(false),[pathname]);
 
   const toggleRadio = async () => {
     if(!streamUrl) return;
@@ -54,23 +66,25 @@ export default function Navbar() {
   return <header className="jic-header fixed inset-x-0 top-0 z-50">
     <div className="mx-auto max-w-[1500px] px-2 sm:px-4 pt-2">
       <div className="jic-glass jic-info-shell rounded-2xl overflow-hidden">
-        <div className="jic-address"><MapPin size={16}/><span>Woodlands Rd · Birmingham · B11 4ER</span></div>
+        <div className="jic-address"><MapPin size={15}/><span>Woodlands Rd · Birmingham · B11 4ER</span></div>
         <div className="jic-prayer-row">
           {PRAYERS.map(([label,key])=><div className="jic-prayer" key={key}><span>{label}</span><strong>{shortTime(todaysTimes?.[key])}</strong></div>)}
         </div>
-        <button className={cn('jic-radio',playing&&'is-live')} onClick={toggleRadio}>
-          {playing?<Pause size={15}/>:<Play size={15}/>}<span>JIC Radio</span><i className="live-dot"/><small>{radioError?'Retry':'Live'}</small>
-        </button>
-        <div className="jic-display-controls">
-          <button onClick={()=>setTheme(theme==='dark'?'light':'dark')}>{theme==='dark'?<Sun size={17}/>:<Moon size={17}/>}</button>
-          <button onClick={()=>setGlass(v=>!v)}><span className={cn('glass-switch',glass&&'on')}><i/></span><span>Glass {glass?'On':'Off'}</span></button>
+        <div className="jic-utility-row">
+          <button className={cn('jic-radio',playing&&'is-live')} onClick={toggleRadio}>
+            {playing?<Pause size={15}/>:<Play size={15}/>}<span>JIC Radio</span><i className="live-dot"/><small>{radioError?'Retry':'Live'}</small>
+          </button>
+          <div className="jic-display-controls">
+            <button onClick={()=>setTheme(theme==='dark'?'light':'dark')} aria-label="Toggle colour theme">{theme==='dark'?<Sun size={17}/>:<Moon size={17}/>}</button>
+            <button onClick={()=>setGlass(v=>!v)}><span className={cn('glass-switch',glass&&'on')}><i/></span><span>Glass {glass?'On':'Off'}</span></button>
+          </div>
         </div>
       </div>
 
       <div className="jic-mainnav mt-2">
         <Link to="/" className="jic-brand" aria-label="Jamatia Islamic Centre home"><JamatiaLogo/></Link>
         <nav className="jic-desktop-nav">
-          {NAV_ITEMS.slice(0,7).map(({name,path})=><NavLink key={path} to={path} className={({isActive})=>cn('nav-pill',isActive&&'active')}>{name}{['About','Services','Projects','Madrassah','Youth'].includes(name)&&<ChevronDown size={13}/>}</NavLink>)}
+          {NAV_GROUPS.map(({name,path,children})=><NavLink key={path} to={path} end={path === '/'} className={({isActive})=>cn('nav-pill',isActive&&'active')}>{name}{children.length>0&&<ChevronDown size={13}/>}</NavLink>)}
         </nav>
         <div className="jic-nav-actions">
           <Link to="/projects" className="donate-button"><Heart size={18}/><span>Donate</span></Link>
@@ -78,10 +92,22 @@ export default function Navbar() {
         </div>
       </div>
 
+      {activeGroup?.children?.length > 0 && <nav className="jic-subnav" aria-label={`${activeGroup.name} sections`}>
+        {activeGroup.children.map(item => <Link key={item.path} to={item.path} className="jic-subnav-link">{item.name}</Link>)}
+      </nav>}
+
       <AnimatePresence>{menuOpen&&<motion.div initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} className="jic-mobile-menu jic-glass">
-        <div className="jic-menu-logo"><JamatiaLogo/></div>
-        {NAV_ITEMS.map(({name,path})=><NavLink key={path} to={path} onClick={()=>setMenuOpen(false)} className={({isActive})=>cn('jic-menu-link',isActive&&'active')}>{name}<span>›</span></NavLink>)}
-        <Link to="/projects" onClick={()=>setMenuOpen(false)} className="jic-menu-donate"><Heart size={18}/> Donate</Link>
+        <div className="jic-menu-head"><div className="jic-menu-logo"><JamatiaLogo/></div><button onClick={()=>setMenuOpen(false)} aria-label="Close menu"><X size={22}/></button></div>
+        <div className="jic-menu-scroll">
+          {NAV_GROUPS.map(({name,path,children})=><div className="jic-menu-group" key={path}>
+            <NavLink to={path} end={path==='/' } onClick={()=>setMenuOpen(false)} className={({isActive})=>cn('jic-menu-link',isActive&&'active')}>{name}<span>›</span></NavLink>
+            {children.length>0 && <div className="jic-menu-children">
+              {children.filter(child=>child.path!==path).map(child=><Link key={child.path} to={child.path} onClick={()=>setMenuOpen(false)}>{child.name}</Link>)}
+            </div>}
+          </div>)}
+          <Link to="/admin" onClick={()=>setMenuOpen(false)} className="jic-menu-admin"><LogIn size={17}/> Admin login</Link>
+          <Link to="/projects" onClick={()=>setMenuOpen(false)} className="jic-menu-donate"><Heart size={18}/> Donate</Link>
+        </div>
       </motion.div>}</AnimatePresence>
     </div>
   </header>;
