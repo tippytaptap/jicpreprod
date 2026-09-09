@@ -18,6 +18,7 @@ const MonthlyPrayerTable = ({
         <div className="bg-primary text-white p-4 text-center">
           <h3 className="text-xl font-bold">{currentMonth} Prayer Times</h3>
         </div>
+        {monthlyPrayerTimes.length===0 && <p className="p-6 text-center">This month’s timetable has not been uploaded yet. Please contact the centre.</p>}
         <div className="overflow-x-auto">
           <table className="w-full border-collapse min-w-[1000px]">
             <thead>

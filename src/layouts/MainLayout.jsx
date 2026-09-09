@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import ManagedPageContent from '@/components/ManagedPageContent';
+import {overviewPaths} from '@/content/editablePages';
 import Navbar from '@/components/shell/Navbar';
 import Footer from '@/components/shell/Footer';
 import { ScrollToTop } from '@/components/shell/ScrollToTop';
@@ -30,6 +32,7 @@ export default function MainLayout() {
           transition={{ duration: 0.3 }}
         >
           <Outlet />
+          {overviewPaths.has(pathname) && <div className="mx-auto max-w-5xl px-4 py-8"><ManagedPageContent optional/></div>}
         </motion.div>
       </main>
       <Footer />

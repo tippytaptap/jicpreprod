@@ -39,8 +39,8 @@ const standaloneSections = [
   ['projects/current-appeals','Projects','Current Appeals','/projects'],
   ['projects/gallery','Projects','Gallery','/projects'],
   ['projects/how-to-support','Projects','How to Support','/projects'],
-  ['prayer-times/monthly','Prayer Times','Monthly Timetable','/prayer-times'],
-  ['prayer-times/jummah','Prayer Times','Jummah','/prayer-times'],
+
+
   ['madrassah/programs','Madrassah','Our Programs','/madrassah'],
   ['madrassah/classes-courses','Madrassah','Classes & Courses','/madrassah'],
   ['madrassah/special-courses','Madrassah','Special Courses','/madrassah'],
@@ -68,6 +68,8 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="financial-history" element={<FinancialHistoryPage />} />
           <Route path="madrassah" element={<MadrassahPage />} />
+          <Route path="prayer-times/monthly" element={<PrayerTimesPage key="monthly" initialTab="daily" />} />
+          <Route path="prayer-times/jummah" element={<PrayerTimesPage key="jummah" initialTab="jummah" />} />
           <Route path="prayer-times" element={<PrayerTimesPage />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="projects" element={<ProjectsPage />} />

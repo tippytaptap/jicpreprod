@@ -19,7 +19,7 @@ const getActiveGroup=(pathname)=>{
 
 export default function Navbar(){
   const {pathname}=useLocation();
-  const {todaysTimes}=usePrayerTimes();
+  const {todaysTimes,jummahTimes}=usePrayerTimes();
   const [menuOpen,setMenuOpen]=useState(false);
   const [megaOpen,setMegaOpen]=useState(false);
   const [mobileGroup,setMobileGroup]=useState(null);
@@ -50,7 +50,7 @@ export default function Navbar(){
         <div className="jic-address"><MapPin size={15}/><span>Woodlands Rd · Birmingham · B11 4ER</span><a className="jic-top-phone" href={`tel:${SITE.phone.replace(/\s/g,'')}`}><Phone size={13}/><span>{SITE.phone}</span></a></div>
         <div className="jic-prayer-row">{PRAYERS.map(([label,key])=><div className="jic-prayer" key={key}><span>{label}</span><strong>{shortTime(todaysTimes?.[key])}</strong></div>)}</div>
         <div className="jic-utility-row">
-          <Link to="/prayer-times/jummah" className="jic-jummah-mini" aria-label="Friday Jummah times"><span>FRI</span><strong>1:30 · 2:30</strong></Link>
+          <Link to="/prayer-times/jummah" className="jic-jummah-mini" aria-label="Friday Jummah times"><span>FRI</span><strong>{jummahTimes.map(t=>shortTime(t.prayer)).join(' · ') || '—'}</strong></Link>
           <button className={cn('jic-radio',playing&&'is-live')} onClick={toggleRadio}>{playing?<Pause size={15}/>:<Play size={15}/>}<span>JIC Radio</span><i className="live-dot"/><small>{radioError?'Retry':'Live'}</small></button>
           <div className="jic-display-controls"><button onClick={()=>setTheme(theme==='dark'?'light':'dark')} aria-label="Toggle colour theme">{theme==='dark'?<Sun size={17}/>:<Moon size={17}/>}</button><button onClick={()=>setGlass(v=>!v)}><span className={cn('glass-switch',glass&&'on')}><i/></span><span>Glass {glass?'On':'Off'}</span></button></div>
         </div>

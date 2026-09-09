@@ -17,20 +17,16 @@ export function ContentProvider({ children }) {
   const [saving, setSaving]       = useState(false);
   const [saveMsg, setSaveMsg]     = useState('');
 
-  // Fetch ALL page_content rows once so individual components don't each query
-  useEffect(() => {
-    supabase
-      .from('page_content')
-      .select('content_key, content_value')
-      .then(({ data, error }) => {
-        if (error) { console.error('ContentContext fetch error:', error); return; }
-        if (data) {
-          const map = {};
-          data.forEach(row => { map[row.content_key] = row.content_value; });
-          setCache(map);
-        }
-      });
-  }, []);
+  const refreshContent = useCallback(async () => {
+    const {data,error}=await supabase.from('page_content').select('content_key, content_value');
+    if(error)throw error;
+    setCache(Object.fromEntries((data||[]).map(r=>[r.content_key,r.content_value])));
+  },[]);
+  useEffect(()=>{
+    const refresh=()=>refreshContent().catch(console.error);
+    refresh();window.addEventListener('focus',refresh);window.addEventListener('jic-content-updated',refresh);
+    return()=>{window.removeEventListener('focus',refresh);window.removeEventListener('jic-content-updated',refresh);};
+  },[refreshContent]);
 
   // Turn off edit mode when user logs out
   useEffect(() => {
@@ -76,6 +72,7 @@ export function ContentProvider({ children }) {
       editMode,
       toggleEditMode: () => can('content') && setEditMode(p => !p),
       getContent,
+      refreshContent,
       saveContent,
       uploadImage,
       saving,

@@ -1,3 +1,4 @@
+import '@/styles/admin-workspace.css';
 const rootEl = document.getElementById('root');
 
 const showStatus = (title, detail = '') => {

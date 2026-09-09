@@ -6,6 +6,8 @@ import JamatiaLogo from '@/components/shell/JamatiaLogo';
 import { IMAGES } from '@/content/images';
 import { EVENTS_LIST } from '@/content/pages/home';
 import { SITE } from '@/content/site';
+import { usePrayerTimes } from '@/components/sections/prayer-times/PrayerTimesLogic';
+import { useContent } from '@/context/ContentContext';
 import { supabase } from '@/lib/supabaseClient';
 
 function youtubeEmbedUrl(raw){
@@ -66,20 +68,23 @@ function useHomeTiles(){
 export default function HomePage(){
   const {events,announcement,livestream}=useHomeLiveContent();
   const cards=useHomeTiles();
+  const {jummahTimes}=usePrayerTimes();
+  const {getContent}=useContent();
+  let hero={};try{hero=JSON.parse(getContent('page:/','{}'));}catch{}
   const liveUrl = livestream?.stream_url || SITE.socials.youtube;
   const embedUrl=useMemo(()=>youtubeEmbedUrl(livestream?.stream_url),[livestream]);
   const nextEvent=events[0] || {title:EVENTS_LIST?.[0]?.title||'Jummah Khutbah',displayDate:EVENTS_LIST?.[0]?.date||'Friday'};
 
   return <div className="jic-premium-home">
     <section className="jic-hero">
-      <img src={IMAGES.homeHero} alt="Jamatia Islamic Centre" className="jic-hero-image"/>
+      <img src={hero.image || IMAGES.homeHero} alt="Jamatia Islamic Centre" className="jic-hero-image"/>
       <div className="jic-hero-overlay"/>
       <div className="jic-hero-inner">
         <div className="jic-hero-mobile-logo"><JamatiaLogo/></div>
         <p className="jic-kicker">JAMATIA ISLAMIC CENTRE · BIRMINGHAM</p>
-        <h1>A place for faith.<br/>A home for<br className="sm:hidden"/> community.</h1>
+        <h1 style={{whiteSpace:'pre-line'}}>{hero.title || 'A place for faith.\nA home for community.'}</h1>
         <div className="jic-gold-rule"/>
-        <p className="jic-hero-sub">Worship. Learn. Grow. Together.<br/><span>A stronger community for a brighter tomorrow.</span></p>
+        <p className="jic-hero-sub" style={{whiteSpace:'pre-line'}}>{hero.body || 'Worship. Learn. Grow. Together.\nA stronger community for a brighter tomorrow.'}</p>
         <div className="jic-hero-buttons">
           <Link to="/contact" className="jic-primary-cta">Visit the Centre <ArrowRight size={18}/></Link>
           <a href={liveUrl} target="_blank" rel="noreferrer" className="jic-secondary-cta"><Play size={17} fill="currentColor"/> Watch Live</a>
@@ -98,8 +103,8 @@ export default function HomePage(){
 
     <section className="jic-event-strip">
       <div className="jic-event-label"><CalendarDays size={17}/><span>Friday Sermon</span></div>
-      <div className="jic-event-main"><strong>1st Jamaat 1:30 PM · 2nd Jamaat 2:30 PM</strong><span>{nextEvent.displayDate || 'Every Friday'}</span></div>
-      <Link to="/prayer-times#jummah" className="jic-event-arrow">›</Link>
+      <div className="jic-event-main"><strong>{jummahTimes.map((t,i)=>`${i===0?'1st':'2nd'} Jamaat ${t.prayer}`).join(' · ')}</strong><span>{nextEvent.displayDate || 'Every Friday'}</span></div>
+      <Link to="/prayer-times/jummah" className="jic-event-arrow">›</Link>
     </section>
 
     {livestream?.enabled&&livestream.stream_url&&<section id="live" className="jic-live-section">

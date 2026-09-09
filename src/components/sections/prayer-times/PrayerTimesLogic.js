@@ -1,61 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
-import { supabase } from '@/lib/supabaseClient';
-import { useToast } from '@/components/ui/use-toast';
-
-const formatTime = (timeString) => {
-  if (!timeString || typeof timeString !== 'string') return 'N/A';
-  const parts = timeString.split(':');
-  if (parts.length < 2) return 'N/A';
-  const [hours, minutes] = parts;
-  const date = new Date();
-  date.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
-  if (isNaN(date.getTime())) return 'N/A';
-  return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-};
-
-const MOCK_BIRMINGHAM_TIMES = {
-  fajr_begins: '04:40',
-  fajr_jamah: '05:15',
-  sunrise: '06:25',
-  zuhr_begins: '13:10',
-  zuhr_jamah: '13:30',
-  asr_begins: '16:45',
-  asr_jamah: '17:15',
-  maghrib_begins: '19:35',
-  maghrib_jamah: '19:40',
-  isha_begins: '21:10',
-  isha_jamah: '21:30',
-  jummah_1_start: '13:30',
-  jummah_1_jamah: '13:30',
-  jummah_2_begins: '14:30',
-  jummah_2_jamah: '14:30',
-  is_ramadan: false,
-};
-
-const buildMockDay = (date) => ({
-  d_date: date.toISOString().split('T')[0],
-  ...MOCK_BIRMINGHAM_TIMES,
-});
-
-const formatTodayRecord = (todayData) => ({
-  fajr: formatTime(todayData.fajr_begins),
-  sunrise: formatTime(todayData.sunrise),
-  dhuhr: formatTime(todayData.zuhr_begins),
-  asr: formatTime(todayData.asr_begins),
-  maghrib: formatTime(todayData.maghrib_begins),
-  isha: formatTime(todayData.isha_begins),
-  jamaah_fajr: formatTime(todayData.fajr_jamah),
-  jamaah_dhuhr: formatTime(todayData.zuhr_jamah),
-  jamaah_asr: formatTime(todayData.asr_jamah),
-  jamaah_maghrib: formatTime(todayData.maghrib_jamah),
-  jamaah_isha: formatTime(todayData.isha_jamah),
-  is_ramadan: todayData.is_ramadan,
-  jummah_1_start: formatTime(todayData.jummah_1_start),
-  jummah_1_jamah: formatTime(todayData.jummah_1_jamah),
-  jummah_2_start: formatTime(todayData.jummah_2_begins),
-  jummah_2_jamah: formatTime(todayData.jummah_2_jamah),
-});
-
+import {useState,useEffect} from 'react';
+import {supabase} from '@/lib/supabaseClient';
+import {londonDate,displayTime,defaultJummah} from '@/lib/timetable';
+const formatTime=displayTime;
 const formatMonthRecord = (pt) => {
   const dateObj = new Date(pt.d_date + 'T00:00:00');
   return {
@@ -77,126 +23,38 @@ const formatMonthRecord = (pt) => {
   };
 };
 
-export const usePrayerTimes = () => {
-  const { toast } = useToast();
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [todaysTimes, setTodaysTimes] = useState(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000 * 60);
-    return () => clearInterval(timer);
-  }, []);
-
-  const currentMonthNumber = useMemo(() => currentDate.getMonth() + 1, [currentDate]);
-  const currentYear = useMemo(() => currentDate.getFullYear(), [currentDate]);
-  const currentDay = useMemo(() => currentDate.getDate(), [currentDate]);
-
-  useEffect(() => {
-    const fetchPrayerTimes = async () => {
-      setIsLoading(true);
-      setTodaysTimes(null);
-      setMonthlyPrayerTimes([]);
-
-      const dateToQuery = `${currentYear}-${String(currentMonthNumber).padStart(2, '0')}-${String(currentDay).padStart(2, '0')}`;
-
-      try {
-        const { data: todayData, error: todayError } = await supabase
-          .from('prayer_times')
-          .select('*')
-          .eq('d_date', dateToQuery)
-          .maybeSingle();
-
-        if (todayError) {
-          console.warn("Prayer-time data is not available yet; using Birmingham mock times.", todayError);
-          setTodaysTimes(formatTodayRecord(buildMockDay(currentDate)));
-        } else if (todayData) {
-          setTodaysTimes(formatTodayRecord(todayData));
-        } else {
-          setTodaysTimes(formatTodayRecord(buildMockDay(currentDate)));
-        }
-
-        const firstDayOfMonth = new Date(currentYear, currentMonthNumber - 1, 1).toISOString().split('T')[0];
-        const lastDayOfMonth = new Date(currentYear, currentMonthNumber, 0).toISOString().split('T')[0];
-
-        const { data: monthData, error: monthError } = await supabase
-          .from('prayer_times')
-          .select('*')
-          .gte('d_date', firstDayOfMonth)
-          .lte('d_date', lastDayOfMonth)
-          .order('d_date', { ascending: true });
-
-        if (monthError || !monthData || monthData.length === 0) {
-          const daysInMonth = new Date(currentYear, currentMonthNumber, 0).getDate();
-          const mockMonth = Array.from({ length: daysInMonth }, (_, index) => {
-            const date = new Date(currentYear, currentMonthNumber - 1, index + 1, 12, 0, 0);
-            return buildMockDay(date);
-          });
-          setMonthlyPrayerTimes(mockMonth.map(formatMonthRecord));
-        } else {
-          setMonthlyPrayerTimes(monthData.map(formatMonthRecord));
-        }
-      } catch (error) {
-        console.warn('Unexpected prayer-time error; using Birmingham mock times.', error);
-        setTodaysTimes(formatTodayRecord(buildMockDay(currentDate)));
-        const daysInMonth = new Date(currentYear, currentMonthNumber, 0).getDate();
-        const mockMonth = Array.from({ length: daysInMonth }, (_, index) => {
-          const date = new Date(currentYear, currentMonthNumber - 1, index + 1, 12, 0, 0);
-          return buildMockDay(date);
-        });
-        setMonthlyPrayerTimes(mockMonth.map(formatMonthRecord));
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPrayerTimes();
-  }, [currentYear, currentMonthNumber, currentDay, currentDate, toast]);
-
-  const formattedDate = useMemo(() => currentDate.toLocaleDateString('en-US', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-  }), [currentDate]);
-
-  const formattedTime = useMemo(() => currentDate.toLocaleTimeString('en-US', {
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
-  }), [currentDate]);
-
-  const currentMonthName = useMemo(() => currentDate.toLocaleDateString('en-US', { month: 'long' }), [currentDate]);
-
-  const jummahTimes = useMemo(() => {
-    if (!todaysTimes || todaysTimes.jummah_1_start === 'N/A') return [];
-    const times = [{ name: 'First Jummah', khutbah: todaysTimes.jummah_1_start, prayer: todaysTimes.jummah_1_jamah }];
-    if (todaysTimes.jummah_2_start !== 'N/A') {
-      times.push({ name: 'Second Jummah', khutbah: todaysTimes.jummah_2_start, prayer: todaysTimes.jummah_2_jamah });
-    }
-    return times;
-  }, [todaysTimes]);
-
-  const ramadanTimes = useMemo(() => {
-    if (!todaysTimes?.is_ramadan || monthlyPrayerTimes.length === 0) return [];
-    return monthlyPrayerTimes
-      .filter(pt => pt.is_ramadan)
-      .map(pt => ({
-        day: pt.day,
-        date: pt.d_date,
-        suhoor: pt.fajr_begins,
-        iftar: pt.maghrib_begins,
-        taraweeh: null,
-      }));
-  }, [todaysTimes, monthlyPrayerTimes]);
-
-  return {
-    currentDate,
-    formattedDate,
-    formattedTime,
-    currentMonth: currentMonthName,
-    monthlyPrayerTimes,
-    todaysTimes,
-    jummahTimes,
-    ramadanTimes,
-    isLoadingPrayerTimes: isLoading,
+export const usePrayerTimes=()=>{
+ const [currentDate,setCurrentDate]=useState(new Date()),[monthlyPrayerTimes,setMonth]=useState([]),[todaysTimes,setToday]=useState(null),[jummahTimes,setJummah]=useState([]),[isLoading,setLoading]=useState(true),[error,setError]=useState('');
+ useEffect(()=>{
+  let alive=true;
+  const load=async()=>{
+   const today=londonDate(),[year,month,day]=today.split('-').map(Number);
+   const days=new Date(Date.UTC(year,month,0)).getUTCDate();
+   const friday=new Date(today+'T12:00:00Z');friday.setUTCDate(friday.getUTCDate()+(5-friday.getUTCDay()+7)%7);
+   try{
+    const [daily,monthly,settings,fridayRow]=await Promise.all([
+     supabase.from('prayer_times').select('*').eq('d_date',today).maybeSingle(),
+     supabase.from('prayer_times').select('*').gte('d_date',`${year}-${String(month).padStart(2,'0')}-01`).lte('d_date',`${year}-${String(month).padStart(2,'0')}-${days}`).order('d_date'),
+     supabase.from('page_content').select('content_value').eq('content_key','jummah_settings').maybeSingle(),
+     supabase.from('prayer_times').select('*').eq('d_date',friday.toISOString().slice(0,10)).maybeSingle()
+    ]);
+    if(!alive)return;
+    const failed=daily.error||monthly.error||settings.error||fridayRow.error;
+    setError(failed?'Timetable could not be loaded. Please contact the centre.':'');
+    const d=daily.error?null:daily.data;
+    setToday(d?{fajr:formatTime(d.fajr_begins),sunrise:formatTime(d.sunrise),dhuhr:formatTime(d.zuhr_begins),asr:formatTime(d.asr_begins),maghrib:formatTime(d.maghrib_begins),isha:formatTime(d.isha_begins),jamaah_fajr:formatTime(d.fajr_jamah),jamaah_dhuhr:formatTime(d.zuhr_jamah),jamaah_asr:formatTime(d.asr_jamah),jamaah_maghrib:formatTime(d.maghrib_jamah),jamaah_isha:formatTime(d.isha_jamah),is_ramadan:d.is_ramadan}:null);
+    setMonth(monthly.error?[]:(monthly.data||[]).map(formatMonthRecord));
+    const j={...defaultJummah,...(settings.data?JSON.parse(settings.data.content_value):{})};
+    for(const key of Object.keys(defaultJummah))if(fridayRow.data?.[key])j[key]=fridayRow.data[key];
+    setJummah([{name:'First Jummah',khutbah:formatTime(j.jummah_1_start),prayer:formatTime(j.jummah_1_jamah)},{name:'Second Jummah',khutbah:formatTime(j.jummah_2_begins),prayer:formatTime(j.jummah_2_jamah)}]);
+    setCurrentDate(new Date());
+   }catch{if(alive){setError('Timetable could not be loaded. Please contact the centre.');setToday(null);setMonth([]);}}
+   finally{if(alive)setLoading(false);}
   };
+  load();const timer=setInterval(load,60000);window.addEventListener('focus',load);window.addEventListener('jic-content-updated',load);
+  return()=>{alive=false;clearInterval(timer);window.removeEventListener('focus',load);window.removeEventListener('jic-content-updated',load);};
+ },[]);
+ const options={timeZone:'Europe/London'};
+ return {currentDate,formattedDate:currentDate.toLocaleDateString('en-GB',{...options,weekday:'long',year:'numeric',month:'long',day:'numeric'}),formattedTime:currentDate.toLocaleTimeString('en-GB',{...options,hour:'2-digit',minute:'2-digit'}),currentMonth:currentDate.toLocaleDateString('en-GB',{...options,month:'long'}),monthlyPrayerTimes,todaysTimes,jummahTimes,ramadanTimes:monthlyPrayerTimes.filter(d=>d.is_ramadan).map(d=>({day:d.day,date:d.d_date,suhoor:d.fajr_begins,iftar:d.maghrib_begins,taraweeh:null})),isLoadingPrayerTimes:isLoading,error};
 };

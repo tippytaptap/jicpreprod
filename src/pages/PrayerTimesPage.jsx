@@ -6,8 +6,8 @@ import React, { useState } from 'react';
     import { usePrayerTimes } from '@/components/sections/prayer-times/PrayerTimesLogic';
     import { Skeleton } from "@/components/ui/skeleton";
 
-    const PrayerTimesPage = () => {
-      const [activeTab, setActiveTab] = useState('daily');
+    const PrayerTimesPage = ({initialTab='daily'}) => {
+      const [activeTab, setActiveTab] = useState(initialTab);
       const {
         currentDate,
         formattedDate,
