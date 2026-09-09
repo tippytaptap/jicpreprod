@@ -38,15 +38,34 @@ function useHomeLiveContent(){
   return {events,announcement,livestream};
 }
 
-const cards=[
-  {title:'Services',text:'Religious, educational and community services for all.',to:'/services',cta:'Explore Services',icon:MosqueIcon,img:IMAGES.servicesHero||IMAGES.homeHero},
-  {title:'Projects',text:'Building for a stronger future.',to:'/projects',cta:'View Projects',icon:Building2,img:IMAGES.projectsHero||IMAGES.homeHero},
-  {title:'Youth',text:'Activities, programs and opportunities.',to:'/youth',cta:'Explore Youth',icon:Users,img:IMAGES.youthHero||IMAGES.homeHero},
-  {title:'Madrassah',text:'Islamic education for the next generation.',to:'/madrassah',cta:'View Classes',icon:BookOpen,img:IMAGES.madrassahHero||IMAGES.homeHero},
+const DEFAULT_CARDS=[
+  {key:'services',title:'Services',text:'Religious, educational and community services for all.',to:'/services',cta:'Explore Services',icon:MosqueIcon,img:IMAGES.servicesHero||IMAGES.homeHero},
+  {key:'projects',title:'Projects',text:'Building for a stronger future.',to:'/projects',cta:'View Projects',icon:Building2,img:IMAGES.projectsHero||IMAGES.homeHero},
+  {key:'youth',title:'Youth',text:'Activities, programs and opportunities.',to:'/youth',cta:'Explore Youth',icon:Users,img:IMAGES.youthHero||IMAGES.homeHero},
+  {key:'madrassah',title:'Madrassah',text:'Islamic education for the next generation.',to:'/madrassah',cta:'View Classes',icon:BookOpen,img:IMAGES.madrassahHero||IMAGES.homeHero},
 ];
+
+function useHomeTiles(){
+  const [cards,setCards]=useState(DEFAULT_CARDS);
+  useEffect(()=>{
+    supabase.from('page_content').select('content_value').eq('content_key','home_tiles').maybeSingle().then(({data,error})=>{
+      if(error||!data?.content_value)return;
+      try{
+        const saved=JSON.parse(data.content_value);
+        if(!Array.isArray(saved))return;
+        setCards(DEFAULT_CARDS.map(base=>{
+          const edit=saved.find(item=>item.key===base.key)||{};
+          return {...base,title:edit.title||base.title,text:edit.text||base.text,img:edit.image||base.img};
+        }));
+      }catch{}
+    });
+  },[]);
+  return cards;
+}
 
 export default function HomePage(){
   const {events,announcement,livestream}=useHomeLiveContent();
+  const cards=useHomeTiles();
   const liveUrl = livestream?.stream_url || SITE.socials.youtube;
   const embedUrl=useMemo(()=>youtubeEmbedUrl(livestream?.stream_url),[livestream]);
   const nextEvent=events[0] || {title:EVENTS_LIST?.[0]?.title||'Jummah Khutbah',displayDate:EVENTS_LIST?.[0]?.date||'Friday'};
@@ -71,7 +90,7 @@ export default function HomePage(){
     {announcement&&<section className="jic-announcement"><Megaphone size={18}/><strong>{announcement.title}</strong><span>{announcement.body}</span></section>}
 
     <section className="jic-feature-grid">
-      {cards.map(({title,text,to,cta,icon:Icon,img})=><Link to={to} className="jic-feature-card" key={title} style={{'--card-image':`url("${img}")`}}>
+      {cards.map(({key,title,text,to,cta,icon:Icon,img})=><Link to={to} className="jic-feature-card" key={key} style={{'--card-image':`url("${img}")`}}>
         <Icon className="jic-card-icon"/>
         <div className="jic-card-copy"><h2>{title}</h2><p>{text}</p><span>{cta} <ArrowRight size={17}/></span></div>
       </Link>)}
