@@ -5,6 +5,7 @@ import MosqueIcon from '@/components/icons/MosqueIcon';
 import JamatiaLogo from '@/components/shell/JamatiaLogo';
 import { IMAGES } from '@/content/images';
 import { EVENTS_LIST } from '@/content/pages/home';
+import { SITE } from '@/content/site';
 import { supabase } from '@/lib/supabaseClient';
 
 function youtubeEmbedUrl(raw){
@@ -46,6 +47,7 @@ const cards=[
 
 export default function HomePage(){
   const {events,announcement,livestream}=useHomeLiveContent();
+  const liveUrl = livestream?.stream_url || SITE.socials.youtube;
   const embedUrl=useMemo(()=>youtubeEmbedUrl(livestream?.stream_url),[livestream]);
   const nextEvent=events[0] || {title:EVENTS_LIST?.[0]?.title||'Jummah Khutbah',displayDate:EVENTS_LIST?.[0]?.date||'Friday'};
 
@@ -61,7 +63,7 @@ export default function HomePage(){
         <p className="jic-hero-sub">Worship. Learn. Grow. Together.<br/><span>A stronger community for a brighter tomorrow.</span></p>
         <div className="jic-hero-buttons">
           <Link to="/contact" className="jic-primary-cta">Visit the Centre <ArrowRight size={18}/></Link>
-          <a href={livestream?.stream_url||'#live'} className="jic-secondary-cta"><Play size={17} fill="currentColor"/> Watch Live</a>
+          <a href={liveUrl} target="_blank" rel="noreferrer" className="jic-secondary-cta"><Play size={17} fill="currentColor"/> Watch Live</a>
         </div>
       </div>
     </section>
@@ -76,19 +78,19 @@ export default function HomePage(){
     </section>
 
     <section className="jic-event-strip">
-      <div className="jic-event-label"><CalendarDays size={17}/><span>Upcoming Event</span></div>
-      <div className="jic-event-main"><strong>{nextEvent.title}</strong><span>{nextEvent.displayDate || (nextEvent.event_date ? new Date(`${nextEvent.event_date}T00:00:00`).toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}) : '')}</span></div>
-      <Link to="/projects" className="jic-event-arrow">›</Link>
+      <div className="jic-event-label"><CalendarDays size={17}/><span>Friday Sermon</span></div>
+      <div className="jic-event-main"><strong>1st Jamaat 1:30 PM · 2nd Jamaat 2:30 PM</strong><span>{nextEvent.displayDate || 'Every Friday'}</span></div>
+      <Link to="/prayer-times#jummah" className="jic-event-arrow">›</Link>
     </section>
 
     {livestream?.enabled&&livestream.stream_url&&<section id="live" className="jic-live-section">
       <div className="jic-live-heading"><span><Radio size={15}/> Live</span><h2>{livestream.title||'JIC Live'}</h2></div>
-      {embedUrl?<div className="jic-live-frame"><iframe src={embedUrl} title={livestream.title||'JIC Live'} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen/></div>:<a className="jic-primary-cta" href={livestream.stream_url} target="_blank" rel="noreferrer">Watch Live</a>}
+      {embedUrl?<div className="jic-live-frame"><iframe src={embedUrl} title={livestream.title||'JIC Live'} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen/></div>:<a className="jic-primary-cta" href={liveUrl} target="_blank" rel="noreferrer">Watch Live on YouTube</a>}
     </section>}
 
     <section className="jic-home-footer-strip">
       <div><span className="jic-bell">●</span><div><strong>Stay Updated</strong><small>Get the latest news and events</small></div></div>
-      <div className="jic-socials"><a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">WhatsApp</a></div>
+      <div className="jic-socials"><a href={SITE.socials.youtube} target="_blank" rel="noreferrer">YouTube</a><a href={SITE.socials.facebook} target="_blank" rel="noreferrer">Facebook</a><a href={SITE.socials.instagram} target="_blank" rel="noreferrer">Instagram</a></div>
     </section>
   </div>;
 }
