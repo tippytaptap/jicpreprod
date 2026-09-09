@@ -35,4 +35,4 @@ jobs:
           git commit -m 'Sync latest JIC production website'
           git push origin main
 
-# Trigger refreshed after mobile shell and Youth I'tikaf updates.
+# Trigger refreshed after Masjid Extension navigation hierarchy update.
