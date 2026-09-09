@@ -50,7 +50,7 @@ export default function Navbar(){
         <div className="jic-address"><MapPin size={15}/><span>Woodlands Rd · Birmingham · B11 4ER</span><a className="jic-top-phone" href={`tel:${SITE.phone.replace(/\s/g,'')}`}><Phone size={13}/><span>{SITE.phone}</span></a></div>
         <div className="jic-prayer-row">{PRAYERS.map(([label,key])=><div className="jic-prayer" key={key}><span>{label}</span><strong>{shortTime(todaysTimes?.[key])}</strong></div>)}</div>
         <div className="jic-utility-row">
-          <Link to="/prayer-times#jummah" className="jic-jummah-mini" aria-label="Friday Jummah times"><span>FRI</span><strong>1:30 · 2:30</strong></Link>
+          <Link to="/prayer-times/jummah" className="jic-jummah-mini" aria-label="Friday Jummah times"><span>FRI</span><strong>1:30 · 2:30</strong></Link>
           <button className={cn('jic-radio',playing&&'is-live')} onClick={toggleRadio}>{playing?<Pause size={15}/>:<Play size={15}/>}<span>JIC Radio</span><i className="live-dot"/><small>{radioError?'Retry':'Live'}</small></button>
           <div className="jic-display-controls"><button onClick={()=>setTheme(theme==='dark'?'light':'dark')} aria-label="Toggle colour theme">{theme==='dark'?<Sun size={17}/>:<Moon size={17}/>}</button><button onClick={()=>setGlass(v=>!v)}><span className={cn('glass-switch',glass&&'on')}><i/></span><span>Glass {glass?'On':'Off'}</span></button></div>
         </div>
@@ -74,7 +74,7 @@ export default function Navbar(){
         <div className="jic-menu-scroll">{NAV_GROUPS.map(({name,path,children})=><div className="jic-menu-group" key={path}>
           <div className="jic-menu-row"><NavLink to={path} end={path==='/'} onClick={()=>!children.length&&setMenuOpen(false)} className={({isActive})=>cn('jic-menu-link',isActive&&'active')}>{name}</NavLink>{children.length>0&&<button className="jic-menu-expand" onClick={()=>setMobileGroup(mobileGroup===name?null:name)} aria-label={`Toggle ${name} links`}><ChevronDown size={17} className={cn(mobileGroup===name&&'is-open')}/></button>}</div>
           <AnimatePresence>{children.length>0&&mobileGroup===name&&<motion.div initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1}} exit={{height:0,opacity:0}} className="jic-menu-children">{children.filter(child=>child.path!==path).map(child=><Link key={`${name}-${child.name}`} to={child.path} onClick={()=>setMenuOpen(false)}>{child.name}</Link>)}</motion.div>}</AnimatePresence>
-        </div>)}<Link to="/admin" onClick={()=>setMenuOpen(false)} className="jic-menu-admin"><LogIn size={17}/> Admin login</Link><Link to="/projects#donate" onClick={()=>setMenuOpen(false)} className="jic-menu-donate"><Heart size={18}/> Donate</Link></div>
+        </div>)}<Link to="/admin/login" onClick={()=>setMenuOpen(false)} className="jic-menu-admin"><LogIn size={17}/> Admin login</Link><Link to="/projects#donate" onClick={()=>setMenuOpen(false)} className="jic-menu-donate"><Heart size={18}/> Donate</Link></div>
       </motion.div>}</AnimatePresence>
     </div>
   </header>;
