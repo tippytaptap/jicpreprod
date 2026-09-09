@@ -173,9 +173,9 @@ const PrayerScheduleTabs = ({
             </p>
           </div>
           
-          <Tabs defaultValue="daily" onValueChange={setActiveTab} className="w-full max-w-6xl mx-auto">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-6xl mx-auto">
             <div className="flex justify-center mb-8">
-              <TabsList className="grid grid-cols-1 md:grid-cols-3 w-full max-w-md">
+              <TabsList className="grid grid-cols-3 w-full max-w-md">
                 <TabsTrigger value="daily">Monthly</TabsTrigger>
                 <TabsTrigger value="jummah">Jummah</TabsTrigger>
                 <TabsTrigger value="ramadan">Ramadan</TabsTrigger>

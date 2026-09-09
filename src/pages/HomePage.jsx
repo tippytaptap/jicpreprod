@@ -103,7 +103,7 @@ export default function HomePage(){
 
     <section className="jic-event-strip">
       <div className="jic-event-label"><CalendarDays size={17}/><span>Friday Sermon</span></div>
-      <div className="jic-event-main"><strong>{jummahTimes.map((t,i)=>`${i===0?'1st':'2nd'} Jamaat ${t.prayer}`).join(' · ')}</strong><span>{nextEvent.displayDate || 'Every Friday'}</span></div>
+      <div className="jic-event-main"><strong>{jummahTimes.map((t,i)=>`${i===0?'1st':'2nd'} Jamaat ${t.prayer}`).join(' · ')}</strong><span>Every Friday</span></div>
       <Link to="/prayer-times/jummah" className="jic-event-arrow">›</Link>
     </section>
 
