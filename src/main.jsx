@@ -33,6 +33,7 @@ showStatus('Loading website…');
       import('@/styles/ios-glass.css'),
       import('@/styles/final-touches.css'),
       import('@/styles/jic-restructure.css'),
+      import('@/styles/jic-final-polish.css'),
     ]);
 
     const React = ReactModule.default;
