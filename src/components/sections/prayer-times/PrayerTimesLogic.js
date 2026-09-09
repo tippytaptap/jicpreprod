@@ -25,10 +25,10 @@ const MOCK_BIRMINGHAM_TIMES = {
   maghrib_jamah: '19:40',
   isha_begins: '21:10',
   isha_jamah: '21:30',
-  jummah_1_start: '13:15',
+  jummah_1_start: '13:30',
   jummah_1_jamah: '13:30',
-  jummah_2_begins: '14:00',
-  jummah_2_jamah: '14:15',
+  jummah_2_begins: '14:30',
+  jummah_2_jamah: '14:30',
   is_ramadan: false,
 };
 
