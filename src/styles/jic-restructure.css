@@ -150,6 +150,139 @@ html:not(.dark) .jic-menu-expand{border-color:rgba(16,32,51,.10);background:rgba
 .jic-subnav-link{white-space:nowrap;border:1px solid rgba(255,255,255,.10)!important;background:rgba(255,255,255,.025)!important;border-radius:999px!important;padding:7px 11px!important;}
 html:not(.dark) .jic-subnav-link{border-color:rgba(16,32,51,.08)!important;background:rgba(255,255,255,.20)!important;}
 
+/* Liquid-glass refinement based on the supplied iOS reference. */
+html body{
+  background:#0a0c0f!important;
+  background-image:
+    radial-gradient(75% 55% at 8% 8%,rgba(255,255,255,.055),transparent 68%),
+    radial-gradient(60% 45% at 95% 25%,rgba(120,128,140,.08),transparent 72%),
+    linear-gradient(160deg,#111418 0%,#090b0e 45%,#15181c 100%)!important;
+  background-attachment:fixed!important;
+}
+html:not(.dark) body{
+  background:#fff!important;
+  background-image:
+    radial-gradient(70% 50% at 10% 6%,rgba(190,196,205,.18),transparent 68%),
+    radial-gradient(55% 45% at 92% 24%,rgba(225,228,233,.50),transparent 72%),
+    linear-gradient(160deg,#ffffff 0%,#f5f6f7 48%,#ffffff 100%)!important;
+}
+
+[data-surface="glass"] .jic-premium-home,
+html:not(.dark)[data-surface="glass"] .jic-premium-home{
+  background:transparent!important;
+}
+
+[data-surface="glass"] .jic-info-shell,
+[data-surface="glass"] .jic-mainnav,
+[data-surface="glass"] .jic-subnav,
+[data-surface="glass"] .jic-mobile-menu,
+[data-surface="glass"] .jic-mega-menu,
+[data-surface="glass"] .jic-event-strip,
+[data-surface="glass"] .jic-live-section,
+[data-surface="glass"] .jic-home-footer-strip,
+[data-surface="glass"] .jic-site-footer,
+[data-surface="glass"] main .card,
+[data-surface="glass"] main .shadow-sm,
+[data-surface="glass"] main .shadow-md,
+[data-surface="glass"] main .shadow-lg,
+[data-surface="glass"] main .shadow-xl{
+  background:linear-gradient(145deg,rgba(255,255,255,.115),rgba(255,255,255,.035) 45%,rgba(0,0,0,.08))!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  backdrop-filter:blur(38px) saturate(190%) contrast(103%)!important;
+  -webkit-backdrop-filter:blur(38px) saturate(190%) contrast(103%)!important;
+  box-shadow:
+    0 14px 42px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.22),
+    inset 0 -1px 0 rgba(255,255,255,.035)!important;
+}
+
+html:not(.dark)[data-surface="glass"] .jic-info-shell,
+html:not(.dark)[data-surface="glass"] .jic-mainnav,
+html:not(.dark)[data-surface="glass"] .jic-subnav,
+html:not(.dark)[data-surface="glass"] .jic-mobile-menu,
+html:not(.dark)[data-surface="glass"] .jic-mega-menu,
+html:not(.dark)[data-surface="glass"] .jic-event-strip,
+html:not(.dark)[data-surface="glass"] .jic-live-section,
+html:not(.dark)[data-surface="glass"] .jic-home-footer-strip,
+html:not(.dark)[data-surface="glass"] .jic-site-footer,
+html:not(.dark)[data-surface="glass"] main .card,
+html:not(.dark)[data-surface="glass"] main .shadow-sm,
+html:not(.dark)[data-surface="glass"] main .shadow-md,
+html:not(.dark)[data-surface="glass"] main .shadow-lg,
+html:not(.dark)[data-surface="glass"] main .shadow-xl{
+  background:linear-gradient(145deg,rgba(255,255,255,.56),rgba(255,255,255,.22) 48%,rgba(225,228,232,.20))!important;
+  border-color:rgba(255,255,255,.76)!important;
+  box-shadow:
+    0 14px 38px rgba(18,24,31,.08),
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(255,255,255,.38)!important;
+}
+
+/* Floating pill controls: clear centre, brighter rim, subtle blue-grey refraction. */
+[data-surface="glass"] .header-icon,
+[data-surface="glass"] .jic-display-controls>button,
+[data-surface="glass"] .jic-radio,
+[data-surface="glass"] .jic-secondary-cta,
+[data-surface="glass"] .jic-subnav-link,
+[data-surface="glass"] .jic-menu-expand,
+[data-surface="glass"] .jic-menu-children a,
+[data-surface="glass"] .jic-footer-socials a,
+[data-surface="glass"] button[class*="rounded-full"]{
+  background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(112,126,145,.045) 60%,rgba(0,0,0,.10))!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  backdrop-filter:blur(28px) saturate(205%)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(205%)!important;
+  box-shadow:
+    0 8px 26px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.28),
+    inset 0 -1px 0 rgba(83,113,151,.12)!important;
+}
+html:not(.dark)[data-surface="glass"] .header-icon,
+html:not(.dark)[data-surface="glass"] .jic-display-controls>button,
+html:not(.dark)[data-surface="glass"] .jic-radio,
+html:not(.dark)[data-surface="glass"] .jic-secondary-cta,
+html:not(.dark)[data-surface="glass"] .jic-subnav-link,
+html:not(.dark)[data-surface="glass"] .jic-menu-expand,
+html:not(.dark)[data-surface="glass"] .jic-menu-children a,
+html:not(.dark)[data-surface="glass"] .jic-footer-socials a{
+  background:linear-gradient(145deg,rgba(255,255,255,.62),rgba(255,255,255,.26) 56%,rgba(215,220,227,.24))!important;
+  border-color:rgba(255,255,255,.86)!important;
+  box-shadow:0 8px 24px rgba(17,25,35,.07),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(160,172,188,.22)!important;
+}
+
+/* Glass cards keep their imagery but no longer look like opaque tiles. */
+[data-surface="glass"] .jic-feature-card{
+  background-color:rgba(8,11,15,.12)!important;
+  border-color:rgba(255,255,255,.20)!important;
+  backdrop-filter:blur(18px) saturate(175%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(175%)!important;
+}
+[data-surface="glass"] .jic-feature-card::before{
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(7,10,14,.18) 48%,rgba(5,7,10,.58))!important;
+}
+html:not(.dark)[data-surface="glass"] .jic-feature-card::before{
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02) 42%,rgba(10,15,22,.42))!important;
+}
+
+/* Keep the non-glass setting genuinely solid and neutral. */
+[data-surface="solid"] .jic-info-shell,
+[data-surface="solid"] .jic-mainnav,
+[data-surface="solid"] .jic-subnav,
+[data-surface="solid"] .jic-mobile-menu,
+[data-surface="solid"] .jic-mega-menu{
+  background:linear-gradient(160deg,#171a1f,#0d0f12)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html:not(.dark)[data-surface="solid"] .jic-info-shell,
+html:not(.dark)[data-surface="solid"] .jic-mainnav,
+html:not(.dark)[data-surface="solid"] .jic-subnav,
+html:not(.dark)[data-surface="solid"] .jic-mobile-menu,
+html:not(.dark)[data-surface="solid"] .jic-mega-menu{
+  background:linear-gradient(160deg,#fff,#f1f2f4)!important;
+  color:#111820!important;
+}
+
 @media(max-width:1120px){
   .jic-mega-menu{width:min(820px,calc(100vw - 80px));grid-template-columns:repeat(3,minmax(0,1fr));}
   .jic-mega-column:nth-child(3){border-right:0;}
@@ -171,6 +304,13 @@ html:not(.dark) .jic-subnav-link{border-color:rgba(16,32,51,.08)!important;backg
   .jic-feature-card h2{font-size:19px!important;}
   .jic-feature-card p{font-size:12px!important;line-height:1.35!important;}
   .jic-card-copy span{font-size:12px!important;}
+  [data-surface="glass"] .jic-info-shell,
+  [data-surface="glass"] .jic-mainnav,
+  [data-surface="glass"] .jic-subnav,
+  [data-surface="glass"] .jic-mobile-menu{
+    backdrop-filter:blur(30px) saturate(190%)!important;
+    -webkit-backdrop-filter:blur(30px) saturate(190%)!important;
+  }
 }
 
 @media(max-width:430px){
