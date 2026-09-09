@@ -61,7 +61,7 @@ export default function ProjectsPage() {
             </div>
 
             <div className="space-y-8">
-              <Card className="bg-primary/10 border-primary/20">
+              <Card id="donate" className="jic-anchor-target bg-primary/10 border-primary/20">
                 <CardHeader><CardTitle className="flex items-center gap-2"><Phone className="w-6 h-6 text-primary" />{HOW_TO_DONATE.heading}</CardTitle></CardHeader>
                 <CardContent>
                   <p className="text-gray-700 dark:text-gray-300 mb-4">{HOW_TO_DONATE.body}</p>
