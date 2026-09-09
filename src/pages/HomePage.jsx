@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { BookOpen, CalendarDays, Play, Radio, Users, Building2, ArrowRight, Megaphone } from 'lucide-react';
 import MosqueIcon from '@/components/icons/MosqueIcon';
 import JamatiaLogo from '@/components/shell/JamatiaLogo';
-import { IMAGES } from '@/content/images';
 import { EVENTS_LIST } from '@/content/pages/home';
 import { SITE } from '@/content/site';
 import { usePrayerTimes } from '@/components/sections/prayer-times/PrayerTimesLogic';
@@ -42,12 +41,10 @@ function useHomeTiles(){
 export default function HomePage(){
   const{events,announcement,livestream}=useHomeLiveContent();const cards=useHomeTiles();const{jummahTimes}=usePrayerTimes();const{getContent}=useContent();
   let hero={};try{hero=JSON.parse(getContent('page:/','{}'));}catch{}
-  const heroImage=hero.image||import.meta.env.VITE_HOME_HERO_URL||IMAGES.homeHero;
   const liveUrl=livestream?.stream_url||SITE.socials.youtube;const embedUrl=useMemo(()=>youtubeEmbedUrl(livestream?.stream_url),[livestream]);
 
   return <div className="jic-premium-home">
-    <section className="jic-hero">
-      <img src={heroImage} alt="Jamatia Islamic Centre" className="jic-hero-image"/>
+    <section className="jic-hero jic-hero-no-image">
       <div className="jic-hero-overlay"/>
       <div className="jic-hero-inner">
         <div className="jic-hero-mobile-logo"><JamatiaLogo/></div>
