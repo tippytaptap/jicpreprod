@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Heart, MapPin, Menu, Moon, Pause, Play, Sun, X, ChevronDown, LogIn } from 'lucide-react';
+import { Heart, MapPin, Menu, Moon, Pause, Play, Sun, X, ChevronDown, LogIn, Phone } from 'lucide-react';
 import JamatiaLogo from '@/components/shell/JamatiaLogo';
 import { NAV_GROUPS } from '@/content/nav';
 import { SITE } from '@/content/site';
@@ -74,7 +74,10 @@ export default function Navbar() {
   return <header className={cn('jic-header fixed inset-x-0 top-0 z-50', scrolled && 'is-scrolled')}>
     <div className="mx-auto max-w-[1500px] px-2 sm:px-4 pt-2">
       <div className="jic-glass jic-info-shell rounded-2xl overflow-hidden">
-        <div className="jic-address"><MapPin size={15}/><span>Woodlands Rd · Birmingham · B11 4ER</span></div>
+        <div className="jic-address">
+          <MapPin size={15}/><span>Woodlands Rd · Birmingham · B11 4ER</span>
+          <a className="jic-top-phone" href={`tel:${SITE.phone.replace(/\s/g, '')}`}><Phone size={13}/><span>{SITE.phone}</span></a>
+        </div>
         <div className="jic-prayer-row">
           {PRAYERS.map(([label,key])=><div className="jic-prayer" key={key}><span>{label}</span><strong>{shortTime(todaysTimes?.[key])}</strong></div>)}
         </div>
