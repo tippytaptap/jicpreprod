@@ -79,6 +79,9 @@ export default function Navbar() {
           {PRAYERS.map(([label,key])=><div className="jic-prayer" key={key}><span>{label}</span><strong>{shortTime(todaysTimes?.[key])}</strong></div>)}
         </div>
         <div className="jic-utility-row">
+          <Link to="/prayer-times#jummah" className="jic-jummah-mini" aria-label="Friday Jummah times">
+            <span>FRI</span><strong>1:30 · 2:30</strong>
+          </Link>
           <button className={cn('jic-radio',playing&&'is-live')} onClick={toggleRadio}>
             {playing?<Pause size={15}/>:<Play size={15}/>}<span>JIC Radio</span><i className="live-dot"/><small>{radioError?'Retry':'Live'}</small>
           </button>
