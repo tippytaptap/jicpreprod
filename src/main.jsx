@@ -37,6 +37,7 @@ showStatus('Loading website…');
       import('@/styles/jic-popup-overrides.css'),
       import('@/styles/mobile-home-refine.css'),
       import('@/styles/scroll-reminder.css'),
+      import('@/styles/header-uniform.css'),
     ]);
 
     const React = ReactModule.default;
