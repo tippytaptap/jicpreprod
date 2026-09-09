@@ -17,6 +17,7 @@ const getActiveGroup=(pathname)=>{
   if(['/team','/contact','/financial-history'].includes(pathname)) return NAV_GROUPS.find(x=>x.name==='About');
   return NAV_GROUPS.find(group=>group.path==='/'?pathname==='/':pathname===group.path||pathname.startsWith(`${group.path}/`));
 };
+const isCurrentSubtab=(pathname,itemPath)=> pathname===itemPath || (itemPath!=='/' && pathname.startsWith(`${itemPath}/`));
 
 export default function Navbar(){
   const {pathname}=useLocation();
@@ -76,7 +77,7 @@ export default function Navbar(){
           <div className="jic-nav-actions"><button type="button" onClick={openDonation} className="donate-button" aria-label="Donate to Jamatia Islamic Centre"><Heart size={18}/><span>Donate</span></button><button className="header-icon" onClick={()=>setMenuOpen(v=>!v)} aria-label="Menu">{menuOpen?<X size={23}/>:<Menu size={23}/>}</button></div>
         </div>
 
-        {activeGroup?.children?.length>0&&<nav className="jic-subnav" aria-label={`${activeGroup.name} sections`}>{activeGroup.children.map(item=><Link key={`${activeGroup.name}-${item.name}`} to={item.path} className="jic-subnav-link">{item.name}</Link>)}</nav>}
+        {activeGroup?.children?.length>0&&<nav className="jic-subnav" aria-label={`${activeGroup.name} sections`}>{activeGroup.children.map(item=>{const current=isCurrentSubtab(pathname,item.path);return <Link key={`${activeGroup.name}-${item.name}`} to={item.path} aria-current={current?'page':undefined} className={cn('jic-subnav-link',current&&'is-current')}>{item.name}</Link>;})}</nav>}
 
         <AnimatePresence>{menuOpen&&<motion.div initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-8}} className="jic-mobile-menu jic-glass">
           <div className="jic-menu-head"><span className="jic-menu-title">Menu</span><button onClick={()=>setMenuOpen(false)} aria-label="Close menu"><X size={22}/></button></div>
