@@ -2,16 +2,16 @@
 @media (max-width: 640px) {
   /* The hero is the visual canvas from the first pixel of the page. */
   .jic-premium-home{margin-top:0!important;padding-top:0!important;background:transparent!important;}
-  .jic-hero{min-height:84svh!important;height:auto!important;border-radius:0 0 24px 24px!important;margin-top:0!important;overflow:hidden!important;}
+  .jic-hero{min-height:88svh!important;height:auto!important;border-radius:0 0 24px 24px!important;margin-top:0!important;overflow:hidden!important;}
   .jic-hero-image{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:50% 42%!important;}
   .jic-hero-overlay{background:linear-gradient(180deg,rgba(3,8,13,.05) 0%,rgba(3,8,13,.12) 32%,rgba(3,8,13,.44) 65%,rgba(3,8,13,.78) 100%)!important;}
-  .jic-hero-inner{min-height:84svh!important;padding:clamp(300px,42svh,390px) 20px 34px!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;}
+  .jic-hero-inner{min-height:88svh!important;padding:clamp(320px,45svh,420px) 20px 20px!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;}
   .jic-kicker{font-size:10px!important;letter-spacing:.20em!important;margin-bottom:12px!important;}
   .jic-hero h1{font-size:clamp(2.45rem,10.7vw,3.75rem)!important;line-height:.96!important;max-width:9.8ch!important;margin-bottom:16px!important;}
   .jic-gold-rule{width:74px!important;height:4px!important;margin-bottom:16px!important;}
-  .jic-hero-sub{font-size:14px!important;line-height:1.48!important;max-width:30ch!important;margin-bottom:22px!important;}
+  .jic-hero-sub{font-size:14px!important;line-height:1.48!important;max-width:30ch!important;margin-bottom:20px!important;}
   .jic-hero-buttons{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important;width:100%!important;}
-  .jic-primary-cta,.jic-secondary-cta{min-height:52px!important;padding:0 16px!important;font-size:14px!important;border-radius:999px!important;justify-content:center!important;}
+  .jic-primary-cta,.jic-secondary-cta{min-height:50px!important;padding:0 16px!important;font-size:14px!important;border-radius:999px!important;justify-content:center!important;}
 
   /* Make the fixed top controls feel like two compact floating layers, not stacked blocks. */
   .jic-header{top:max(6px,env(safe-area-inset-top))!important;padding:0 8px!important;pointer-events:none;}
