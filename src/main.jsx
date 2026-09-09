@@ -34,6 +34,7 @@ showStatus('Loading website…');
       import('@/styles/final-touches.css'),
       import('@/styles/jic-restructure.css'),
       import('@/styles/jic-final-polish.css'),
+      import('@/styles/jic-popup-overrides.css'),
     ]);
 
     const React = ReactModule.default;
