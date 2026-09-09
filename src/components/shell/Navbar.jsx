@@ -36,6 +36,7 @@ export default function Navbar() {
   const [glass,setGlass] = useState(() => safeGet('jic-glass', 'on') !== 'off');
   const [playing,setPlaying] = useState(false);
   const [radioError,setRadioError] = useState(false);
+  const [scrolled,setScrolled] = useState(false);
   const audioRef = useRef(null);
   const streamUrl = import.meta.env.VITE_RADIO_STREAM_URL || SITE.radio?.streamUrl || '';
   const activeGroup = useMemo(() => getActiveGroup(pathname), [pathname]);
@@ -46,6 +47,13 @@ export default function Navbar() {
     safeSet('jic-theme',theme);
     safeSet('jic-glass',glass?'on':'off');
   },[theme,glass]);
+
+  useEffect(()=>{
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  },[]);
 
   useEffect(()=>()=>{ if(audioRef.current){audioRef.current.pause(); audioRef.current.src='';}},[]);
   useEffect(()=>setMenuOpen(false),[pathname]);
@@ -63,7 +71,7 @@ export default function Navbar() {
     catch { setPlaying(false); setRadioError(true); }
   };
 
-  return <header className="jic-header fixed inset-x-0 top-0 z-50">
+  return <header className={cn('jic-header fixed inset-x-0 top-0 z-50', scrolled && 'is-scrolled')}>
     <div className="mx-auto max-w-[1500px] px-2 sm:px-4 pt-2">
       <div className="jic-glass jic-info-shell rounded-2xl overflow-hidden">
         <div className="jic-address"><MapPin size={15}/><span>Woodlands Rd · Birmingham · B11 4ER</span></div>
@@ -82,7 +90,7 @@ export default function Navbar() {
       </div>
 
       <div className="jic-mainnav mt-2">
-        <Link to="/" className="jic-brand" aria-label="Jamatia Islamic Centre home"><JamatiaLogo/></Link>
+        <Link to="/" className={cn('jic-brand', scrolled && 'is-hidden-on-scroll')} aria-label="Jamatia Islamic Centre home"><JamatiaLogo/></Link>
         <nav className="jic-desktop-nav">
           {NAV_GROUPS.map(({name,path,children})=><NavLink key={path} to={path} end={path === '/'} className={({isActive})=>cn('nav-pill',isActive&&'active')}>{name}{children.length>0&&<ChevronDown size={13}/>}</NavLink>)}
         </nav>
