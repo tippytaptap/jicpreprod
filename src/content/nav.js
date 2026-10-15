@@ -56,6 +56,7 @@ export const NAV_GROUPS = [
       { name: 'Student Portal', path: '/madrassah/student-portal' },
     ],
   },
+  { name: 'Platform', path: '/platform', children: [] },
   {
     name: 'Youth', path: '/youth', children: [
       { name: 'Activities', path: '/youth/activities' },
