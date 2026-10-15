@@ -3,6 +3,15 @@ import { ArrowRight, BookOpen, Check, HeartHandshake, MessageCircle, Play, Shiel
 import { Link } from 'react-router-dom';
 import { PLATFORM_FEATURES } from '@/content/platform';
 
+const featureHref = (title) => ({
+  'Live lessons': '/portal',
+  'My family': '/portal',
+  'Courses & Madrassah': '/madrassah',
+  'Giving & events': '/services',
+  'Certificates & services': '/services',
+  'Smart administration': '/portal',
+}[title] || '/portal');
+
 const iconFor = (title) => ({
   'Live lessons': Video,
   'My family': Users,
@@ -40,14 +49,14 @@ export default function PlatformPage() {
       <section className="mx-auto max-w-7xl px-6 py-16 md:px-12 lg:px-20">
         <div className="max-w-2xl"><p className="font-semibold uppercase tracking-[.18em] text-primary">Built around real JIC tasks</p><h2 className="mt-3 font-serif text-4xl tracking-tight md:text-5xl">Useful features, in the right place.</h2><p className="mt-4 text-muted-foreground">The public website stays simple. Once someone signs in, their account opens the parts they are allowed to use.</p></div>
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {PLATFORM_FEATURES.map((feature) => { const Icon = iconFor(feature.title); return <article key={feature.title} className="group rounded-3xl border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary/10 text-primary"><Icon size={21} /></span><span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">{feature.tag}</span></div><h3 className="mt-5 text-xl font-semibold">{feature.title}</h3><p className="mt-2 leading-7 text-muted-foreground">{feature.text}</p><div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">See how it works <ArrowRight size={15} className="transition group-hover:translate-x-1" /></div></article>; })}
+          {PLATFORM_FEATURES.map((feature) => { const Icon = iconFor(feature.title); return <Link to={featureHref(feature.title)} key={feature.title} className="group rounded-3xl border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"><div className="flex items-start justify-between"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-primary/10 text-primary"><Icon size={21} /></span><span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">{feature.tag}</span></div><h3 className="mt-5 text-xl font-semibold">{feature.title}</h3><p className="mt-2 leading-7 text-muted-foreground">{feature.text}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">See how it works <ArrowRight size={15} className="transition group-hover:translate-x-1" /></span></Link>; })}
         </div>
       </section>
 
       <section className="border-y bg-muted/30 px-6 py-16 md:px-12 lg:px-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div><p className="font-semibold uppercase tracking-[.18em] text-primary">Ready for every screen</p><h2 className="mt-3 font-serif text-4xl tracking-tight">The website becomes the app foundation.</h2><p className="mt-4 leading-7 text-muted-foreground">We keep navigation, permissions, payments, notifications and records in one shared model. That lets us ship the responsive website first, then package the same experience as a progressive web app and native mobile apps.</p><ul className="mt-6 space-y-3">{['One account across website, iPhone and Android', 'Role-based access for parents, teachers and admins', 'Live lessons, reminders and messages designed for mobile', 'Secure Supabase policies remain the source of truth'].map((item) => <li key={item} className="flex items-start gap-3"><Check className="mt-1 shrink-0 text-primary" size={18} /><span>{item}</span></li>)}</ul></div>
-          <div className="rounded-[2rem] bg-[#07111b] p-6 text-white shadow-xl"><div className="flex items-center justify-between"><div><p className="text-sm text-white/60">Live now</p><h3 className="mt-1 text-2xl font-semibold">Weekly Tafseer</h3></div><span className="rounded-full bg-red-500/20 px-3 py-1 text-xs font-bold text-red-200">LIVE</span></div><div className="mt-6 aspect-video rounded-2xl bg-gradient-to-br from-[#173441] to-[#07111b] p-5"><div className="flex h-full items-end justify-between"><div><p className="text-sm text-white/60">Ustadh Yusuf · 12 learners</p><p className="mt-1 text-lg">Private lesson room</p></div><span className="grid h-12 w-12 place-items-center rounded-full bg-[#f0cf78] text-[#07111b]"><Play size={18} fill="currentColor" /></span></div></div><div className="mt-5 flex items-center justify-between text-sm text-white/60"><span className="inline-flex items-center gap-2"><MessageCircle size={16} /> Chat enabled</span><span>Attendance automatic</span></div></div>
+          <div className="rounded-[2rem] bg-[#07111b] p-6 text-white shadow-xl"><div className="flex items-center justify-between"><div><p className="text-sm text-white/60">Live now</p><h3 className="mt-1 text-2xl font-semibold">Weekly Tafseer</h3></div><span className="rounded-full bg-red-500/20 px-3 py-1 text-xs font-bold text-red-200">LIVE</span></div><div className="mt-6 aspect-video rounded-2xl bg-gradient-to-br from-[#173441] to-[#07111b] p-5"><div className="flex h-full items-end justify-between"><div><p className="text-sm text-white/60">Ustadh Yusuf · 12 learners</p><p className="mt-1 text-lg">Private lesson room</p></div><Link to="/portal" aria-label="Open the live lesson portal" className="grid h-12 w-12 place-items-center rounded-full bg-[#f0cf78] text-[#07111b] transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0cf78] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07111b]"><Play size={18} fill="currentColor" /></Link></div></div><div className="mt-5 flex items-center justify-between text-sm text-white/60"><span className="inline-flex items-center gap-2"><MessageCircle size={16} /> Chat enabled</span><span>Attendance automatic</span></div></div>
         </div>
       </section>
     </div>
