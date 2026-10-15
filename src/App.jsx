@@ -16,6 +16,8 @@ import ProjectsPage from '@/pages/ProjectsPage';
 import ServicesPage from '@/pages/ServicesPage';
 import TeamPage from '@/pages/TeamPage';
 import YouthPage from '@/pages/YouthPage';
+import PlatformPage from '@/pages/PlatformPage';
+import PortalPage from '@/pages/PortalPage';
 import SectionPage from '@/pages/SectionPage';
 import AdminPage from '@/pages/admin/AdminPage';
 import AdminLoginPage from '@/pages/admin/AdminLoginPage';
@@ -79,6 +81,8 @@ function App() {
           <Route path="team" element={<TeamPage />} />
           <Route path="youth" element={<YouthPage />} />
           <Route path="youth/itikaf" element={<YouthPage view="itikaf" />} />
+          <Route path="platform" element={<PlatformPage />} />
+          <Route path="portal" element={<PortalPage />} />
           {standaloneSections.map(([path,eyebrow,title,backTo]) => (
             <Route key={path} path={path} element={<SectionPage eyebrow={eyebrow} title={title} backTo={backTo} backLabel={`Back to ${eyebrow}`} />} />
           ))}
